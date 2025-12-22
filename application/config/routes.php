@@ -63,3 +63,7 @@ $route['onBoarding_forgot'] = 'onBoarding/DeveloperForgot/developer_forgot';
 ///================= Fronted controller===========
 $route['extras'] = 'fronted/Extra/loaDextra';
 
+
+
+///================= Dashboard  controller===========
+$route['admin_playground'] = 'dashBoard/Admin/AdminDashboard/loaDadmin_dashboard';

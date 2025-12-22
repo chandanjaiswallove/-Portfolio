@@ -647,7 +647,6 @@ $this->load->view('fronted/layouts/ui_Header');
 	</div>
 
 
-https://github.com/chandanjaiswallove/-Portfolio/commits?author=Sambhawkumar9409
 
 
 </main>
