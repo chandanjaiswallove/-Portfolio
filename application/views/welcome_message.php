@@ -14,36 +14,6 @@ $this->load->view('fronted/layouts/ui_Header');
 	<div id="smooth-wrapper">
 		<div id="smooth-content">
 
-			<div class="left-sidebar ">
-				<div class="sidebar-header d-flex align-items-center justify-content-between">
-					<a href="<?php echo base_url(''); ?>"><img src="modules/assets/images/logo.png" alt="Logo"></a>
-					<!-- <span class="designation">Framer Designer & Developer</span> -->
-				</div>
-				<img class="me" src="modules/assets/images/dpme.jpeg" alt="Me">
-				<h2 class="email">hello@drake.design</h2>
-				<h2 class="address">Base in Los Angeles, CA</h2>
-				<p class="copyright">&copy; 2025 Drake. All Rights Reserved</p>
-				<ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
-					<li>
-						<a href="#"><i class="lab la-twitter"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="lab la-dribbble"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="lab la-instagram"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="lab la-github"></i></a>
-					</li>
-				</ul>
-				<a href="https://wa.me/917292818092?text=Hi%20I%20want%20to%20hire%20you" target="_blank"
-					class="theme-btn">
-					<i class="lab la-whatsapp"></i> Contact on WhatsApp
-				</a>
-
-			</div>
-
 			<section class="hero-section page-section scroll-to-page" id="home">
 				<div class="custom-container">
 					<div class="hero-content content-width">
@@ -645,6 +615,8 @@ $this->load->view('fronted/layouts/ui_Header');
 					</div>
 				</div>
 			</section>
+
+
 		</div>
 	</div>
 

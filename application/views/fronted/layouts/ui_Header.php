@@ -235,16 +235,15 @@
         </li>
     </ul>
 
-    <div class="left-sidebar">
+    <div class="left-sidebar ">
         <div class="sidebar-header d-flex align-items-center justify-content-between">
             <a href="<?php echo base_url(''); ?>"><img src="modules/assets/images/logo.png" alt="Logo"></a>
             <!-- <span class="designation">Framer Designer & Developer</span> -->
         </div>
         <img class="me" src="modules/assets/images/dpme.jpeg" alt="Me">
-
         <h2 class="email">hello@drake.design</h2>
         <h2 class="address">Base in Los Angeles, CA</h2>
-        <p class="copyright">&copy; 2022 Drake. All Rights Reserved</p>
+        <p class="copyright">&copy; 2025 Drake. All Rights Reserved</p>
         <ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
             <li>
                 <a href="#"><i class="lab la-twitter"></i></a>
@@ -259,7 +258,10 @@
                 <a href="#"><i class="lab la-github"></i></a>
             </li>
         </ul>
-        <a href="<?php echo base_url('onBoarding') ?>" class="theme-btn">
-            <i class="las la-envelope"></i> Hire Me!
+        <a href="https://wa.me/917292818092?text=Thank%20you%20for%20your%20message.%20We're%20unavailable%20right%20now,%20but%20will%20respond%20as%20soon%20as%20possible."
+            target="_blank" class="theme-btn">
+            <i class="lab la-whatsapp"></i> Contact Me
         </a>
+
+
     </div>
