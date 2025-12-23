@@ -75,7 +75,7 @@
                     </div>
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"> <a href="index.html"><img class="img-fluid for-light"
+                    <div class="logo-wrapper"> <a href="#"><img class="img-fluid for-light"
                                 src="modules/assets2/images/logo/logo_dark.png" alt="logo-light"><img
                                 class="img-fluid for-dark" src="modules/assets2/images/logo/logo.png"
                                 alt="logo-dark"></a></div>
@@ -466,20 +466,20 @@
         <div class="page-body-wrapper">
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-layout="stroke-svg">
-                <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
+                <div class="logo-wrapper"><a href="#"><img class="img-fluid"
                             src="modules/assets2/images/logo/logo.png" alt=""></a>
                     <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
                     </div>
                 </div>
-                <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
+                <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid"
                             src="modules/assets2/images/logo/logo-icon.png" alt=""></a></div>
                 <nav class="sidebar-main">
                     <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
 
                     <div id="sidebar-menu">
                         <ul class="sidebar-links" id="simple-bar">
-                            <li class="back-btn"><a href="index.html"><img class="img-fluid"
+                            <li class="back-btn"><a href="#"><img class="img-fluid"
                                         src="modules/assets2/images/logo/logo-icon.png" alt=""></a>
                                 <div class="mobile-back text-end"> <span>Back </span><i class="fa fa-angle-right ps-2"
                                         aria-hidden="true"></i></div>
@@ -507,7 +507,7 @@
                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                 </a>
                                 <ul class="sidebar-submenu" style="display: none;">
-                                    <li><a href="index.html" class="active">Default</a></li>
+                                    <li><a href="#" class="active">Default</a></li>
                                     <li><a href="dashboard-02.html">Ecommerce</a></li>
                                     <li><a href="dashboard-03.html">Project</a></li>
                                 </ul>

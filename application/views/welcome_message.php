@@ -22,7 +22,7 @@ $this->load->view('fronted/layouts/ui_Header');
 				<img class="me" src="modules/assets/images/dpme.jpeg" alt="Me">
 				<h2 class="email">hello@drake.design</h2>
 				<h2 class="address">Base in Los Angeles, CA</h2>
-				<p class="copyright">&copy; 2022 Drake. All Rights Reserved</p>
+				<p class="copyright">&copy; 2025 Drake. All Rights Reserved</p>
 				<ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
 					<li>
 						<a href="#"><i class="lab la-twitter"></i></a>
@@ -37,9 +37,11 @@ $this->load->view('fronted/layouts/ui_Header');
 						<a href="#"><i class="lab la-github"></i></a>
 					</li>
 				</ul>
-				<a href="<?php echo base_url('onBoarding') ?>" class="theme-btn">
-					<i class="las la-envelope"></i> Hire Me!
+				<a href="https://wa.me/917292818092?text=Hi%20I%20want%20to%20hire%20you" target="_blank"
+					class="theme-btn">
+					<i class="lab la-whatsapp"></i> Contact on WhatsApp
 				</a>
+
 			</div>
 
 			<section class="hero-section page-section scroll-to-page" id="home">
