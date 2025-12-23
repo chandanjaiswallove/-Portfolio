@@ -76,5 +76,16 @@ $route['extras'] = 'fronted/Extra/loaDextra';
 
 ///================= Dashboard  controller start ==============
 $route['admin_playground'] = 'dashBoard/Admin/AdminDashboard/loaDadmin_dashboard';
+$route['about'] = 'dashBoard/Admin/AdminDashboard/loaDabout';
+
+$route['introduce'] = 'dashBoard/Admin/AdminDashboard/loaDintroduce';
+$route['skill'] = 'dashBoard/Admin/AdminDashboard/loaDmyskill';
+
+$route['profile_card'] = 'dashBoard/Admin/AdminDashboard/loaDprofile_card';
+$route['services'] = 'dashBoard/Admin/AdminDashboard/loaDservices';
+
+$route['testimonials'] = 'dashBoard/Admin/AdminDashboard/loaDtestimonials';
+$route['visitors'] = 'dashBoard/Admin/AdminDashboard/loaDvisitor_data';
+
 
 ///================= Dashboard  controller end =================

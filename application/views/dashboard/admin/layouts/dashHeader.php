@@ -466,7 +466,7 @@
         <div class="page-body-wrapper">
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-layout="stroke-svg">
-                <div class="logo-wrapper"><a href="#"><img class="img-fluid"
+                <div class="logo-wrapper"><a href="<?php echo base_url('admin_playground') ?>"><img class="img-fluid"
                             src="modules/assets2/images/logo/logo.png" alt=""></a>
                     <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
@@ -507,9 +507,25 @@
                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                 </a>
                                 <ul class="sidebar-submenu" style="display: none;">
-                                    <li><a href="#" class="active">Default</a></li>
-                                    <li><a href="dashboard-02.html">Ecommerce</a></li>
-                                    <li><a href="dashboard-03.html">Project</a></li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Profile Card</a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('introduce') ?>" class="active">Introduce</a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('about') ?>" class="active">About </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Resume </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Services </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Skills </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Portfolio </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Testimonials </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Contact </a>
+                                    </li>
+
                                 </ul>
                             </li>
 
