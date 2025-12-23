@@ -37,7 +37,7 @@ $this->load->view('onBoarding/layouts/authHeader');
             <label style="margin:0;">Remember Me</label>
         </div>
 
-        <a href="<?= base_url('forgot-password'); ?>" class="project-btn scroll-animation"
+        <a href="<?= base_url('onBoarding_forgot'); ?>" class="project-btn scroll-animation"
             data-animation="fade_from_bottom">
             Forgot Password?
         </a>

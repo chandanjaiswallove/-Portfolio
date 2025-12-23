@@ -53,17 +53,28 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-///================= onBoarding controller===========
+///================= onBoarding controller start ===========
 $route['onBoarding'] = 'onBoarding/Login/developer_login';
 
 $route['onBoarding_forgot'] = 'onBoarding/DeveloperForgot/developer_forgot';
 
+$route['onBoarding_credentials'] = 'onBoarding/NewCredentials/new_credentials';
+
+$route['onBoarding_verify'] = 'onBoarding/Verify/loaDverify';
+
+///================= onBoarding controller end ===============
 
 
-///================= Fronted controller===========
+
+///================= Fronted controller start ==============
 $route['extras'] = 'fronted/Extra/loaDextra';
 
 
+///================= Fronted controller end =================
 
-///================= Dashboard  controller===========
+
+
+///================= Dashboard  controller start ==============
 $route['admin_playground'] = 'dashBoard/Admin/AdminDashboard/loaDadmin_dashboard';
+
+///================= Dashboard  controller end =================

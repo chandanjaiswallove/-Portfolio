@@ -9,7 +9,30 @@ $this->load->view('onBoarding/layouts/authHeader');
 <main class="drake-main">
 
 
-    <h2>hello</h2>
+  <form method="POST" action="<?= base_url('auth/verify_otp'); ?>" class="contact-form">
+
+    <div class="input-group mb-3 scroll-animation" data-animation="fade_from_bottom">
+        <label>OTP <sup>*</sup></label>
+        <input type="text" name="otp"
+            class="bg-transparent w-100 p-1 text-white"
+            placeholder="Enter OTP"
+            style="border-radius:5px;" required>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-2">
+            <div class="input-group submit-btn-wrap">
+                <button type="submit"
+                    class="theme-btn w-100 scroll-animation"
+                    data-animation="fade_from_right"
+                    style="background:transparent;color:var(--text-color);border:1px solid #565656;">
+                    Verify OTP
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
 
 
 </main>

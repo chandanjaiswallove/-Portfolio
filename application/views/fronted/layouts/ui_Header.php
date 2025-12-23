@@ -241,7 +241,7 @@
             <!-- <span class="designation">Framer Designer & Developer</span> -->
         </div>
         <img class="me" src="modules/assets/images/dpme.jpeg" alt="Me">
-        <h2 class="email">hello@drake.design</h2>
+        <h2 class="email">Chandanjaiswallove</h2>
         <h2 class="address">Base in Los Angeles, CA</h2>
         <p class="copyright">&copy; 2025 Drake. All Rights Reserved</p>
         <ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
@@ -262,6 +262,4 @@
             target="_blank" class="theme-btn">
             <i class="lab la-whatsapp"></i> Contact Me
         </a>
-
-
     </div>
