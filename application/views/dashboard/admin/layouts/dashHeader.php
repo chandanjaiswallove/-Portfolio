@@ -515,7 +515,7 @@
                                     </li>
                                     <li><a href="<?php echo base_url('profile_card') ?>" class="active">Resume </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Services </a>
+                                    <li><a href="<?php echo base_url('services') ?>" class="active">Services </a>
                                     </li>
                                     <li><a href="<?php echo base_url('profile_card') ?>" class="active">Skills </a>
                                     </li>
