@@ -87,5 +87,7 @@ $route['services'] = 'dashBoard/Admin/AdminDashboard/loaDservices';
 $route['testimonials'] = 'dashBoard/Admin/AdminDashboard/loaDtestimonials';
 $route['visitors'] = 'dashBoard/Admin/AdminDashboard/loaDvisitor_data';
 
+$route['resume'] = 'dashBoard/Admin/AdminDashboard/loaDresume';
+$route['portfolio'] = 'dashBoard/Admin/AdminDashboard/loaDportfolio';
 
 ///================= Dashboard  controller end =================

@@ -243,9 +243,7 @@ $this->load->view('fronted/layouts/ui_Header');
 										</a>
 
 										<ul class="portfolio-categories">
-											<li>
-												<a href="#">Figma</a>
-											</li>
+
 											<li>
 												<a href="#">Framer</a>
 											</li>
@@ -279,67 +277,6 @@ $this->load->view('fronted/layouts/ui_Header');
 										</ul>
 									</div>
 									<h2><a href="#">Moonex WordPress Theme</a></h2>
-								</div>
-							</div>
-
-							<div class="col-md-6 scroll-animation" data-animation="fade_from_right">
-								<div class="portfolio-item portfolio-half">
-									<div class="portfolio-item-inner">
-										<a href="modules/assets/images/portfolio3.jpg" data-lightbox="example-1">
-											<img src="modules/assets/images/portfolio3.jpg" alt="Portfolio" />
-										</a>
-
-										<ul class="portfolio-categories">
-											<li>
-												<a href="#">Figma</a>
-											</li>
-											<li>
-												<a href="#">Webflow</a>
-											</li>
-										</ul>
-									</div>
-									<h2><a href="#">Taskly Dashboard</a></h2>
-								</div>
-							</div>
-
-							<div class="col-md-12 scroll-animation" data-animation="fade_from_bottom">
-								<div class="portfolio-item portfolio-half">
-									<div class="portfolio-item-inner">
-										<a href="modules/assets/images/portfolio4.jpg" data-lightbox="example-1">
-											<img src="modules/assets/images/portfolio4.jpg" alt="Portfolio" />
-										</a>
-
-										<ul class="portfolio-categories">
-											<li>
-												<a href="#">Figma</a>
-											</li>
-											<li>
-												<a href="#">React</a>
-											</li>
-										</ul>
-									</div>
-									<h2>
-										<a href="#">Hinterland - Real Estate Site Redesign</a>
-									</h2>
-								</div>
-							</div>
-
-							<div class="col-md-12 scroll-animation" data-animation="fade_from_bottom">
-								<div class="portfolio-item portfolio-half">
-									<div class="portfolio-item-inner">
-										<a href="modules/assets/images/portfolio5.jpg" data-lightbox="example-1">
-											<img src="modules/assets/images/portfolio5.jpg" alt="Portfolio" />
-										</a>
-
-										<ul class="portfolio-categories">
-											<li>
-												<a href="#">Framer</a>
-											</li>
-										</ul>
-									</div>
-									<h2>
-										<a href="#">Lewis Portfolio Framer Template</a>
-									</h2>
 								</div>
 							</div>
 						</div>

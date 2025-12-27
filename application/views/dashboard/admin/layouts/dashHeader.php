@@ -504,7 +504,7 @@
                                     <svg class="fill-icon">
                                         <use href="modules/assets2/svg/icon-sprite.svg#fill-home"></use>
                                     </svg><span class="lan-3">Dashboards</span>
-                                    <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                                    <!-- <div class="according-menu"><i class="fa fa-angle-right"></i></div> -->
                                 </a>
                                 <ul class="sidebar-submenu" style="display: none;">
                                     <li><a href="<?php echo base_url('profile_card') ?>" class="active">Profile Card</a>
@@ -513,18 +513,16 @@
                                     </li>
                                     <li><a href="<?php echo base_url('about') ?>" class="active">About </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Resume </a>
-                                    </li>
                                     <li><a href="<?php echo base_url('services') ?>" class="active">Services </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Skills </a>
+                                    <li><a href="<?php echo base_url('skill') ?>" class="active">Skills </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Portfolio </a>
+                                    <li><a href="<?php echo base_url('portfolio') ?>" class="active">Portfolio </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Testimonials </a>
+                                    <li><a href="<?php echo base_url('testimonials') ?>" class="active">Testimonials
+                                        </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('profile_card') ?>" class="active">Contact </a>
-                                    </li>
+
 
                                 </ul>
                             </li>
@@ -536,10 +534,12 @@
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="modules/assets2/svg/icon-sprite.svg#fill-widget"></use>
-                                    </svg><span class="lan-6">Widgets</span></a>
+                                    </svg><span class="lan-6">Resume</span></a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="general-widget.html">General</a></li>
-                                    <li><a href="chart-widget.html">Chart</a></li>
+                                    <li><a href="<?php echo base_url('resume') ?>" class="active">Resume </a>
+                                    </li>
+                                    <li><a href="<?php echo base_url('visitors') ?>" class="active">Contact </a>
+                                    </li>
                                 </ul>
                             </li>
 

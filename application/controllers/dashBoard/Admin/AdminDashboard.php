@@ -43,4 +43,14 @@ class AdminDashboard extends CI_Controller
     {
         $this->load->view('dashboard/admin/pages/visitor_data');
     }
+
+        public function loaDresume()
+    {
+        $this->load->view('dashboard/admin/pages/resume');
+    }
+
+        public function loaDportfolio()
+    {
+        $this->load->view('dashboard/admin/pages/portfolio');
+    }
 }

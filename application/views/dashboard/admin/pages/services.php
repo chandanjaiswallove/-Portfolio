@@ -41,57 +41,6 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
             <div class="row">
 
 
-                <!-- <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title mb-0">My Profile</h4>
-                            <div class="card-options">
-                                <a class="card-options-collapse" href="edit-profile.html#"
-                                    data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
-                                    class="card-options-remove" href="edit-profile.html#"
-                                    data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="row mb-2">
-                                    <div class="profile-title">
-                                        <div class="media">
-                                            <img class="img-70 rounded-circle" alt=""
-                                                src="modules/assets2/images/user/7.jpg" />
-                                            <div class="media-body">
-                                                <h5 class="mb-1">MARK JECNO</h5>
-                                                <p>DESIGNER</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Bio</h6>
-                                    <textarea class="form-control" rows="5">
-On the other hand, we denounce with righteous indignation</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email-Address</label>
-                                    <input class="form-control" placeholder="your-email@domain.com" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input class="form-control" type="password" value="password" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Website</label>
-                                    <input class="form-control" placeholder="http://Uplor .com" />
-                                </div>
-                                <div class="form-footer">
-                                    <button class="btn btn-primary btn-block">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
-
-
                 <div class="col-md-12">
                     <div class="card">
 
@@ -168,47 +117,43 @@ On the other hand, we denounce with righteous indignation</textarea>
                             <table class="table card-table table-vcenter text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Project Name</th>
+                                        <th>ID</th>
                                         <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Price</th>
-                                        <th>testing</th>
-
-                                        <th></th>
+                                        <th>Heading</th>
+                                        <th>Description</th>
+                                        <th>Projects Count</th>
+                                        <th>Service Icon</th>
+                                        <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-
-
                                     <tr>
-                                        <td>
-                                            <a class="text-inherit" href="edit-profile.html#">Untrammelled prevents</a>
-                                        </td>
+                                        <td>1</td>
                                         <td>25 June 2018</td>
+                                        <td>Web Development</td>
+                                        <td>Professional and scalable web development services.</td>
+                                        <td>24 Projects</td>
                                         <td>
-                                            <span class="status-icon bg-success"></span> Completed
+                                            <i class="fa fa-code text-primary"></i>
                                         </td>
-                                        <td>$15,987</td>
-                                        <td>Tested ok</td>
-
-
-
                                         <td class="text-end">
-                                            <!-- Edit Button (Modal Open) -->
                                             <a class="btn btn-primary btn-sm me-2" href="javascript:void(0)"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalCenter2">
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <!-- Delete Button -->
                                             <a class="btn btn-danger btn-sm" href="javascript:void(0)">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>
-
                                     </tr>
+
+
                                 </tbody>
                             </table>
+
+
                             <!-- ✅ MODAL YAHAN RAKHO (table ke baad) -->
                             <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenter2" aria-hidden="true">>
