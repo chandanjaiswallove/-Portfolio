@@ -41,125 +41,165 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
             <div class="row">
 
                 <div class="col-md-12">
-                    <form class="card" action="" method="">
-                        <div class="card-header">
-                            <h4 class="card-title mb-0"> Resume</h4>
-                            <div class="card-options">
-                                <a class="card-options-collapse" href="edit-profile.html#"
-                                    data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
-                                    class="card-options-remove" href="edit-profile.html#"
-                                    data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
-                            </div>
-                        </div>
+                    <form class="card" method="post">
+
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="mb-3">
-                                        <label class="form-label">Company Name</label>
-                                        <input class="form-control" type="text" placeholder="Company Name"
-                                            id="company_name" name="company_name" required />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Company Icon</label>
-                                        <input class="form-control" type="file" placeholder="Company Icon"
-                                            id="company_icon" name="company_icon" required />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Company logo </label>
-                                        <input class="form-control" type="file" placeholder="Company logo"
-                                            id="company_logo" name="company_logo" required />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Full Name</label>
-                                        <input class="form-control" type="text" placeholder="Full Name" id="full_name"
-                                            name="full_name" required />
-                                    </div>
-                                </div>
-                                <!-- Profile Photo -->
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Profile Photo</label>
-                                        <input class="form-control" type="file" id="profile_photo" name="profile_photo"
-                                            required />
-                                    </div>
-                                </div>
 
-                                <!-- Facebook -->
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Facebook Link</label>
-                                        <input class="form-control" type="text" placeholder="Facebook link"
-                                            id="facebook_link" name="facebook_link" required />
-                                    </div>
-                                </div>
-                                <!-- X / Twitter -->
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">X (Twitter) Link</label>
-                                        <input class="form-control" type="text" placeholder="X / Twitter link"
-                                            id="twitter_link" name="twitter_link" required />
-                                    </div>
-                                </div>
-                                <!-- LinkedIn -->
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">LinkedIn Link</label>
-                                        <input class="form-control" type="text" placeholder="LinkedIn link"
-                                            id="linkedin_link" name="linkedin_link" required />
-                                    </div>
-                                </div>
+                            <h5 class="mb-3">Education / Experience</h5>
 
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Instagram Links </label>
-                                        <input class="form-control" type="text" placeholder="Instagram links"
-                                            id="companyName" name="companyName" />
-                                    </div>
-                                </div>
+                            <div id="blocks-wrapper">
 
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Address</label>
-                                        <input class="form-control" type="text" placeholder="Address" id="companyName"
-                                            name="companyName" />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Whatsapp Number</label>
-                                        <input class="form-control" type="number" placeholder="Whatsapp Number "
-                                            maxlength="13" id="companyName" name="companyName" />
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="mb-3">
-                                        <label class="form-label">Email Address </label>
-                                        <input class="form-control" type="email" placeholder=" Email" id="companyName"
-                                            name="companyName" />
-                                    </div>
-                                </div>
+                                <!-- ===== ONE BLOCK ===== -->
+                                <div class="edu-block border rounded p-3 mb-3" data-index="0">
 
-                                <div class="col-md-12">
-                                    <div>
-                                        <label class="form-label">Whatsapp Message</label>
-                                        <textarea class="form-control" rows="4" placeholder="Enter About your Message"
-                                            style="resize:none;" id="WhatsappMessage" name="WhatsappMessage"></textarea>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <strong>Block</strong>
+                                        <button type="button" class="btn btn-danger btn-sm remove-block d-none">Remove
+                                            Block</button>
                                     </div>
+
+                                    <!-- DATE -->
+                                    <div class="mb-3">
+                                        <label>Date</label>
+                                        <div class="date-wrapper">
+                                            <div class="input-group mb-2">
+                                                <input type="text" name="education[0][date][]" class="form-control"
+                                                    placeholder="2010 - 2013">
+                                                <button type="button"
+                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-success add-date">+ Add
+                                            Date</button>
+                                    </div>
+
+                                    <!-- TITLE -->
+                                    <div class="mb-3">
+                                        <label>Title</label>
+                                        <div class="title-wrapper">
+                                            <div class="input-group mb-2">
+                                                <input type="text" name="education[0][title][]" class="form-control"
+                                                    placeholder="Bachelor Degree">
+                                                <button type="button"
+                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-success add-title">+ Add
+                                            Title</button>
+                                    </div>
+
+                                    <!-- DESCRIPTION -->
+                                    <div class="mb-3">
+                                        <label>Description</label>
+                                        <div class="desc-wrapper">
+                                            <div class="input-group mb-2">
+                                                <input type="text" name="education[0][desc][]" class="form-control"
+                                                    placeholder="US RMIT University">
+                                                <button type="button"
+                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-success add-desc">+ Add
+                                            Description</button>
+                                    </div>
+
                                 </div>
+                                <!-- ===== END BLOCK ===== -->
+
                             </div>
+
+                            <button type="button" class="btn btn-primary" id="add-block">
+                                + Add New Block
+                            </button>
+
                         </div>
+
                         <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit" id="whatsapp_message" name="whatsapp_message">
+                            <button class="btn btn-success" type="submit">
                                 Update Resume
                             </button>
                         </div>
+
                     </form>
+
+                    <script>
+                        let blockIndex = 1;
+
+                        // ADD NEW BLOCK
+                        document.getElementById('add-block').addEventListener('click', function () {
+                            const wrapper = document.getElementById('blocks-wrapper');
+
+                            const block = `
+    <div class="edu-block border rounded p-3 mb-3" data-index="${blockIndex}">
+        <div class="d-flex justify-content-between mb-2">
+            <strong>Block</strong>
+            <button type="button" class="btn btn-danger btn-sm remove-block">Remove Block</button>
+        </div>
+
+        <div class="mb-3">
+            <label>Date</label>
+            <div class="date-wrapper"></div>
+            <button type="button" class="btn btn-sm btn-success add-date">+ Add Date</button>
+        </div>
+
+        <div class="mb-3">
+            <label>Title</label>
+            <div class="title-wrapper"></div>
+            <button type="button" class="btn btn-sm btn-success add-title">+ Add Title</button>
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <div class="desc-wrapper"></div>
+            <button type="button" class="btn btn-sm btn-success add-desc">+ Add Description</button>
+        </div>
+    </div>`;
+
+                            wrapper.insertAdjacentHTML('beforeend', block);
+                            blockIndex++;
+                        });
+
+                        // ADD FIELD INSIDE BLOCK
+                        document.addEventListener('click', function (e) {
+                            const block = e.target.closest('.edu-block');
+                            if (!block) return;
+
+                            const i = block.dataset.index;
+
+                            if (e.target.classList.contains('add-date')) {
+                                block.querySelector('.date-wrapper').insertAdjacentHTML('beforeend',
+                                    fieldHTML(`education[${i}][date][]`, '2010 - 2013'));
+                            }
+
+                            if (e.target.classList.contains('add-title')) {
+                                block.querySelector('.title-wrapper').insertAdjacentHTML('beforeend',
+                                    fieldHTML(`education[${i}][title][]`, 'Bachelor Degree'));
+                            }
+
+                            if (e.target.classList.contains('add-desc')) {
+                                block.querySelector('.desc-wrapper').insertAdjacentHTML('beforeend',
+                                    fieldHTML(`education[${i}][desc][]`, 'US RMIT University'));
+                            }
+
+                            if (e.target.classList.contains('remove-field')) {
+                                e.target.closest('.input-group').remove();
+                            }
+
+                            if (e.target.classList.contains('remove-block')) {
+                                block.remove();
+                            }
+                        });
+
+                        function fieldHTML(name, placeholder) {
+                            return `
+    <div class="input-group mb-2">
+        <input type="text" name="${name}" class="form-control" placeholder="${placeholder}">
+        <button type="button" class="btn btn-danger remove-field">✕</button>
+    </div>`;
+                        }
+                    </script>
+
+
                 </div>
             </div>
         </div>

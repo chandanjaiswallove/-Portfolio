@@ -86,7 +86,7 @@ $this->load->view('fronted/layouts/ui_Header');
 						</div>
 
 						<div class="resume-timeline">
-							<div class="item scroll-animation" data-animation="fade_from_right">
+							<!-- <div class="item scroll-animation" data-animation="fade_from_right">
 								<span class="date">2020 - Present</span>
 								<h2>Framer Desinger & Developer</h2>
 								<p>Brunodee Agency</p>
@@ -101,7 +101,7 @@ $this->load->view('fronted/layouts/ui_Header');
 								<p>Freelance</p>
 								<h2>Leader Team of Marketing</h2>
 								<p>AHA Marketing Agency</p>
-							</div>
+							</div> -->
 							<div class="item scroll-animation" data-animation="fade_from_right">
 								<span class="date">2010 - 2013</span>
 								<h2>Bachelor Degree of Information Technology</h2>
