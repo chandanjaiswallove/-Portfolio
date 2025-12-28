@@ -147,7 +147,6 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
                             <table class="table card-table table-vcenter text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>CARD ID</th>
                                         <th>Date</th>
                                         <th>Plan Name</th>
@@ -164,7 +163,6 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
 
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
                                         <td>23</td>
                                         <td>12 Jan 2024</td>
 
