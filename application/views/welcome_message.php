@@ -475,7 +475,7 @@ $this->load->view('fronted/layouts/ui_Header');
 							<p class="info scroll-animation" data-animation="fade_from_bottom">
 								Don't find any package match with your plan!<br />
 								Want to setup a new tailor-made package for only you?.
-								<a href="#">Contact Us</a>
+								<a href="#contact">Contact Us</a>
 							</p>
 						</div>
 					</div>
