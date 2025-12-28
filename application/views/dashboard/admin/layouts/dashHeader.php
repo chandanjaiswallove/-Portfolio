@@ -538,6 +538,8 @@
                                 <ul class="sidebar-submenu">
                                     <li><a href="<?php echo base_url('resume') ?>" class="active">Resume </a>
                                     </li>
+                                    <li><a href="<?php echo base_url('pricing') ?>" class="active">Price Card </a>
+                                    </li>
                                     <li><a href="<?php echo base_url('visitors') ?>" class="active">Contact </a>
                                     </li>
                                 </ul>

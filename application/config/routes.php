@@ -90,4 +90,6 @@ $route['visitors'] = 'dashBoard/Admin/AdminDashboard/loaDvisitor_data';
 $route['resume'] = 'dashBoard/Admin/AdminDashboard/loaDresume';
 $route['portfolio'] = 'dashBoard/Admin/AdminDashboard/loaDportfolio';
 
+$route['pricing'] = 'dashBoard/Admin/AdminDashboard/loaDpricing_card';
+
 ///================= Dashboard  controller end =================
