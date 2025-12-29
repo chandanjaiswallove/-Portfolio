@@ -235,31 +235,62 @@
         </li>
     </ul>
 
-    <div class="left-sidebar ">
+    <div class="left-sidebar">
+
         <div class="sidebar-header d-flex align-items-center justify-content-between">
-            <a href="<?php echo base_url(''); ?>"><img src="modules/assets/images/logo.png" alt="Logo"></a>
-            <!-- <span class="designation">Framer Designer & Developer</span> -->
+            <a href="<?= base_url(); ?>">
+                <img src="<?= base_url($card->company_logo); ?>" alt="Logo">
+            </a>
         </div>
-        <img class="me" src="modules/assets/images/dpme.jpeg" alt="Me">
-        <h2 class="email">Chandanjaiswallove</h2>
-        <h2 class="address">Base in Los Angeles, CA</h2>
-        <p class="copyright">&copy; 2025 Drake. All Rights Reserved</p>
+
+        <img class="me" src="<?= base_url($card->profile_photo); ?>" alt="Me">
+
+        <h2 class="email"><?= $card->person_name; ?></h2>
+        <h2 class="address"><?= $card->address; ?></h2>
+
+        <p class="copyright">
+            &copy; <?= date('Y'); ?> <?= $card->company_name; ?>. All Rights Reserved
+        </p>
+
         <ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
-            <li>
-                <a href="#"><i class="lab la-twitter"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="lab la-dribbble"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="lab la-instagram"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="lab la-github"></i></a>
-            </li>
+
+            <?php if ($card->social_one): ?>
+                <li>
+                    <a href="<?= $card->social_one; ?>" target="_blank">
+                        <i class="lab la-twitter"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($card->social_two): ?>
+                <li>
+                    <a href="<?= $card->social_two; ?>" target="_blank">
+                        <i class="lab la-dribbble"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($card->social_three): ?>
+                <li>
+                    <a href="<?= $card->social_three; ?>" target="_blank">
+                        <i class="lab la-instagram"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($card->social_four): ?>
+                <li>
+                    <a href="<?= $card->social_four; ?>" target="_blank">
+                        <i class="lab la-github"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
+
         </ul>
-        <a href="https://wa.me/917292818092?text=Thank%20you%20for%20your%20message.%20We're%20unavailable%20right%20now,%20but%20will%20respond%20as%20soon%20as%20possible."
+
+        <a href="https://wa.me/<?= $card->whatsapp_contact; ?>?text=<?= urlencode($card->whatsapp_message); ?>"
             target="_blank" class="theme-btn">
             <i class="lab la-whatsapp"></i> Contact Me
         </a>
+
     </div>
