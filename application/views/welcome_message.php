@@ -494,7 +494,7 @@ $this->load->view('fronted/layouts/ui_Header');
 							</h1>
 						</div>
 						<h3 class="scroll-animation" data-animation="fade_from_bottom">
-							hello@drake.design
+							<?= $card->email; ?>
 						</h3>
 						<p id="required-msg">* Marked fields are required to fill.</p>
 

@@ -3,61 +3,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AdminDashboard extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Card_Model', 'Card'); // Header/footer ka liye data
+    }
+
+    // Generic page loader
+    private function load_page($page)
+    {
+        $data['card'] = $this->Card->get_card(); // Header/footer ke liye data
+
+        // Header
+        $this->load->view('dashboard/admin/layouts/dashHeader', $data);
+
+        // Footer
+        $this->load->view('dashboard/admin/layouts/dashFooter', $data);
+    }
+
+    // Ab har page method sirf load_page ko call karega
     public function loaDadmin_dashboard()
     {
-        $this->load->view('dashboard/admin/pages/admin_dashboard');
+        $this->load_page('admin_dashboard');
     }
 
     public function loaDabout()
     {
-        $this->load->view('dashboard/admin/pages/about');
+        $this->load_page('about');
     }
 
     public function loaDintroduce()
     {
-        $this->load->view('dashboard/admin/pages/introduce');
+        $this->load_page('introduce');
     }
-
 
     public function loaDmyskill()
     {
-        $this->load->view('dashboard/admin/pages/myskill');
+        $this->load_page('myskill');
     }
 
     public function loaDprofile_card()
     {
-        $this->load->view('dashboard/admin/pages/profile_card');
+        $this->load_page('profile_card');
     }
 
     public function loaDservices()
     {
-        $this->load->view('dashboard/admin/pages/services');
+        $this->load_page('services');
     }
 
     public function loaDtestimonials()
     {
-        $this->load->view('dashboard/admin/pages/testimonials');
+        $this->load_page('testimonials');
     }
 
     public function loaDvisitor_data()
     {
-        $this->load->view('dashboard/admin/pages/visitor_data');
+        $this->load_page('visitor_data');
     }
 
     public function loaDresume()
     {
-        $this->load->view('dashboard/admin/pages/resume');
+        $this->load_page('resume');
     }
 
     public function loaDportfolio()
     {
-        $this->load->view('dashboard/admin/pages/portfolio');
+        $this->load_page('portfolio');
     }
 
     public function loaDpricing_card()
     {
-        $this->load->view('dashboard/admin/pages/pricing_card');
+        $this->load_page('pricing_card');
     }
-
-
 }

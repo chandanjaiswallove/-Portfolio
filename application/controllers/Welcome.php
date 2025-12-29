@@ -7,7 +7,7 @@ class Welcome extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Card_model', 'Card'); // Model load + short alias
+		$this->load->model('Card_Model', 'Card'); // Model load + short alias
 	}
 
 	public function index()

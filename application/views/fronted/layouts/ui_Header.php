@@ -5,8 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drake</title>
-    <link rel="icon" type="image/x-icon" href="modules/assets/images/favicon.png">
+    <!-- Dynamic Title -->
+    <title><?= !empty($card->web_title) ? $card->web_title : 'Drake'; ?></title>
+
+    <!-- Dynamic Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
+
+    <link rel="shortcut icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

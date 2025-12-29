@@ -10,9 +10,16 @@
     <meta name="keywords"
         content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="modules/assets2/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="modules/assets2/images/favicon.png" type="image/x-icon">
-    <title>Drake</title>
+    <!-- Dynamic Title -->
+    <title><?= !empty($card->web_title) ? $card->web_title : 'Drake'; ?></title>
+
+    <!-- Dynamic Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
+
+    <link rel="shortcut icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
+
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -467,20 +474,20 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-layout="stroke-svg">
                 <div class="logo-wrapper"><a href="<?php echo base_url('admin_playground') ?>"><img class="img-fluid"
-                            src="modules/assets2/images/logo/logo.png" alt=""></a>
+                            src="<?= base_url($card->company_logo); ?>" alt="Company Logo"></a>
                     <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
                     </div>
                 </div>
                 <div class="logo-icon-wrapper"><a href="#"><img class="img-fluid"
-                            src="modules/assets2/images/logo/logo-icon.png" alt=""></a></div>
+                            src="<?= base_url($card->company_logo); ?>" alt="Company Logo 2"></a></div>
                 <nav class="sidebar-main">
                     <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
 
                     <div id="sidebar-menu">
                         <ul class="sidebar-links" id="simple-bar">
                             <li class="back-btn"><a href="#"><img class="img-fluid"
-                                        src="modules/assets2/images/logo/logo-icon.png" alt=""></a>
+                                        src="<?= base_url($card->company_logo); ?>" alt="Company Logo 3"></a>
                                 <div class="mobile-back text-end"> <span>Back </span><i class="fa fa-angle-right ps-2"
                                         aria-hidden="true"></i></div>
                             </li>

@@ -53,27 +53,48 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Company Name</label>
                                         <input class="form-control" type="text" placeholder="Company Name"
                                             id="company_name" name="company_name" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-3">
+
+                                <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Company Icon</label>
-                                        <input class="form-control" type="file" placeholder="Company Icon"
-                                            id="company_icon" name="company_icon" required />
+                                        <label class="form-label">Web Title</label>
+                                        <input class="form-control" type="text" placeholder="Enter Website Title"
+                                            id="web_title" name="web_title" required />
                                     </div>
+                                </div>
+
+
+                                <div class="col-sm-6 col-md-4">
+                                    <label class="form-label">Company Icon</label>
+                                    <input class="form-control" type="file" id="company_icon" name="company_icon"
+                                        accept="image/*" onchange="previewImage(this, 'companyIconPreview')" />
+
+                                    <img id="companyIconPreview" src=""
+                                        style="margin-top:10px; width:80px; height:80px; object-fit:contain; display:none;">
                                 </div>
                                 <div class="col-sm-6 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Company logo </label>
-                                        <input class="form-control" type="file" placeholder="Company logo"
-                                            id="company_logo" name="company_logo" required />
-                                    </div>
+                                    <label class="form-label">Profile Photo</label>
+                                    <input class="form-control" type="file" id="profile_photo" name="profile_photo"
+                                        accept="image/*" onchange="previewImage(this, 'profilePhotoPreview')" />
+
+                                    <img id="profilePhotoPreview"
+                                        style="margin-top:10px; width:120px; height:120px; border-radius:50%; object-fit:cover; display:none;">
                                 </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <label class="form-label">Company Logo</label>
+                                    <input class="form-control" type="file" id="company_logo" name="company_logo"
+                                        accept="image/*" onchange="previewImage(this, 'companyLogoPreview')" />
+
+                                    <img id="companyLogoPreview"
+                                        style="margin-top:10px; width:120px; height:80px; object-fit:contain; display:none;">
+                                </div>
+
                                 <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Full Name</label>
@@ -81,14 +102,11 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
                                             name="full_name" required />
                                     </div>
                                 </div>
-                                <!-- Profile Photo -->
-                                <div class="col-sm-6 col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Profile Photo</label>
-                                        <input class="form-control" type="file" id="profile_photo" name="profile_photo"
-                                            required />
-                                    </div>
-                                </div>
+
+
+
+
+
 
                                 <!-- Facebook -->
                                 <div class="col-sm-6 col-md-6">
@@ -106,6 +124,17 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
                                             id="twitter_link" name="twitter_link" required />
                                     </div>
                                 </div>
+
+                                <!-- GitHub -->
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">GitHub Link</label>
+                                        <input class="form-control" type="text" placeholder="GitHub profile link"
+                                            id="github_link" name="github_link" />
+                                    </div>
+                                </div>
+
+
                                 <!-- LinkedIn -->
                                 <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">
@@ -188,6 +217,22 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
 
 
 </div>
+<script>
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
 
 
