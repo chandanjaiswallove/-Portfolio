@@ -16,7 +16,10 @@ class AdminDashboard extends CI_Controller
 
         // Header
         $this->load->view('dashboard/admin/layouts/dashHeader', $data);
-
+        
+        // Page content
+        $this->load->view('dashboard/admin/pages/' . $page, $data);
+        
         // Footer
         $this->load->view('dashboard/admin/layouts/dashFooter', $data);
     }

@@ -1,7 +1,4 @@
-<!-- Dashboard  section Header  -->
-<?php
-$this->load->view('dashboard/admin/layouts/dashHeader');
-?>
+
 
 
 
@@ -234,8 +231,3 @@ $this->load->view('dashboard/admin/layouts/dashHeader');
 
 
 
-
-<!-- Footer section Dashboard  -->
-<?php
-$this->load->view('dashboard/admin/layouts/dashFooter');
-?>
