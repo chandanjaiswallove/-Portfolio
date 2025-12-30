@@ -64,42 +64,37 @@
 
 
                                 <div class="col-sm-6 col-md-4">
-<div class="mb-3 position-relative">
-    <label class="form-label">Company Icon</label>
+                                    <div class="mb-3 position-relative">
+                                        <label class="form-label">Company Icon</label>
 
-    <!-- Input + Browse button -->
-    <div class="input-group mb-2">
-        <input type="text" id="companyIconName" class="form-control"
-               placeholder="No file chosen" readonly
-               value="<?= !empty($card->web_icon) ? basename($card->web_icon) : '' ?>">
-        <button class="btn btn-primary rounded-end" type="button"
-                onclick="document.getElementById('company_icon').click();">
-            Browse
-        </button>
-        <input type="file" class="d-none" id="company_icon" name="company_icon"
-               accept="image/*"
-               onchange="updateFileNameAndPreview(this, 'companyIconName', 'companyIconPreview', 'companyIconRemove')">
-    </div>
+                                        <!-- Input + Browse button -->
+                                        <div class="input-group mb-2">
+                                            <input type="text" id="companyIconName" class="form-control"
+                                                placeholder="No file chosen" readonly
+                                                value="<?= !empty($card->web_icon) ? basename($card->web_icon) : '' ?>">
+                                            <button class="btn btn-primary rounded-end" type="button"
+                                                    onclick="document.getElementById('company_icon').click();">
+                                                Browse
+                                            </button>
+                                            <input type="file" class="d-none" id="company_icon" name="company_icon"
+                                                accept="image/*"
+                                                onchange="updateFileNameAndPreview(this, 'companyIconName', 'companyIconPreview', 'companyIconRemove')">
+                                        </div>
 
-    <!-- Preview container -->
-    <div class="d-inline-block position-relative">
-        <img id="companyIconPreview"
-             src="<?= !empty($card->web_icon) ? base_url($card->web_icon) : '' ?>"
-             style="width:80px; height:80px; object-fit:contain; border:none; <?= empty($card->web_icon) ? 'display:none;' : '' ?>">
+                                        <!-- Preview container -->
+                                        <div class="d-inline-block position-relative">
+                                            <img id="companyIconPreview"
+                                                src="<?= !empty($card->web_icon) ? base_url($card->web_icon) : '' ?>"
+                                                style="width:80px; height:80px; object-fit:contain; border:none; <?= empty($card->web_icon) ? 'display:none;' : '' ?>">
 
-        <!-- Remove/X button outside container -->
-        <button type="button" id="companyIconRemove"
-                style="position:absolute; top:-10px; right:-10px; border:none; background:none; font-size:20px; color:#fe6a49; display: <?= empty($card->web_icon) ? 'none' : 'block' ?>; cursor:pointer;"
-                onclick="removeFileWithPreview('company_icon','companyIconName','companyIconPreview','companyIconRemove')">
-            &times;
-        </button>
-    </div>
-</div>
-
-
-
-
-
+                                            <!-- Remove/X button outside container -->
+                                            <button type="button" id="companyIconRemove"
+                                                    style="position:absolute; top:-10px; right:-20px; border:none; background:none; font-size:20px; color:#fe6a49; display: <?= empty($card->web_icon) ? 'none' : 'block' ?>; cursor:pointer;"
+                                                    onclick="removeFileWithPreview('company_icon','companyIconName','companyIconPreview','companyIconRemove')">
+                                                &times;
+                                            </button>
+                                        </div>
+                                    </div>
 
 
 
@@ -107,24 +102,72 @@
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Profile Photo</label>
-                                        <input class="form-control" type="file" id="profile_photo" name="profile_photo" value="<?= $card->profile_photo ?? '' ?>" 
-                                            accept="image/*" onchange="previewImage(this, 'profilePhotoPreview')" />
+                                    <div class="mb-3 position-relative">
+                                <label class="form-label">Profile Photo</label>
 
-                                        <img id="profilePhotoPreview"
-                                            style="margin-top:10px; width:120px; height:120px; border-radius:50%; object-fit:cover; display:none;">
-                                    </div>
+                                <!-- Input + Browse button -->
+                                <div class="input-group mb-2">
+                                    <input type="text" id="profilePhotoName" class="form-control"
+                                        placeholder="No file chosen" readonly
+                                        value="<?= !empty($card->profile_photo) ? basename($card->profile_photo) : '' ?>">
+                                    <button class="btn btn-primary rounded-end" type="button"
+                                            onclick="document.getElementById('profile_photo').click();">
+                                        Browse
+                                    </button>
+                                    <input type="file" class="d-none" id="profile_photo" name="profile_photo"
+                                        accept="image/*"
+                                        onchange="updateFileNameAndPreview(this, 'profilePhotoName', 'profilePhotoPreview', 'profilePhotoRemove')">
+                                </div>
+
+                                <!-- Preview container -->
+                                <div class="d-inline-block position-relative">
+                                    <img id="profilePhotoPreview"
+                                        src="<?= !empty($card->profile_photo) ? base_url($card->profile_photo) : '' ?>"
+                                        style="margin-top:10px; width:120px; height:120px; border-radius:50%; object-fit:cover; border:none; <?= empty($card->profile_photo) ? 'display:none;' : '' ?>">
+
+                                    <!-- Remove/X button outside container -->
+                                    <button type="button" id="profilePhotoRemove"
+                                            style="position:absolute; top:-10px; right:-10px; border:none; background:none; font-size:20px; color:#fe6a49; display: <?= empty($card->profile_photo) ? 'none' : 'block' ?>; cursor:pointer;"
+                                            onclick="removeFileWithPreview('profile_photo','profilePhotoName','profilePhotoPreview','profilePhotoRemove')">
+                                        &times;
+                                    </button>
+                                </div>
+                            </div>
+
                                 </div>
                                 <div class="col-sm-6 col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Company Logo</label>
-                                        <input class="form-control" type="file" id="company_logo" name="company_logo" value="<?= $card->company_logo ?? '' ?>" 
-                                            accept="image/*" onchange="previewImage(this, 'companyLogoPreview')" />
+                                        <div class="mb-3 position-relative">
+                                    <label class="form-label">Company Logo</label>
 
-                                        <img id="companyLogoPreview"
-                                            style="margin-top:10px; width:120px; height:80px; object-fit:contain; display:none;">
+                                    <!-- Input + Browse button -->
+                                    <div class="input-group mb-2">
+                                    <input type="text" id="companyLogoName" class="form-control"
+                                            placeholder="No file chosen" readonly
+                                            value="<?= !empty($card->company_logo) ? basename($card->company_logo) : '' ?>">
+                                    <button class="btn btn-primary rounded-end" type="button"
+                                            onclick="document.getElementById('company_logo').click();">
+                                        Browse
+                                    </button>
+                                    <input type="file" class="d-none" id="company_logo" name="company_logo"
+                                            accept="image/*"
+                                            onchange="updateFileNameAndPreview(this, 'companyLogoName', 'companyLogoPreview', 'companyLogoRemove')">
                                     </div>
+
+                                    <!-- Preview container -->
+                                    <div class="d-inline-block position-relative">
+                                    <img id="companyLogoPreview"
+                                            src="<?= !empty($card->company_logo) ? base_url($card->company_logo) : '' ?>"
+                                            style="margin-top:10px; width:120px; height:80px; object-fit:contain; border:none; <?= empty($card->company_logo) ? 'display:none;' : '' ?>">
+
+                                    <!-- Remove/X button outside container -->
+                                    <button type="button" id="companyLogoRemove"
+                                            style="position:absolute; top:-10px; right:-10px; border:none; background:none; font-size:20px; color:#fe6a49; display: <?= empty($card->company_logo) ? 'none' : 'block' ?>; cursor:pointer;"
+                                            onclick="removeFileWithPreview('company_logo','companyLogoName','companyLogoPreview','companyLogoRemove')">
+                                        &times;
+                                    </button>
+                                    </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="col-sm-6 col-md-6">

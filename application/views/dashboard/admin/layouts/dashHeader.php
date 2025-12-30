@@ -83,8 +83,8 @@
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
                     <div class="logo-wrapper"> <a href="#"><img class="img-fluid for-light"
-                                src="modules/assets2/images/logo/logo_dark.png" alt="logo-light"><img
-                                class="img-fluid for-dark" src="modules/assets2/images/logo/logo.png"
+                                src="<?= base_url($card->company_logo); ?>" alt="logo-light"><img
+                                class="img-fluid for-dark" src="<?= base_url($card->company_logo); ?>"
                                 alt="logo-dark"></a></div>
                     <div class="toggle-sidebar"> <i class="status_toggle middle sidebar-toggle"
                             data-feather="align-center"></i></div>
@@ -503,17 +503,15 @@
                             </li>
 
 
-                            <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a
+                            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
                                     class="sidebar-link sidebar-title" href="#">
                                     <svg class="stroke-icon">
                                         <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="modules/assets2/svg/icon-sprite.svg#fill-home"></use>
-                                    </svg><span class="lan-3">Dashboards</span>
-                                    <!-- <div class="according-menu"><i class="fa fa-angle-right"></i></div> -->
-                                </a>
-                                <ul class="sidebar-submenu" style="display: none;">
+                                    </svg><span class="lan-3">Dashboards</span></a>
+                                <ul class="sidebar-submenu">
                                     <li><a href="<?php echo base_url('profile_card') ?>" class="active">Profile Card</a>
                                     </li>
                                     <li><a href="<?php echo base_url('introduce') ?>" class="active">Introduce</a>
@@ -529,8 +527,6 @@
                                     <li><a href="<?php echo base_url('testimonials') ?>" class="active">Testimonials
                                         </a>
                                     </li>
-
-
                                 </ul>
                             </li>
 
@@ -541,7 +537,8 @@
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="modules/assets2/svg/icon-sprite.svg#fill-widget"></use>
-                                    </svg><span class="lan-6">Resume</span></a>
+                                    </svg>
+                                    <span class="lan-6">Widgets</span></a>
                                 <ul class="sidebar-submenu">
                                     <li><a href="<?php echo base_url('resume') ?>" class="active">Resume </a>
                                     </li>
@@ -553,7 +550,6 @@
                             </li>
 
 
-                            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
                         </ul>
                     </div>
                 </nav>

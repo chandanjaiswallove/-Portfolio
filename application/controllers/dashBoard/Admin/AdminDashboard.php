@@ -6,20 +6,24 @@ class AdminDashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Card_Model', 'Card'); // Header/footer ka liye data
+        $this->load->model('Card_Model', 'Card'); // Header/footer ka Card_Model load huwa 
+        $this->load->model('Dashboard_Model', 'Dash'); // Dashboard Model ka load huwa
+
     }
 
     // Generic page loader
     private function load_page($page)
     {
-        $data['card'] = $this->Card->get_card(); // Header/footer ke liye data
+        $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
+        $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data
+
 
         // Header
         $this->load->view('dashboard/admin/layouts/dashHeader', $data);
-        
+
         // Page content
         $this->load->view('dashboard/admin/pages/' . $page, $data);
-        
+
         // Footer
         $this->load->view('dashboard/admin/layouts/dashFooter', $data);
     }

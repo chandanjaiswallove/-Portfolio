@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -35,13 +31,16 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form class="card" action="" method="">
+                    <form class="card" action="<?= base_url('') ?>" method="post">
+                        <!-- Hidden ID (MOST IMPORTANT) -->
+                        <input type="hidden" name="id" value="<?= $intro->id ?? '' ?>">
+
                         <div class="card-header">
                             <h4 class="card-title mb-0">Edit Introduce</h4>
                             <div class="card-options">
-                                <a class="card-options-collapse" href="edit-profile.html#"
+                                <a class="card-options-collapse" href="<?= base_url('introduce') ?>"
                                     data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
-                                    class="card-options-remove" href="edit-profile.html#"
+                                    class="card-options-remove" href="<?= base_url('introduce') ?>"
                                     data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
                             </div>
                         </div>
@@ -53,7 +52,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Introduce Headings</label>
                                         <input class="form-control" type="text" placeholder="Introduce Headings"
-                                            id="introduceHeadings" name="introduceHeadings" required />
+                                            id="introduceHeadings" name="introduceHeadings"
+                                            value="<?= $intro->introduce_title ?? '' ?>" required />
                                     </div>
                                 </div>
 
@@ -61,7 +61,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Hightlight Tag </label>
                                         <input class="form-control" type="text" placeholder="Hightlight Tag"
-                                            id="hightlightTag" name="hightlightTag" />
+                                            id="hightlightTag" name="hightlightTag"
+                                            value="<?= $intro->introduce_highlight ?? '' ?>" />
                                     </div>
                                 </div>
 
@@ -69,21 +70,48 @@
                                     <div class="mb-3">
                                         <label class="form-label">Experience</label>
                                         <input class="form-control" type="text" placeholder=" Years of experience"
-                                            id="yearExperience" name="yearExperience" />
+                                            id="yearExperience" name="yearExperience"
+                                            value="<?= $intro->experience ?? '' ?>" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Project Downloads</label>
-                                        <input class="form-control" type="file" maxlength="13" id="projectDownloads"
-                                            name="projectDownloads" />
+
+                                        <div class="input-group">
+                                            <input type="text" id="projectFileName" class="form-control"
+                                                placeholder="No file chosen" readonly
+                                                value="<?= !empty($intro->project_download) ? basename($intro->project_download) : '' ?>">
+
+                                            <!-- Browse button -->
+                                            <button class="btn btn-primary rounded-end" type="button"
+                                                id="projectBrowseBtn"
+                                                onclick="document.getElementById('projectDownloads').click();"
+                                                style="<?= !empty($intro->project_download) ? 'display:none;' : '' ?>">
+                                                Browse
+                                            </button>
+
+                                            <!-- Remove button -->
+                                            <button class="btn btn-danger rounded-end" type="button"
+                                                id="projectRemoveBtn" onclick="removeProjectFile()"
+                                                style="<?= empty($intro->project_download) ? 'display:none;' : '' ?>">
+                                                Remove
+                                            </button>
+
+                                            <!-- Hidden file input -->
+                                            <input type="file" class="d-none" id="projectDownloads"
+                                                name="projectDownloads" onchange="handleProjectFileChange(this)">
+                                        </div>
                                     </div>
+
                                 </div>
+
                                 <div class="col-md-5">
                                     <div class="mb-3">
                                         <label class="form-label">Project Completed </label>
                                         <input class="form-control" type="text" placeholder=" Project Completed"
-                                            id="projectCompleted" name="projectCompleted" />
+                                            id="projectCompleted" name="projectCompleted"
+                                            value="<?= $intro->project_completed ?? '' ?>" />
                                     </div>
                                 </div>
 
@@ -92,7 +120,7 @@
                                         <label class="form-label">Introduce Message</label>
                                         <textarea class="form-control" rows="4" placeholder="Enter About your Message"
                                             style="resize:none;" id="IntroduceMessage"
-                                            name="IntroduceMessage"></textarea>
+                                            name="IntroduceMessage"><?= $intro->introduce_paragraph ?? '' ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +159,28 @@
 
 </div>
 
+<script>
+    function handleProjectFileChange(input) {
+        const fileNameInput = document.getElementById('projectFileName');
+        const browseBtn = document.getElementById('projectBrowseBtn');
+        const removeBtn = document.getElementById('projectRemoveBtn');
 
+        if (input.files && input.files[0]) {
+            fileNameInput.value = input.files[0].name;
+            browseBtn.style.display = 'none';
+            removeBtn.style.display = 'inline-block';
+        }
+    }
 
+    function removeProjectFile() {
+        const fileInput = document.getElementById('projectDownloads');
+        const fileNameInput = document.getElementById('projectFileName');
+        const browseBtn = document.getElementById('projectBrowseBtn');
+        const removeBtn = document.getElementById('projectRemoveBtn');
 
-
-
-
+        fileInput.value = '';
+        fileNameInput.value = '';
+        removeBtn.style.display = 'none';
+        browseBtn.style.display = 'inline-block';
+    }
+</script>
