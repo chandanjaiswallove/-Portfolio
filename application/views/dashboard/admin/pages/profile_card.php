@@ -1,6 +1,3 @@
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -52,7 +49,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Company Name</label>
                                         <input class="form-control" type="text" placeholder="Company Name"
-                                            id="company_name" name="company_name" required />
+                                            id="company_name" name="company_name"
+                                            value="<?= $card->company_name ?? '' ?>" required />
                                     </div>
                                 </div>
 
@@ -60,40 +58,79 @@
                                     <div class="mb-3">
                                         <label class="form-label">Web Title</label>
                                         <input class="form-control" type="text" placeholder="Enter Website Title"
-                                            id="web_title" name="web_title" required />
+                                            id="web_title" name="web_title" value="<?= $card->web_title ?? '' ?>"  required />
                                     </div>
                                 </div>
 
 
                                 <div class="col-sm-6 col-md-4">
-                                    <label class="form-label">Company Icon</label>
-                                    <input class="form-control" type="file" id="company_icon" name="company_icon"
-                                        accept="image/*" onchange="previewImage(this, 'companyIconPreview')" />
+<div class="mb-3 position-relative">
+    <label class="form-label">Company Icon</label>
 
-                                    <img id="companyIconPreview" src=""
-                                        style="margin-top:10px; width:80px; height:80px; object-fit:contain; display:none;">
+    <!-- Input + Browse button -->
+    <div class="input-group mb-2">
+        <input type="text" id="companyIconName" class="form-control"
+               placeholder="No file chosen" readonly
+               value="<?= !empty($card->web_icon) ? basename($card->web_icon) : '' ?>">
+        <button class="btn btn-primary rounded-end" type="button"
+                onclick="document.getElementById('company_icon').click();">
+            Browse
+        </button>
+        <input type="file" class="d-none" id="company_icon" name="company_icon"
+               accept="image/*"
+               onchange="updateFileNameAndPreview(this, 'companyIconName', 'companyIconPreview', 'companyIconRemove')">
+    </div>
+
+    <!-- Preview container -->
+    <div class="d-inline-block position-relative">
+        <img id="companyIconPreview"
+             src="<?= !empty($card->web_icon) ? base_url($card->web_icon) : '' ?>"
+             style="width:80px; height:80px; object-fit:contain; border:none; <?= empty($card->web_icon) ? 'display:none;' : '' ?>">
+
+        <!-- Remove/X button outside container -->
+        <button type="button" id="companyIconRemove"
+                style="position:absolute; top:-10px; right:-10px; border:none; background:none; font-size:20px; color:#fe6a49; display: <?= empty($card->web_icon) ? 'none' : 'block' ?>; cursor:pointer;"
+                onclick="removeFileWithPreview('company_icon','companyIconName','companyIconPreview','companyIconRemove')">
+            &times;
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                                </div>
+
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Profile Photo</label>
+                                        <input class="form-control" type="file" id="profile_photo" name="profile_photo" value="<?= $card->profile_photo ?? '' ?>" 
+                                            accept="image/*" onchange="previewImage(this, 'profilePhotoPreview')" />
+
+                                        <img id="profilePhotoPreview"
+                                            style="margin-top:10px; width:120px; height:120px; border-radius:50%; object-fit:cover; display:none;">
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 col-md-4">
-                                    <label class="form-label">Profile Photo</label>
-                                    <input class="form-control" type="file" id="profile_photo" name="profile_photo"
-                                        accept="image/*" onchange="previewImage(this, 'profilePhotoPreview')" />
+                                    <div class="mb-3">
+                                        <label class="form-label">Company Logo</label>
+                                        <input class="form-control" type="file" id="company_logo" name="company_logo" value="<?= $card->company_logo ?? '' ?>" 
+                                            accept="image/*" onchange="previewImage(this, 'companyLogoPreview')" />
 
-                                    <img id="profilePhotoPreview"
-                                        style="margin-top:10px; width:120px; height:120px; border-radius:50%; object-fit:cover; display:none;">
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <label class="form-label">Company Logo</label>
-                                    <input class="form-control" type="file" id="company_logo" name="company_logo"
-                                        accept="image/*" onchange="previewImage(this, 'companyLogoPreview')" />
-
-                                    <img id="companyLogoPreview"
-                                        style="margin-top:10px; width:120px; height:80px; object-fit:contain; display:none;">
+                                        <img id="companyLogoPreview"
+                                            style="margin-top:10px; width:120px; height:80px; object-fit:contain; display:none;">
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Full Name</label>
-                                        <input class="form-control" type="text" placeholder="Full Name" id="full_name"
+                                        <input class="form-control" type="text" placeholder="Full Name" id="full_name" value="<?= $card->person_name ?? '' ?>" 
                                             name="full_name" required />
                                     </div>
                                 </div>
@@ -108,7 +145,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Facebook Link</label>
                                         <input class="form-control" type="text" placeholder="Facebook link"
-                                            id="facebook_link" name="facebook_link" required />
+                                            id="facebook_link" name="facebook_link" value="<?= $card->social_one ?? '' ?>"  required />
                                     </div>
                                 </div>
                                 <!-- X / Twitter -->
@@ -116,7 +153,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">X (Twitter) Link</label>
                                         <input class="form-control" type="text" placeholder="X / Twitter link"
-                                            id="twitter_link" name="twitter_link" required />
+                                            id="twitter_link" name="twitter_link" value="<?= $card->social_two ?? '' ?>"  required />
                                     </div>
                                 </div>
 
@@ -125,7 +162,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">GitHub Link</label>
                                         <input class="form-control" type="text" placeholder="GitHub profile link"
-                                            id="github_link" name="github_link" />
+                                            id="github_link" name="github_link" value="<?= $card->social_three ?? '' ?>"  />
                                     </div>
                                 </div>
 
@@ -135,7 +172,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">LinkedIn Link</label>
                                         <input class="form-control" type="text" placeholder="LinkedIn link"
-                                            id="linkedin_link" name="linkedin_link" required />
+                                            id="linkedin_link" name="linkedin_link" value="<?= $card->social_four ?? '' ?>"  required />
                                     </div>
                                 </div>
 
@@ -143,7 +180,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Instagram Links </label>
                                         <input class="form-control" type="text" placeholder="Instagram links"
-                                            id="companyName" name="companyName" />
+                                            id="companyName" name="companyName" value="<?= $card->social_five ?? '' ?>"  />
                                     </div>
                                 </div>
 
@@ -151,21 +188,21 @@
                                     <div class="mb-3">
                                         <label class="form-label">Address</label>
                                         <input class="form-control" type="text" placeholder="Address" id="companyName"
-                                            name="companyName" />
+                                            name="companyName" value="<?= $card->address ?? '' ?>"  />
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-3">
+                                <div class="col-sm-6 col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Whatsapp Number</label>
                                         <input class="form-control" type="number" placeholder="Whatsapp Number "
-                                            maxlength="13" id="companyName" name="companyName" />
+                                            maxlength="13" id="companyName" name="companyName" value="<?= $card->whatsapp_contact ?? '' ?>"  />
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Email Address </label>
                                         <input class="form-control" type="email" placeholder=" Email" id="companyName"
-                                            name="companyName" />
+                                            name="companyName" value="<?= $card->email ?? '' ?>"  />
                                     </div>
                                 </div>
 
@@ -173,7 +210,7 @@
                                     <div>
                                         <label class="form-label">Whatsapp Message</label>
                                         <textarea class="form-control" rows="4" placeholder="Enter About your Message"
-                                            style="resize:none;" id="WhatsappMessage" name="WhatsappMessage"></textarea>
+                                            style="resize:none;" id="WhatsappMessage" name="WhatsappMessage"><?= $card->whatsapp_message ?? '' ?> </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -213,24 +250,40 @@
 
 </div>
 <script>
-    function previewImage(input, previewId) {
-        const preview = document.getElementById(previewId);
+function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId){
+    const fileNameInput = document.getElementById(nameInputId);
+    const preview = document.getElementById(previewId);
+    const removeBtn = document.getElementById(removeBtnId);
 
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
+    if(input.files && input.files[0]){
+        fileNameInput.value = input.files[0].name;
 
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = "block";
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
+        const reader = new FileReader();
+        reader.onload = function(e){
+            preview.src = e.target.result;
+            preview.style.display = "block";
+            removeBtn.style.display = "block";
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        fileNameInput.value = '';
+        preview.style.display = 'none';
+        removeBtn.style.display = 'none';
     }
+}
+
+function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId){
+    const fileInput = document.getElementById(fileInputId);
+    const fileNameInput = document.getElementById(nameInputId);
+    const preview = document.getElementById(previewId);
+    const removeBtn = document.getElementById(removeBtnId);
+
+    fileInput.value = '';
+    fileNameInput.value = '';
+    preview.src = '';
+    preview.style.display = 'none';
+    removeBtn.style.display = 'none';
+}
+
+
 </script>
-
-
-
-
-
-
