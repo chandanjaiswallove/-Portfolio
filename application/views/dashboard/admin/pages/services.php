@@ -18,7 +18,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">My Services</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('services'); ?>">My Service</a> </li>
                     </ol>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)">
+                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>
@@ -229,78 +229,9 @@
         </div>
     </div>
 </div>
-<!-- Container-fluid Ends-->
-
-<!-- Container-fluid Ends-->
 
 
 
-
-
-<!-- <div class="col-md-12 project-list">
-        <div class="card">
-            <div class="row">
-                <div class="col-md-6">
-                    <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
-
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="contact-top-tab"
-                                data-bs-toggle="tab" href="projects.html#top-contact" role="tab"
-                                aria-controls="top-contact" aria-selected="false" tabindex="-1"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-check-circle">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>Done</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group mb-0 me-0"></div><a class="btn btn-primary" href="projectcreate.html"> Create
-                        New Project</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-<!-- <div class="card-body">
-        <button class="btn btn-success" type="button" data-bs-toggle="modal"
-            data-bs-target="#exampleModalCenter1">Vertically centered</button>
-        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenter1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="modal-toggle-wrapper">
-                            <ul class="modal-img">
-                                <li> <img src="modules/assets2/images/gif/danger.gif" alt="error">
-                                </li>
-                            </ul>
-                            <h4 class="text-center pb-2">Ohh! Something went wrong!</h4>
-                            <p class="text-center">Attackers on malicious activity may trick you
-                                into doing something dangrous like installing software or revealing
-                                your personal informations.</p>
-                            <button class="btn btn-secondary d-flex m-auto" type="button"
-                                data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 
 

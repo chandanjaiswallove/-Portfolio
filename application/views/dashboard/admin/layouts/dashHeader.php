@@ -82,18 +82,20 @@
                     </div>
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"> <a href="#"><img class="img-fluid for-light"
-                                src="<?= base_url($card->company_logo); ?>" alt="logo-light"><img
+                    <div class="logo-wrapper">
+                        <a href="<?= base_url('admin_playground'); ?>"><img class="img-fluid for-light"
+                                src="<?= base_url($card->company_dark_logo); ?>" alt="logo-dark"><img
                                 class="img-fluid for-dark" src="<?= base_url($card->company_logo); ?>"
-                                alt="logo-dark"></a></div>
+                                alt="logo-light"></a>
+                    </div>
                     <div class="toggle-sidebar"> <i class="status_toggle middle sidebar-toggle"
                             data-feather="align-center"></i></div>
                 </div>
                 <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
                     <div> <a class="toggle-sidebar" href="#"> <i class="iconly-Category icli"> </i></a>
                         <div class="d-flex align-items-center gap-2 ">
-                            <h4 class="f-w-600">Welcome Alex</h4><img class="mt-0" src="modules/assets2/images/hand.gif"
-                                alt="hand-gif">
+                            <h4 class="f-w-600">Welcome <?= $card->person_name ?? '' ?></h4><img class="mt-0"
+                                src="modules/assets2/images/hand.gif" alt="hand-gif">
                         </div>
                     </div>
                     <div class="welcome-content d-xl-block d-none"><span class="text-truncate col-12">Here’s what’s
@@ -435,16 +437,23 @@
 
 
                         <li class="profile-nav onhover-dropdown">
-                            <div class="media profile-media"><img class="b-r-10"
-                                    src="modules/assets2/images/dashboard/profile.png" alt="">
+                            <div class="media profile-media">
+                                <img class="b-r-10" src="<?= !empty($card->profile_photo)
+                                    ? base_url($card->profile_photo)
+                                    : base_url('modules/assets2/images/dashboard/profile.png'); ?>" alt="Profile"
+                                    style="width:41px; height:41px; object-fit:cover;">
+
                                 <div class="media-body d-xxl-block d-none box-col-none">
-                                    <div class="d-flex align-items-center gap-2"> <span>Alex Mora </span><i
-                                            class="middle fa fa-angle-down"> </i></div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span><?= $card->person_name ?? '' ?></span>
+                                        <i class="middle fa fa-angle-down"></i>
+                                    </div>
                                     <p class="mb-0 font-roboto">Admin</p>
                                 </div>
                             </div>
+
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="user-profile.html"><i data-feather="user"></i><span>My Profile</span></a>
+                                <li><a href="<?php echo base_url('profile_card') ?>"><i data-feather="user"></i><span>My Profile</span></a>
                                 </li>
                                 <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                                 <li> <a href="edit-profile.html"> <i

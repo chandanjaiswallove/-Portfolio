@@ -22,7 +22,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Portfolio-Management</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('admin_playground'); ?>">Portfolio Management</a></li>
                     </ol>
                 </div>
             </div>

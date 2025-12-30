@@ -16,7 +16,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Pricing Card</li>
+                        <li class="breadcrumb-item active"> <a href="<?= base_url('pricing'); ?>">Pricing Card</a></li>
                     </ol>
                 </div>
             </div>
@@ -105,12 +105,12 @@
                                                         <div class="d-flex mb-2">
                                                             <input type="text" name="item_list[]"
                                                                 class="form-control me-2" placeholder="Feature text">
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                onclick="removeItem(this)">×</button>
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                onclick="removeItem(this)">Remove</button>
                                                         </div>
                                                     </div>
 
-                                                    <button type="button" class="btn btn-success btn-sm"
+                                                    <button type="button" class="btn btn-primary btn-sm"
                                                         onclick="addItem()">
                                                         + Add Item
                                                     </button>
@@ -187,7 +187,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm">
+                                            <a class="btn btn-secondary btn-sm">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>
@@ -258,20 +258,20 @@
                                                     <div class="d-flex mb-2">
                                                         <input type="text" name="item_list[]" class="form-control me-2"
                                                             value="Unlimited Projects">
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                            onclick="removeEditItem(this)">×</button>
+                                                        <button type="button" class="btn btn-secondary btn-sm"
+                                                            onclick="removeEditItem(this)">Remove</button>
                                                     </div>
 
                                                     <div class="d-flex mb-2">
                                                         <input type="text" name="item_list[]" class="form-control me-2"
                                                             value="24/7 Support">
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                            onclick="removeEditItem(this)">×</button>
+                                                        <button type="button" class="btn btn-secondary btn-sm"
+                                                            onclick="removeEditItem(this)">Remove</button>
                                                     </div>
 
                                                 </div>
 
-                                                <button type="button" class="btn btn-success btn-sm"
+                                                <button type="button" class="btn btn-primary btn-sm"
                                                     onclick="addEditItem()">
                                                     + Add Item
                                                 </button>
@@ -335,7 +335,7 @@
         div.className = 'd-flex mb-2';
         div.innerHTML = `
         <input type="text" name="item_list[]" class="form-control me-2" placeholder="Feature text">
-        <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(this)">×</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="removeItem(this)">Remove</button>
     `;
         wrapper.appendChild(div);
     }
@@ -354,7 +354,7 @@
 
         div.innerHTML = `
         <input type="text" name="item_list[]" class="form-control me-2" placeholder="Feature text">
-        <button type="button" class="btn btn-danger btn-sm" onclick="removeEditItem(this)">×</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
     `;
 
         wrapper.appendChild(div);

@@ -13,7 +13,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">My Profile</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('profile_card'); ?>">My Profile</a> </li>
                     </ol>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                 </div>
 
 
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label">Company Icon</label>
 
@@ -101,7 +101,7 @@
 
                                 </div>
 
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-3">
                                     <div class="mb-3 position-relative">
                                 <label class="form-label">Profile Photo</label>
 
@@ -135,9 +135,11 @@
                             </div>
 
                                 </div>
-                                <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3 position-relative">
-                                    <label class="form-label">Company Logo</label>
+
+
+                                <div class="col-sm-6 col-md-3">
+                                      <div class="mb-3 position-relative">
+                                    <label class="form-label">Company Logo Light</label>
 
                                     <!-- Input + Browse button -->
                                     <div class="input-group mb-2">
@@ -167,8 +169,77 @@
                                     </button>
                                     </div>
                                     </div>
-
                                 </div>
+
+
+
+
+
+
+
+                                <div class="col-sm-6 col-md-3">
+    <div class="mb-3 position-relative">
+        <label class="form-label">Company Logo Dark</label>
+
+        <!-- Input + Browse button -->
+        <div class="input-group mb-2">
+            <input type="text" id="companyDarkLogoName" class="form-control"
+                   placeholder="No file chosen" readonly
+                   value="<?= !empty($card->company_dark_logo) ? basename($card->company_dark_logo) : '' ?>">
+
+            <button class="btn btn-primary rounded-end" type="button"
+                    onclick="document.getElementById('company_dark_logo').click();">
+                Browse
+            </button>
+
+            <input type="file" class="d-none"
+                   id="company_dark_logo"
+                   name="company_dark_logo"
+                   accept="image/*"
+                   onchange="updateFileNameAndPreview(
+                       this,
+                       'companyDarkLogoName',
+                       'companyDarkLogoPreview',
+                       'companyDarkLogoRemove'
+                   )">
+        </div>
+
+        <!-- Preview container -->
+        <div class="d-inline-block position-relative">
+            <img id="companyDarkLogoPreview"
+                 src="<?= !empty($card->company_dark_logo) ? base_url($card->company_dark_logo) : '' ?>"
+                 style="margin-top:10px; width:120px; height:80px; object-fit:contain; border:none;
+                 <?= empty($card->company_dark_logo) ? 'display:none;' : '' ?>">
+
+            <!-- Remove/X button -->
+            <button type="button"
+                    id="companyDarkLogoRemove"
+                    style="position:absolute; top:-10px; right:-10px;
+                           border:none; background:none;
+                           font-size:20px; color:#fe6a49;
+                           display: <?= empty($card->company_dark_logo) ? 'none' : 'block' ?>;
+                           cursor:pointer;"
+                    onclick="removeFileWithPreview(
+                        'company_dark_logo',
+                        'companyDarkLogoName',
+                        'companyDarkLogoPreview',
+                        'companyDarkLogoRemove'
+                    )">
+                &times;
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
                                 <div class="col-sm-6 col-md-6">
                                     <div class="mb-3">

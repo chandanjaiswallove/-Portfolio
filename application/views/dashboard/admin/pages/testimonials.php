@@ -17,7 +17,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Testimonials</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('testimonials'); ?>">Testimonials</a></li>
                     </ol>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)">
+                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>
@@ -362,7 +362,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm">
+                                            <a class="btn btn-secondary btn-sm">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>

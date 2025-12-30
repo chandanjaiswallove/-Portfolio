@@ -13,7 +13,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Introduce</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('introduce'); ?>">Introduce</a></li>
                     </ol>
                 </div>
             </div>

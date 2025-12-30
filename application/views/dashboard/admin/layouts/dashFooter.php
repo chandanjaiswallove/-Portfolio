@@ -1,17 +1,24 @@
-
-        
-        
-
 <!-- footer start-->
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 footer-copyright text-center">
-                <p class="mb-0">Copyright 2024 © Riho theme by pixelstrap </p>
+                <p class="mb-0">
+                    © <?= date('Y') ?>
+                    <a href="<?= base_url() ?>" target="_blank" rel="noopener">
+                        <?= $card->company_name ?? 'Your Company' ?>
+                    </a>.
+                    All rights reserved.
+                    Designed by
+                    <a href="https://aidcom.in" target="_blank" rel="noopener">
+                        Aidcom
+                    </a>.
+                </p>
             </div>
         </div>
     </div>
 </footer>
+
 </div>
 </div>
 <!-- latest jquery-->

@@ -17,7 +17,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Skills</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('skill'); ?>">Skills</a></li>
                     </ol>
                 </div>
             </div>
@@ -142,7 +142,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm">
+                                            <a class="btn btn-secondary btn-sm">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>

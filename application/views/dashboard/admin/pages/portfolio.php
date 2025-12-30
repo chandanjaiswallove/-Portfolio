@@ -16,8 +16,8 @@
                                 <svg class="stroke-icon">
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Portfolio</li>
+                        <li class="breadcrumb-item"> Dashboard </li>
+                        <li class="breadcrumb-item active"> <a href="<?= base_url('portfolio'); ?>">Portfolio</a></li>
                     </ol>
                 </div>
             </div>
@@ -133,12 +133,12 @@
                                                                 <input type="text" name="project_tags[]"
                                                                     class="form-control me-2"
                                                                     placeholder="Ex: WordPress">
-                                                                <button type="button" class="btn btn-danger btn-sm"
-                                                                    onclick="removeTag(this)">×</button>
+                                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                                    onclick="removeTag(this)">Remove</button>
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" class="btn btn-sm btn-success"
+                                                        <button type="button" class="btn btn-sm btn-primary"
                                                             onclick="addTag()">
                                                             + Add Tag
                                                         </button>
@@ -201,7 +201,7 @@
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
 
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)">
+                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </td>
@@ -298,19 +298,19 @@
                                                         <div class="d-flex mb-2">
                                                             <input type="text" name="project_tags[]"
                                                                 class="form-control me-2" value="WordPress">
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                onclick="removeTag(this)">×</button>
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                onclick="removeTag(this)">Remove</button>
                                                         </div>
 
                                                         <div class="d-flex mb-2">
                                                             <input type="text" name="project_tags[]"
                                                                 class="form-control me-2" value="PHP">
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                onclick="removeTag(this)">×</button>
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                onclick="removeTag(this)">Remove</button>
                                                         </div>
                                                     </div>
 
-                                                    <button type="button" class="btn btn-sm btn-success"
+                                                    <button type="button" class="btn btn-sm btn-primary"
                                                         onclick="addEditTag()">
                                                         + Add Tag
                                                     </button>
@@ -398,7 +398,7 @@
         document.getElementById('tagWrapper').insertAdjacentHTML('beforeend', `
         <div class="d-flex mb-2">
             <input type="text" name="project_tags[]" class="form-control me-2">
-            <button type="button" class="btn btn-danger btn-sm" onclick="removeTag(this)">×</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="removeTag(this)">Remove</button>
         </div>
     `);
     }
@@ -440,8 +440,8 @@
         document.getElementById('editTagWrapper').insertAdjacentHTML('beforeend', `
         <div class="d-flex mb-2">
             <input type="text" name="project_tags[]" class="form-control me-2">
-            <button type="button" class="btn btn-danger btn-sm"
-                    onclick="removeTag(this)">×</button>
+            <button type="button" class="btn btn-secondary btn-sm"
+                    onclick="removeTag(this)">Remove</button>
         </div>
     `);
     }

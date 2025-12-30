@@ -17,7 +17,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Contact</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('visitors'); ?>">Contact</a></li>
                     </ol>
                 </div>
             </div>

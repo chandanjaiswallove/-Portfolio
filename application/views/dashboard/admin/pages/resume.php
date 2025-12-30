@@ -18,7 +18,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">My Resume</li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('resume'); ?>">My Resume</a> </li>
                     </ol>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
                                     <div class="d-flex justify-content-between mb-2">
                                         <strong>Block</strong>
-                                        <button type="button" class="btn btn-danger btn-sm remove-block d-none">Remove
+                                        <button type="button" class="btn btn-secondary btn-sm remove-block d-none">Remove
                                             Block</button>
                                     </div>
 
@@ -59,14 +59,14 @@
                                     <div class="mb-3">
                                         <label>Date</label>
                                         <div class="date-wrapper">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group mb-2 ">
                                                 <input type="text" name="education[0][date][]" class="form-control"
                                                     placeholder="2010 - 2013">
                                                 <button type="button"
-                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                                    class="btn btn-secondary remove-field d-none">Remove</button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-success add-date">+ Add
+                                        <button type="button" class="btn btn-sm btn-primary add-date">+ Add
                                             Date</button>
                                     </div>
 
@@ -74,14 +74,14 @@
                                     <div class="mb-3">
                                         <label>Title</label>
                                         <div class="title-wrapper">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group mb-2 ">
                                                 <input type="text" name="education[0][title][]" class="form-control"
                                                     placeholder="Bachelor Degree">
                                                 <button type="button"
-                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                                    class="btn btn-secondary remove-field d-none">Remove</button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-success add-title">+ Add
+                                        <button type="button" class="btn btn-sm btn-primary add-title">+ Add
                                             Title</button>
                                     </div>
 
@@ -93,10 +93,10 @@
                                                 <input type="text" name="education[0][desc][]" class="form-control"
                                                     placeholder="US RMIT University">
                                                 <button type="button"
-                                                    class="btn btn-danger remove-field d-none">✕</button>
+                                                    class="btn btn-secondary remove-field d-none">Remove</button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-success add-desc">+ Add
+                                        <button type="button" class="btn btn-sm btn-primary add-desc">+ Add
                                             Description</button>
                                     </div>
 
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="card-footer text-end">
-                            <button class="btn btn-success" type="submit">
+                            <button class="btn btn-primary" type="submit">
                                 Update Resume
                             </button>
                         </div>
@@ -130,25 +130,25 @@
     <div class="edu-block border rounded p-3 mb-3" data-index="${blockIndex}">
         <div class="d-flex justify-content-between mb-2">
             <strong>Block</strong>
-            <button type="button" class="btn btn-danger btn-sm remove-block">Remove Block</button>
+            <button type="button" class="btn btn-secondary btn-sm remove-block">Remove Block</button>
         </div>
 
         <div class="mb-3">
             <label>Date</label>
             <div class="date-wrapper"></div>
-            <button type="button" class="btn btn-sm btn-success add-date">+ Add Date</button>
+            <button type="button" class="btn btn-sm btn-primary add-date">+ Add Date</button>
         </div>
 
         <div class="mb-3">
             <label>Title</label>
             <div class="title-wrapper"></div>
-            <button type="button" class="btn btn-sm btn-success add-title">+ Add Title</button>
+            <button type="button" class="btn btn-sm btn-primary add-title">+ Add Title</button>
         </div>
 
         <div class="mb-3">
             <label>Description</label>
             <div class="desc-wrapper"></div>
-            <button type="button" class="btn btn-sm btn-success add-desc">+ Add Description</button>
+            <button type="button" class="btn btn-sm btn-primary add-desc">+ Add Description</button>
         </div>
     </div>`;
 
@@ -191,7 +191,7 @@
                             return `
     <div class="input-group mb-2">
         <input type="text" name="${name}" class="form-control" placeholder="${placeholder}">
-        <button type="button" class="btn btn-danger remove-field">✕</button>
+        <button type="button" class="btn btn-secondary remove-field">Remove</button>
     </div>`;
                         }
                     </script>
