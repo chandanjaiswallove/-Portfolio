@@ -1,8 +1,3 @@
-
-
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -73,12 +68,46 @@
                                                             placeholder="Enter service description" style="resize:none;"
                                                             required></textarea>
                                                     </div>
-
-                                                    <div class="mb-3">
+                                                    <!-- INSERT SERVICE ICON -->
+                                                    <div class="mb-3 position-relative">
                                                         <label class="form-label">Service Icon</label>
-                                                        <input type="file" class="form-control" name="service_icon"
-                                                            required>
+
+                                                        <div class="input-group mb-2">
+                                                            <input type="text" id="insertServiceIconName"
+                                                                class="form-control" placeholder="No file chosen"
+                                                                readonly>
+
+                                                            <button class="btn btn-primary rounded-end" type="button"
+                                                                onclick="document.getElementById('insert_service_icon').click();">
+                                                                Browse
+                                                            </button>
+
+                                                            <input type="file" class="d-none" id="insert_service_icon"
+                                                                name="service_icon" accept="image/*" onchange="updateFileNameAndPreview(
+                this,
+                'insertServiceIconName',
+                'insertServiceIconPreview',
+                'insertServiceIconRemove'
+            )">
+                                                        </div>
+
+                                                        <div class="d-inline-block position-relative">
+                                                            <img id="insertServiceIconPreview"
+                                                                style="width:80px;height:80px;object-fit:contain;display:none;">
+
+                                                            <button type="button" id="insertServiceIconRemove" onclick="removeFileWithPreview(
+                'insert_service_icon',
+                'insertServiceIconName',
+                'insertServiceIconPreview',
+                'insertServiceIconRemove'
+            )" style="position:absolute;top:-10px;right:-20px;
+            border:none;background:none;font-size:20px;
+            color:#fe6a49;cursor:pointer;display:none;">
+                                                                &times;
+                                                            </button>
+                                                        </div>
                                                     </div>
+
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Service Project Count</label>
@@ -125,26 +154,33 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>25 June 2018</td>
-                                        <td>Web Development</td>
-                                        <td>Professional and scalable web development services.</td>
-                                        <td>24 Projects</td>
-                                        <td>
-                                            <i class="fa fa-code text-primary"></i>
-                                        </td>
-                                        <td class="text-end">
-                                            <a class="btn btn-primary btn-sm me-2" href="javascript:void(0)"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalCenter2">
-                                                <i class="fa fa-pencil"></i> Edit
-                                            </a>
+                                    <?php foreach ($services as $row): ?>
+                                        <tr>
+                                            <td><?= $row->id ?></td>
+                                            <td><?= date('d M Y', strtotime($row->updated_date)) ?></td>
+                                            <td><?= $row->heading ?></td>
+                                            <td><?= $row->description ?></td>
+                                            <td><?= $row->projects_count ?> Projects</td>
+                                            <td>
+                                                <?php if ($row->service_icon): ?>
+                                                    <img src="<?= base_url($row->service_icon) ?>"
+                                                        style="width:40px;height:40px;object-fit:contain;">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-end">
+                                                <a class="btn btn-primary btn-sm editServiceBtn" href="javascript:void(0)"
+                                                    data-bs-toggle="modal" data-bs-target="#editServiceModal"
+                                                    data-id="<?= $row->id ?>"
+                                                    data-title="<?= htmlspecialchars($row->heading) ?>"
+                                                    data-desc="<?= htmlspecialchars($row->description) ?>"
+                                                    data-count="<?= $row->projects_count ?>"
+                                                    data-icon="<?= $row->service_icon ? base_url($row->service_icon) : '' ?>">
+                                                    <i class="fa fa-pencil"></i> Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
 
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)">
-                                                <i class="fa fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
 
 
                                 </tbody>
@@ -155,63 +191,87 @@
                             <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenter2" aria-hidden="true">>
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
-                                    <div class="modal-content">
+                                    <div class="modal fade" id="editServiceModal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Edit Service</h4>
+                                                </div>
 
-                                        <!-- MODAL HEADER (TITLE) -->
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Edit Service</h4>
-                                        </div>
+                                                <div class="modal-body">
+                                                    <form method="post" action="<?= base_url('services/update'); ?>"
+                                                        enctype="multipart/form-data">
 
-                                        <!-- MODAL BODY -->
-                                        <div class="modal-body">
-                                            <div class="modal-toggle-wrapper">
+                                                        <!-- HIDDEN ID -->
+                                                        <input type="hidden" name="id" id="edit_service_id">
 
-                                                <!-- SERVICE FORM -->
-                                                <form method="post" action="" enctype="multipart/form-data">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Service Title</label>
+                                                            <input type="text" class="form-control" name="service_title"
+                                                                placeholder="Enter service title" required>
+                                                        </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Service Title</label>
-                                                        <input type="text" class="form-control" name="service_title"
-                                                            placeholder="Enter service title" required>
-                                                    </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Service Description</label>
+                                                            <textarea class="form-control" rows="4"
+                                                                name="service_paragraph"
+                                                                placeholder="Enter service description"
+                                                                style="resize:none;" required></textarea>
+                                                        </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Service Description</label>
-                                                        <textarea class="form-control" rows="4" name="service_paragraph"
-                                                            placeholder="Enter service description" style="resize:none;"
-                                                            required></textarea>
-                                                    </div>
+                                                        <!-- SERVICE ICON -->
+                                                        <div class="mb-3 position-relative">
+                                                            <label class="form-label">Service Icon</label>
+                                                            <div class="input-group mb-2">
+                                                                <input type="text" id="editServiceIconName"
+                                                                    class="form-control" placeholder="No file chosen"
+                                                                    readonly>
+                                                                <button class="btn btn-primary rounded-end"
+                                                                    type="button"
+                                                                    onclick="document.getElementById('edit_service_icon').click();">Browse</button>
+                                                                <input type="file" class="d-none" id="edit_service_icon"
+                                                                    name="service_icon" accept="image/*" onchange="updateFileNameAndPreview(
+this,
+'editServiceIconName',
+'editServiceIconPreview',
+'editServiceIconRemove'
+)">
+                                                            </div>
+                                                            <div class="d-inline-block position-relative">
+                                                                <img id="editServiceIconPreview"
+                                                                    style="width:80px;height:80px;object-fit:contain;display:none;">
+                                                                <button type="button" id="editServiceIconRemove"
+                                                                    onclick="removeFileWithPreview(
+'edit_service_icon',
+'editServiceIconName',
+'editServiceIconPreview',
+'editServiceIconRemove'
+)" style="position:absolute;top:-10px;right:-20px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
+                                                            </div>
+                                                            <small class="text-muted d-block mt-1">Leave empty to keep
+                                                                existing icon</small>
+                                                        </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Service Icon</label>
-                                                        <input type="file" class="form-control" name="service_icon"
-                                                            required>
-                                                    </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Service Project Count</label>
+                                                            <input type="number" class="form-control"
+                                                                name="service_project_count"
+                                                                placeholder="Number of projects" required>
+                                                        </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Service Project Count</label>
-                                                        <input type="number" class="form-control"
-                                                            name="service_project_count"
-                                                            placeholder="Number of projects" required>
-                                                    </div>
+                                                        <div class="text-end">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary ms-2">Update
+                                                                Service</button>
+                                                        </div>
 
-                                                    <div class="text-end">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                            Cancel
-                                                        </button>
-                                                        <button type="submit" class="btn btn-primary ms-2">
-                                                            Update Service
-                                                        </button>
-                                                    </div>
-
-                                                </form>
-                                                <!-- SERVICE FORM END -->
-
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -228,13 +288,34 @@
 
         </div>
     </div>
+
+    <script>
+        function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
+            const fileNameInput = document.getElementById(nameInputId);
+            const preview = document.getElementById(previewId);
+            const removeBtn = document.getElementById(removeBtnId);
+
+            if (input.files && input.files[0]) {
+                fileNameInput.value = input.files[0].name;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    removeBtn.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+            document.getElementById(fileInputId).value = '';
+            document.getElementById(nameInputId).value = '';
+            document.getElementById(previewId).src = '';
+            document.getElementById(previewId).style.display = 'none';
+            document.getElementById(removeBtnId).style.display = 'none';
+        }
+    </script>
+
+
 </div>
-
-
-
-
-
-
-
-
-

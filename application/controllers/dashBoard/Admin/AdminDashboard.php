@@ -16,6 +16,8 @@ class AdminDashboard extends CI_Controller
     {
         $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
         $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data
+        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data
+
 
 
         // Header

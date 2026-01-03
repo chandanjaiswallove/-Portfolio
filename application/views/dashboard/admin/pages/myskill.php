@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -62,19 +58,23 @@
 
                                                 <div class="row">
 
+
+
+
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Skill Logo</label>
-                                                        <input type="file" class="form-control" name="skill_logo"
-                                                            accept="image/*" onchange="previewSkillImage(this)"
-                                                            required>
-
-                                                        <div class="mt-2">
-                                                            <img id="skillImagePreview"
-                                                                src="https://via.placeholder.com/100"
-                                                                style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
-                                                        </div>
+                                              
+                                                      
                                                     </div>
+
+
+
+
+
+
+
+
+                                                    
 
                                                     <!-- SKILL TITLE -->
                                                     <div class="col-md-6 mb-3">
@@ -167,18 +167,28 @@
 
                                             <div class="row">
 
+
+
+
+
+
+
+
+
                                                 <!-- LOGO -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="form-label">Company / Skill Logo</label>
-                                                    <input type="file" class="form-control" name="skill_logo"
-                                                        accept="image/*" onchange="previewEditSkillImage(this)">
-
-                                                    <div class="mt-2">
-                                                        <img id="editSkillImagePreview"
-                                                            src="modules/assets/images/user1.jpg"
-                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
-                                                    </div>
+                                          
                                                 </div>
+
+
+
+
+
+
+
+
+
+
 
                                                 <!-- SKILL TITLE -->
                                                 <div class="col-md-6 mb-3">
@@ -243,33 +253,8 @@
 </div>
 
 
-<script>
-    function previewSkillImage(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('skillImagePreview').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-
-    function previewEditSkillImage(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('editSkillImagePreview').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 
 
 
 
 <!-- Container-fluid Ends-->
-
-
-

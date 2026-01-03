@@ -17,4 +17,17 @@ class Dashboard_Model extends CI_Model
 
         return $query->num_rows() ? $query->row() : null;
     }
+
+    // ============================================================
+    // ✅ get latest data from about_directory
+    // ============================================================
+    public function get_aboutData()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->limit(1)
+            ->get('about_directory')
+            ->row();
+    }
+
 }
