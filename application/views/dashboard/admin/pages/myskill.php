@@ -58,13 +58,9 @@
 
                                                 <div class="row">
 
-
-
-
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
-                                              
-                                                      
+                                                 
                                                     </div>
 
 
@@ -74,7 +70,6 @@
 
 
 
-                                                    
 
                                                     <!-- SKILL TITLE -->
                                                     <div class="col-md-6 mb-3">
@@ -167,17 +162,9 @@
 
                                             <div class="row">
 
-
-
-
-
-
-
-
-
                                                 <!-- LOGO -->
                                                 <div class="col-md-6 mb-3">
-                                          
+                                               
                                                 </div>
 
 
@@ -189,7 +176,7 @@
 
 
 
-
+                                                
                                                 <!-- SKILL TITLE -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Skill Title</label>
