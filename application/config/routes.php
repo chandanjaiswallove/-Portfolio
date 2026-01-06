@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -54,6 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 ///================= onBoarding controller start ===========
+$route['onBoardingUser'] = 'onBoarding/DeveloperSignup/loaDdeveloper_signup';
+
 $route['onBoarding'] = 'onBoarding/Login/developer_login';
 
 $route['onBoarding_forgot'] = 'onBoarding/DeveloperForgot/developer_forgot';
