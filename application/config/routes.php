@@ -54,15 +54,15 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 ///================= onBoarding controller start ===========
-$route['onBoardingUser'] = 'onBoarding/DeveloperSignup/loaDdeveloper_signup';
+$route['onBoardingUser'] = 'onBoarding/OnBoarding/loaDdeveloper_signup';
 
-$route['onBoarding'] = 'onBoarding/Login/developer_login';
+$route['onBoarding'] = 'onBoarding/OnBoarding/developer_login';
 
-$route['onBoarding_forgot'] = 'onBoarding/DeveloperForgot/developer_forgot';
+$route['onBoarding_forgot'] = 'onBoarding/OnBoarding/developer_forgot';
 
-$route['onBoarding_credentials'] = 'onBoarding/NewCredentials/new_credentials';
+$route['onBoarding_credentials'] = 'onBoarding/OnBoarding/new_credentials';
 
-$route['onBoarding_verify'] = 'onBoarding/Verify/loaDverify';
+$route['onBoarding_verify'] = 'onBoarding/OnBoarding/loaDverify';
 
 ///================= onBoarding controller end ===============
 

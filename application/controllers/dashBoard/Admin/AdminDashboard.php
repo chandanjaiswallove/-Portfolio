@@ -1,5 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
+
+/**
+ * @property Card_Model $Card
+ * @property Dashboard_Model $Dash
+ */
 
 class AdminDashboard extends CI_Controller
 {

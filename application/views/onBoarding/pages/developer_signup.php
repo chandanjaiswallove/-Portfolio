@@ -1,7 +1,3 @@
-<!-- Header section ui_Header  -->
-<?php
-$this->load->view('onBoarding/layouts/authHeader');
-?>
 
 
 
@@ -33,8 +29,7 @@ $this->load->view('onBoarding/layouts/authHeader');
     <!-- REMEMBER + FORGOT -->
     <div class="input-group d-flex align-items-center justify-content-between mb-4">
         <div class="d-flex align-items-center scroll-animation" data-animation="fade_from_bottom">
-            <input type="checkbox" name="remember" style="width:auto;margin-right:8px;">
-            <label style="margin:0;">allReady Accoundt </label>
+            <label style="margin:0;">Already have an account? </label>
         </div>
 
         <a href="<?= base_url('onBoarding'); ?>" class="project-btn scroll-animation"
@@ -70,9 +65,3 @@ $this->load->view('onBoarding/layouts/authHeader');
 
 
 
-
-
-<!-- Header section ui_Footer  -->
-<?php
-$this->load->view('onBoarding/layouts/authFooter');
-?>

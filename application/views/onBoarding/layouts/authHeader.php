@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drake</title>
-    <link rel="icon" type="image/x-icon" href="modules/assets/images/favicon.png">
+    <!-- Dynamic Title -->
+    <title><?= !empty($card->web_title) ? $card->web_title : 'Drake'; ?></title>
 
+    <!-- Dynamic Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
+
+    <link rel="shortcut icon" type="image/x-icon"
+        href="<?= !empty($card->web_icon) ? base_url($card->web_icon) : base_url('modules/assets/images/favicon.png'); ?>">
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,16 +49,16 @@
 
     <main class="drake-main">
 
-    <section class="testimonial-area page-section scroll-to-page p-5">
-        <div class="testimonial-slider-wrap scroll-animation" data-animation="fade_from_bottom"
-            style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+        <section class="testimonial-area page-section scroll-to-page p-5">
+            <div class="testimonial-slider-wrap scroll-animation" data-animation="fade_from_bottom"
+                style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
 
-            <div class="testimonial-item" style="width:100%;max-width:520px;">
-                <div class="testimonial-item-inner">
+                <div class="testimonial-item" style="width:100%;max-width:520px;">
+                    <div class="testimonial-item-inner">
 
-                    <!-- LOGO -->
-                    <div class="section-header text-center mb-4 scroll-animation" data-animation="fade_from_left">
-                        <a href="<?php echo base_url(''); ?>">
-                            <img src="modules/assets/images/logo.png" alt="Logo">
-                        </a>
-                    </div>
+                        <!-- LOGO -->
+                        <div class="section-header text-center mb-4 scroll-animation" data-animation="fade_from_left">
+                            <a href="<?php echo base_url(''); ?>">
+                                <img src="modules/assets/images/logo.png" alt="Logo">
+                            </a>
+                        </div>

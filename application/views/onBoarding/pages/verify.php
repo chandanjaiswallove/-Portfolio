@@ -1,10 +1,5 @@
 
 
-<!-- Header section ui_Header  -->
-<?php
-$this->load->view('onBoarding/layouts/authHeader');
-?>
-
 
 <main class="drake-main">
 
@@ -37,10 +32,3 @@ $this->load->view('onBoarding/layouts/authHeader');
 
 </main>
 
-
-
-
-<!-- Header section ui_Footer  -->
-<?php
-$this->load->view('onBoarding/layouts/authFooter');
-?>

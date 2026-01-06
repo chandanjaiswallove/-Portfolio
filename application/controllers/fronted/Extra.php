@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * @property Card_Model $Card
+ */
+
 class Extra extends CI_Controller
 {
     public function __construct()

@@ -1,7 +1,3 @@
-<!-- Header section ui_Header  -->
-<?php
-$this->load->view('onBoarding/layouts/authHeader');
-?>
 
 
 
@@ -70,9 +66,3 @@ $this->load->view('onBoarding/layouts/authHeader');
 
 
 
-
-
-<!-- Header section ui_Footer  -->
-<?php
-$this->load->view('onBoarding/layouts/authFooter');
-?>
