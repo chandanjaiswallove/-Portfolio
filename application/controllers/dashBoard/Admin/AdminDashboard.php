@@ -21,9 +21,15 @@ class AdminDashboard extends CI_Controller
     private function load_page($page)
     {
         $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
-        $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data
-        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data   
-        $data['service'] = $this->Dash->get_serviceData();       // services_directory Data
+        $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data from Dashboard_Model
+        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data  from Dashboard_Model
+        $data['service'] = $this->Dash->get_serviceData();       // services_directory Data from Dashboard_Model
+        $data['skill'] = $this->Dash->get_myskill_directory();  // get_myskill_directory Data from Dashboard_Model
+        $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Mode
+        $data['testimonials'] = $this->Dash->get_testimonial_directory();   // get_testimonial_directory ata from Dashboard_Model
+        $data['company_logos'] = $this->Dash->get_company_logoData();
+
+
 
 
 

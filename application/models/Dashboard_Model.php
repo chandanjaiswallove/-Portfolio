@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard_Model extends CI_Model
 {
@@ -30,7 +30,7 @@ class Dashboard_Model extends CI_Model
             ->row();
     }
 
-       // ============================================================
+    // ============================================================
     // ✅ get latest data from services_directory
     // ============================================================
     public function get_serviceData()
@@ -38,7 +38,46 @@ class Dashboard_Model extends CI_Model
         return $this->db
             ->order_by('id', 'DESC')
             ->get('services_directory')
-            ->row();
+            ->result();
     }
 
+    // ============================================================
+    // ✅ get all data from myskill_directory
+    // ============================================================
+    public function get_myskill_directory()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->get('myskill_directory')
+            ->result();   // ✅ MULTIPLE ROWS
+    }
+
+    // ============================================================
+    // ✅ get all data from contact_directory
+    // ============================================================
+    public function get_contact_directory()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->get('contact_directory')
+            ->result();   // MULTIPLE ROWS
+    }
+
+    // Dashboard_Model.php
+    public function get_testimonial_directory()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->get('testimonial_directory')
+            ->result();
+    }
+
+    // Dashboard_Model.php
+    public function get_company_logoData()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->get('company_logo_directory')
+            ->result(); // multiple rows
+    }
 }

@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -45,29 +41,50 @@
                             <table class="table table-dashed">
                                 <thead>
                                     <tr>
-                                        <th scope="col"><b>Id</b></th>
-                                        <th scope="col"><b>Visit Date</b></th>
-                                        <th scope="col"><b>Full Name</b></th>
-                                        <th scope="col"><b>Email</b></th>
-                                        <th scope="col"><b>Subject</b></th>
-                                        <th scope="col"><b>Message</b></th>
+                                        <th><b>ID</b></th>
+                                        <th><b>Visit Date</b></th>
+                                        <th><b>Full Name</b></th>
+                                        <th><b>Email</b></th>
+                                        <th><b>Subject</b></th>
+                                        <th><b>Message</b></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mind & Body</td>
-                                        <td>Yoga</td>
-                                        <td>8:00 AM - 9:00 AM</td>
-                                        <td>Adam Stewart</td>
-                                        <td>20</td>
-                                    </tr>
 
+                                <tbody>
+                                    <?php if (!empty($contacts)): ?>
+                                        <?php foreach ($contacts as $row): ?>
+                                            <tr>
+                                                <th><?= $row->id ?></th>
+
+                                                <td>
+                                                    <?= date('d M Y, h:i A', strtotime($row->contact_date)) ?>
+                                                </td>
+
+                                                <td><?= htmlspecialchars($row->visitor_fullname) ?></td>
+
+                                                <td><?= htmlspecialchars($row->visitor_email) ?></td>
+
+                                                <td><?= htmlspecialchars($row->visitor_subject) ?></td>
+
+                                                <td style="max-width:250px;">
+                                                    <?= htmlspecialchars($row->visitor_message) ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted">
+                                                No contact messages found
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -92,7 +109,3 @@
 
 
 </div>
-
-
-
-
