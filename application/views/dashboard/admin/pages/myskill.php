@@ -60,40 +60,94 @@
 
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
-                                                 
+                                                        <div class="position-relative">
+                                                            <label class="form-label">Skill Logo</label>
+
+                                                            <!-- Input + Browse -->
+                                                            <div class="input-group mb-2">
+                                                                <input type="text"
+                                                                    id="skillLogoName"
+                                                                    class="form-control"
+                                                                    placeholder="No file chosen"
+                                                                    readonly>
+
+                                                                <button type="button"
+                                                                    class="btn btn-primary rounded-end"
+                                                                    onclick="document.getElementById('skill_logo').click();">
+                                                                    Browse
+                                                                </button>
+
+                                                                <input type="file"
+                                                                    class="d-none"
+                                                                    id="skill_logo"
+                                                                    name="skill_logo"
+                                                                    accept="image/*"
+                                                                    onchange="updateFileNameAndPreview(
+                               this,
+                               'skillLogoName',
+                               'skillLogoPreview',
+                               'skillLogoRemove'
+                           )">
+                                                            </div>
+
+                                                            <!-- Preview -->
+                                                            <div class="d-inline-block position-relative">
+                                                                <img id="skillLogoPreview"
+                                                                    style="width:80px; height:80px; object-fit:contain; display:none;">
+
+                                                                <!-- Remove -->
+                                                                <button type="button"
+                                                                    id="skillLogoRemove"
+                                                                    style="position:absolute; top:-10px; right:-10px;
+                                   border:none; background:none;
+                                   font-size:20px; color:#fe6a49;
+                                   display:none; cursor:pointer;"
+                                                                    onclick="removeFileWithPreview(
+                                'skill_logo',
+                                'skillLogoName',
+                                'skillLogoPreview',
+                                'skillLogoRemove'
+                            )">
+                                                                    &times;
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-
-
-
-
-
-
-
-
 
                                                     <!-- SKILL TITLE -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Title</label>
-                                                        <input type="text" class="form-control" name="skill_title"
-                                                            placeholder="Ex: HTML / CSS / PHP" required>
+                                                        <input type="text"
+                                                            class="form-control"
+                                                            name="skill_title"
+                                                            placeholder="Ex: HTML / CSS / PHP"
+                                                            required>
                                                     </div>
 
                                                     <!-- SKILL PROGRESS -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Progress (%)</label>
-                                                        <input type="text" class="form-control" name="skill_progress"
-                                                            placeholder="0 - 100" min="0" max="100" required>
+                                                        <input type="number"
+                                                            class="form-control"
+                                                            name="skill_progress"
+                                                            placeholder="0 - 100"
+                                                            min="0"
+                                                            max="100"
+                                                            required>
                                                     </div>
 
                                                 </div>
 
                                                 <!-- FOOTER BUTTONS -->
                                                 <div class="text-end">
-                                                    <button type="button" class="btn btn-secondary"
+                                                    <button type="button"
+                                                        class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
                                                         Cancel
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary ms-2">
+
+                                                    <button type="submit"
+                                                        class="btn btn-primary ms-2">
                                                         Save Skill
                                                     </button>
                                                 </div>
@@ -162,33 +216,81 @@
 
                                             <div class="row">
 
-                                                <!-- LOGO -->
+                                                <!-- SKILL LOGO -->
                                                 <div class="col-md-6 mb-3">
-                                               
+                                                    <div class="position-relative">
+                                                        <label class="form-label">Skill Logo</label>
+
+                                                        <div class="input-group mb-2">
+                                                            <input type="text"
+                                                                id="editSkillLogoName"
+                                                                class="form-control"
+                                                                placeholder="No file chosen"
+                                                                readonly
+                                                                value="html.png"><!-- DB filename -->
+
+                                                            <button type="button"
+                                                                class="btn btn-primary rounded-end"
+                                                                onclick="document.getElementById('edit_skill_logo').click();">
+                                                                Browse
+                                                            </button>
+
+                                                            <input type="file"
+                                                                class="d-none"
+                                                                id="edit_skill_logo"
+                                                                name="skill_logo"
+                                                                accept="image/*"
+                                                                onchange="updateFileNameAndPreview(
+                               this,
+                               'editSkillLogoName',
+                               'editSkillLogoPreview',
+                               'editSkillLogoRemove'
+                           )">
+                                                        </div>
+
+                                                        <div class="d-inline-block position-relative">
+                                                            <img id="editSkillLogoPreview"
+                                                                src="<?= base_url('uploads/skills/html.png') ?>"
+                                                                style="width:80px; height:80px; object-fit:contain;">
+
+                                                            <button type="button"
+                                                                id="editSkillLogoRemove"
+                                                                style="position:absolute; top:-10px; right:-10px;
+                                   border:none; background:none;
+                                   font-size:20px; color:#fe6a49;
+                                   cursor:pointer;"
+                                                                onclick="removeFileWithPreview(
+                                'edit_skill_logo',
+                                'editSkillLogoName',
+                                'editSkillLogoPreview',
+                                'editSkillLogoRemove'
+                            )">
+                                                                &times;
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-
-
-
-
-
-
-
-
-
-                                                
                                                 <!-- SKILL TITLE -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Skill Title</label>
-                                                    <input type="text" class="form-control" name="skill_title"
-                                                        value="HTML" required>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        name="skill_title"
+                                                        value="HTML"
+                                                        required>
                                                 </div>
 
                                                 <!-- SKILL PROGRESS -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Skill Progress (%)</label>
-                                                    <input type="number" class="form-control" name="skill_progress"
-                                                        value="85" min="0" max="100" required>
+                                                    <input type="number"
+                                                        class="form-control"
+                                                        name="skill_progress"
+                                                        value="85"
+                                                        min="0"
+                                                        max="100"
+                                                        required>
                                                 </div>
 
                                             </div>
@@ -198,15 +300,20 @@
 
                                             <!-- FOOTER -->
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                <button type="button"
+                                                    class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
                                                     Cancel
                                                 </button>
-                                                <button type="submit" class="btn btn-primary ms-2">
+
+                                                <button type="submit"
+                                                    class="btn btn-primary ms-2">
                                                     Update Skill
                                                 </button>
                                             </div>
 
                                         </form>
+
 
                                     </div>
 
@@ -238,7 +345,32 @@
 
 
 </div>
+<script>
+    function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
+        const fileNameInput = document.getElementById(nameInputId);
+        const preview = document.getElementById(previewId);
+        const removeBtn = document.getElementById(removeBtnId);
 
+        if (input.files && input.files[0]) {
+            fileNameInput.value = input.files[0].name;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+                removeBtn.style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+        document.getElementById(fileInputId).value = '';
+        document.getElementById(nameInputId).value = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeBtnId).style.display = 'none';
+    }
+</script>
 
 
 

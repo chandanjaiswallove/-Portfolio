@@ -14,6 +14,7 @@ class AdminDashboard extends CI_Controller
         $this->load->model('Card_Model', 'Card'); // Header/footer ka Card_Model load huwa 
         $this->load->model('Dashboard_Model', 'Dash'); // Dashboard Model ka load huwa
 
+
     }
 
     // Generic page loader
@@ -21,7 +22,9 @@ class AdminDashboard extends CI_Controller
     {
         $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
         $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data
-        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data
+        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data   
+        $data['service'] = $this->Dash->get_serviceData();       // services_directory Data
+
 
 
 

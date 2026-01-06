@@ -140,6 +140,7 @@
 
 
                         <div class="table-responsive add-project custom-scrollbar">
+                            
                             <table class="table card-table table-vcenter text-nowrap">
                                 <thead>
                                     <tr>
@@ -154,7 +155,7 @@
                                 </thead>
 
                                 <tbody>
-                                    <?php foreach ($services as $row): ?>
+                                    <?php foreach ($service as $row): ?>
                                         <tr>
                                             <td><?= $row->id ?></td>
                                             <td><?= date('d M Y', strtotime($row->updated_date)) ?></td>

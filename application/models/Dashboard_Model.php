@@ -30,4 +30,15 @@ class Dashboard_Model extends CI_Model
             ->row();
     }
 
+       // ============================================================
+    // ✅ get latest data from services_directory
+    // ============================================================
+    public function get_serviceData()
+    {
+        return $this->db
+            ->order_by('id', 'DESC')
+            ->get('services_directory')
+            ->row();
+    }
+
 }
