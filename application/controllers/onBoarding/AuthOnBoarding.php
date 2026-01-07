@@ -6,17 +6,17 @@ class AuthOnBoarding extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('OnBoarding_Model'); // common data (logo / card)
+        $this->load->model('OnBoarding_Model');
     }
 
-   
-
-
-    // model function call here for Authentication
-
+    // ================= REGISTER USER =================
     public function modeLregisterUser()
     {
-        $this->OnBoarding_Model->registerStudent(); // OnBooarding Model function call here 
+        // ✅ POST safety check
+        if ($this->input->method() !== 'post') {
+            show_404();
+        }
 
+        $this->OnBoarding_Model->registerStudent();
     }
 }

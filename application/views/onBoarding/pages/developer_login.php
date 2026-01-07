@@ -53,7 +53,7 @@
     </button>
 
     <!-- REGISTER (Button ke NICHE, Left + Right) -->
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center px-5">
         <small class="text-muted">
             Don’t have an account?
         </small>
