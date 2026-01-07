@@ -68,7 +68,7 @@ $route['onBoarding_verify'] = 'onBoarding/OnBoarding/loaDverify';
 
 
 // Handle signup form submission
-$route['userOnBoard'] = 'onBoarding/OnBoarding/modeLregisterUser';
+$route['useronWay'] = 'onBoarding/AuthOnBoarding/modeLregisterUser';
 
 ///================= onBoarding controller end ===============
 

@@ -59,9 +59,8 @@
         </small>
 
 
-        <a href="<?= base_url('onBoarding_register'); ?>"
-            class="btn btn-link p-0"
-            style="text-decoration:none;">
+        <a href="<?= base_url('onBoardingUser'); ?>"
+            class="project-btn">
             Register
         </a>
     </div>

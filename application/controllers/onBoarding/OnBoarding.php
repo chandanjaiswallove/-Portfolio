@@ -51,14 +51,6 @@ class OnBoarding extends CI_Controller
     {
         $this->load_auth_page('new_credentials');
     }
+    
 
-
-
-    // model function call here for Authentication
-
-    public function modeLregisterUser()
-    {
-        $this->OnBoarding_Model->registerStudent(); // OnBooarding Model function call here 
-
-    }
 }
