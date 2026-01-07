@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Portfolio </h4>
+                    <h4>Project </h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -13,7 +13,7 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item"> Dashboard </li>
-                        <li class="breadcrumb-item active"> <a href="<?= base_url('portfolio'); ?>">Portfolio</a></li>
+                        <li class="breadcrumb-item active"> <a href="<?= base_url('Project'); ?>">Project</a></li>
                     </ol>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                             <!-- Button -->
                             <button class="btn btn-primary" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalCenter1">
-                                Add New Portfolio
+                                Add New Project
                             </button>
 
                             <!-- Modal -->
@@ -46,7 +46,7 @@
 
                                         <!-- Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Add New Portfolio</h4>
+                                            <h4 class="modal-title">Add New Project</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
 
@@ -164,7 +164,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cancel</button>
                                                     <button type="submit" class="btn btn-primary ms-2">
-                                                        Save Portfolio
+                                                        Save Project
                                                     </button>
                                                 </div>
 
@@ -183,8 +183,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Date</th>
-                                        <th>Project Name</th>
-                                        <th>Profile Photo</th>
+                                        <th>Project Photo</th>
                                         <th>Project Title</th>
                                         <th>Project Tags</th>
                                         <th>Project Links</th>
@@ -198,14 +197,13 @@
                                     <tr>
                                         <td>1</td>
                                         <td>06 Jan 2026</td>
-                                        <td>Portfolio Website</td>
 
                                         <td>
-                                            <img src="assets/images/portfolio/full1.jpg"
+                                            <img src="assets/images/Project/full1.jpg"
                                                 style="width:60px;height:40px;object-fit:cover;border-radius:6px;">
                                         </td>
 
-                                        <td>Personal Portfolio</td>
+                                        <td>Personal Project</td>
 
                                         <td>
                                             <span class="badge bg-primary">PHP</span>
@@ -220,15 +218,15 @@
                                         </td>
 
                                         <td class="text-end">
-                                            <a class="btn btn-primary btn-sm editPortfolioBtn"
+                                            <a class="btn btn-primary btn-sm editProjectBtn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter2"
 
                                                 data-id="1"
-                                                data-title="Personal Portfolio"
+                                                data-title="Personal Project"
                                                 data-link="https://example.com"
                                                 data-type="full"
-                                                data-full="assets/images/portfolio/full1.jpg"
+                                                data-full="assets/images/Project/full1.jpg"
                                                 data-small=""
                                                 data-tags='["PHP","CodeIgniter","Bootstrap"]'>
                                                 <i class="fa fa-pencil"></i>
@@ -244,14 +242,14 @@
 
 
 
-                            <!-- EDIT PORTFOLIO MODAL -->
+                            <!-- EDIT Project MODAL -->
                             <div class="modal fade" id="exampleModalCenter2" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
 
                                         <!-- HEADER -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Edit Portfolio</h4>
+                                            <h4 class="modal-title">Edit Project</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
 
@@ -259,7 +257,7 @@
                                         <div class="modal-body">
                                             <form method="post" enctype="multipart/form-data">
 
-                                                <input type="hidden" id="editPortfolioId" name="portfolio_id">
+                                                <input type="hidden" id="editProjectId" name="Project_id">
 
                                                 <!-- Full Image -->
                                                 <div id="editFullBox" class="mb-3 d-none">
@@ -323,7 +321,7 @@
                                                 <!-- Footer -->
                                                 <div class="text-end">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary ms-2">Update Portfolio</button>
+                                                    <button type="submit" class="btn btn-primary ms-2">Update Project</button>
                                                 </div>
 
                                             </form>
@@ -426,9 +424,9 @@
     }
 
     /* EDIT FETCH */
-    document.querySelectorAll('.editPortfolioBtn').forEach(btn => {
+    document.querySelectorAll('.editProjectBtn').forEach(btn => {
         btn.onclick = () => {
-            editPortfolioId.value = btn.dataset.id;
+            editProjectId.value = btn.dataset.id;
 
             if (btn.dataset.type === 'full') {
                 editFullBox.classList.remove('d-none');
@@ -475,11 +473,11 @@
     }
 
     // 3️⃣ Edit Modal fetch
-    document.querySelectorAll('.editPortfolioBtn').forEach(btn => {
+    document.querySelectorAll('.editProjectBtn').forEach(btn => {
         btn.addEventListener('click', () => {
 
             // Basic Info
-            document.getElementById('editPortfolioId').value = btn.dataset.id;
+            document.getElementById('editProjectId').value = btn.dataset.id;
             document.getElementById('editTitle').value = btn.dataset.title;
             document.getElementById('editLink').value = btn.dataset.link;
 
