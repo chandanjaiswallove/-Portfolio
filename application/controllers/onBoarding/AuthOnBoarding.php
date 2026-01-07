@@ -12,10 +12,6 @@ class AuthOnBoarding extends CI_Controller
     // ================= REGISTER USER =================
     public function modeLregisterUser()
     {
-        // ✅ POST safety check
-        if ($this->input->method() !== 'post') {
-            show_404();
-        }
 
         $this->OnBoarding_Model->registerStudent();
     }

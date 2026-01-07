@@ -1,11 +1,11 @@
     <!-- Register page -->
-    <form method="POST" action="<?= base_url('useronWay'); ?>" onsubmit="return validatePasswordMatch();">
+    <form method="POST" action="<?= base_url('useronWay'); ?>">
 
         <!-- EMAIL -->
         <div class="input-group mb-3">
             <label>Email <sup>*</sup></label>
             <input type="email" id="email" name="email" class="bg-transparent w-100 p-1 text-white rounded-end"
-                placeholder="Enter your email" onkeyup="generateUserId();checkEmailExist();" required>
+                placeholder="Enter your email" onkeyup="generateUserId();" required>
         </div>
 
         <!-- AUTO USER ID -->
@@ -29,17 +29,16 @@
         <!-- CONFIRM PASSWORD -->
         <label>Confirm Password <sup>*</sup></label>
         <div class="input-group mb-1">
-            <input type="password" id="confirm_password" class="form-control bg-transparent text-white"
-                placeholder="Confirm password" onkeyup="checkPasswordMatch()" required>
+            <input type="password" id="confirm_password" name="confirm_password"
+                class="form-control bg-transparent text-white" placeholder="Confirm password" required>
+
 
             <button type="button" class="btn btn-outline-secondary " onclick="togglePassword('confirm_password', this)">
                 Show
             </button>
         </div>
 
-        <small id="password_error" style="color:red;display:none;">
-            Password mismatch
-        </small>
+
 
 
 
@@ -85,48 +84,5 @@ function togglePassword(inputId, btn) {
         input.type = "password";
         btn.innerText = "Show";
     }
-}
-
-function checkPasswordMatch() {
-    let pass = document.getElementById("password").value;
-    let confirm = document.getElementById("confirm_password").value;
-    let error = document.getElementById("password_error");
-
-    if (confirm !== "" && pass !== confirm) {
-        error.style.display = "block";
-        return false;
-    } else {
-        error.style.display = "none";
-        return true;
-    }
-}
-
-function validatePasswordMatch() {
-    if (!checkPasswordMatch()) {
-        alert("Password mismatch!");
-        return false;
-    }
-    return true;
-}
-
-/* ===== EMAIL ALREADY REGISTERED CHECK ===== */
-function checkEmailExist() {
-    let email = document.getElementById("email").value;
-    if (email.length < 5) return;
-
-    fetch("check_email.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "email=" + encodeURIComponent(email)
-        })
-        .then(res => res.text())
-        .then(data => {
-            if (data === "exists") {
-                alert("Email already registered! Redirecting to login...");
-                window.location.href = "login.php";
-            }
-        });
 }
     </script>
