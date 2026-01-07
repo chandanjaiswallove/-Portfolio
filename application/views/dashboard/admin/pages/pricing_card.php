@@ -1,6 +1,3 @@
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -152,6 +149,7 @@
                                         <th>Pricing</th>
                                         <th>Duration</th>
                                         <th>Sample Link</th>
+
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
@@ -366,5 +364,3 @@
 </script>
 
 <!-- Container-fluid Ends-->
-
-

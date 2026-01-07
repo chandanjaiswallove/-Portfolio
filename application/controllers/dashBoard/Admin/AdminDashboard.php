@@ -28,7 +28,7 @@ class AdminDashboard extends CI_Controller
         $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Model
         $data['testimonials'] = $this->Dash->get_testimonial_directory();   // get_testimonial_directory ata from Dashboard_Model
         $data['company_logos'] = $this->Dash->get_company_logoData();   // get_company_logoData from Dashboard_Model
-        $data['portfolios'] = $this->Dash->get_portfolio_projects();    //
+        $data['portfolios'] = $this->Dash->get_portfolio_projects();    //  project page data from Dashboard_Model
 
 
 
@@ -92,7 +92,7 @@ class AdminDashboard extends CI_Controller
         $this->load_page('resume');
     }
 
-    public function loaDportfolio()
+    public function loaDProject()
     {
         $this->load_page('portfolio');
     }

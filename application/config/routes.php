@@ -90,7 +90,7 @@ $route['testimonials'] = 'dashBoard/Admin/AdminDashboard/loaDtestimonials';
 $route['visitors'] = 'dashBoard/Admin/AdminDashboard/loaDvisitor_data';
 
 $route['resume'] = 'dashBoard/Admin/AdminDashboard/loaDresume';
-$route['portfolio'] = 'dashBoard/Admin/AdminDashboard/loaDportfolio';
+$route['projects'] = 'dashBoard/Admin/AdminDashboard/loaDProject';
 
 $route['pricing'] = 'dashBoard/Admin/AdminDashboard/loaDpricing_card';
 

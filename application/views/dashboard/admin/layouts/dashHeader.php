@@ -531,7 +531,7 @@
                                     </li>
                                     <li><a href="<?php echo base_url('skill') ?>" class="active">Skills </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('portfolio') ?>" class="active">Portfolio </a>
+                                    <li><a href="<?php echo base_url('projects') ?>" class="active">Project </a>
                                     </li>
                                     <li><a href="<?php echo base_url('testimonials') ?>" class="active">Testimonials
                                         </a>
