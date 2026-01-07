@@ -92,7 +92,10 @@ public function modeLloginStudent()
 
 
 
-public function logout()
+
+    //// logout system
+
+    public function logout()
 {
     // 🔓 REMOVE SPECIFIC SESSION DATA
     $this->session->unset_userdata([
@@ -102,9 +105,9 @@ public function logout()
     ]);
 
     // OR (FULL DESTROY)
-    $this->session->sess_destroy();
+     $this->session->sess_destroy();
 
-    // Cache clear headers (back button safe)
+  // cache clear headers
     $this->output
          ->set_header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     $this->output
@@ -112,9 +115,14 @@ public function logout()
     $this->output
          ->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
-    // SweetAlert via helper
-    sweetAlert('Logged Out', 'You have been logged out successfully!', 'success', base_url('onBoarding'));
-    redirect('onBoarding'); exit;
+         // SweetAlert helper call
+    sweetAlert(
+        'Logged Out',
+        'You have been logged out successfully!',
+        'success',
+        base_url('/')
+    );
+
 }
 
 
