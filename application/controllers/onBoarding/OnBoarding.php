@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * @property Card_Model $Card
+
  */
 class OnBoarding extends CI_Controller
 {
@@ -10,8 +11,6 @@ class OnBoarding extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Card_Model', 'Card'); // common data (logo / card)
-        $this->load->model('OnBoarding_Model', 'OnBoard'); //OnBoarding model load here
-
     }
 
     private function load_auth_page($page)
@@ -57,7 +56,9 @@ class OnBoarding extends CI_Controller
 
     // model function call here for Authentication
 
-    public function modeLregisterUser() {
+    public function modeLregisterUser()
+    {
+        $this->OnBoarding_Model->registerStudent(); // OnBooarding Model function call here 
 
     }
 }

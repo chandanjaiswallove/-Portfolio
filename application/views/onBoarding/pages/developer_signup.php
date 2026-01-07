@@ -1,8 +1,6 @@
+<form method="POST" action="<?= base_url('userOnBoard'); ?>" class="contact-form">
 
 
-
-<form method="POST" action="<?= base_url('userOnBoard'); ?>" class="contact-form"
-    onsubmit="return validatePasswordMatch()">
 
 
     <!-- EMAIL -->
@@ -11,7 +9,7 @@
         <input type="email" id="email" name="email"
             class="bg-transparent w-100 p-1 text-white rounded-end"
             placeholder="Enter your email"
-            onkeyup="generateUserId();checkEmailExist();"
+            onkeyup="generateUserId();"
             required>
     </div>
 
@@ -41,10 +39,13 @@
     <!-- CONFIRM PASSWORD -->
     <label>Confirm Password <sup>*</sup></label>
     <div class="input-group mb-1">
-        <input type="password" id="confirm_password"
+        <input type="password"
+            id="confirm_password"
+            name="confirm_password"
             class="form-control bg-transparent text-white"
             placeholder="Confirm password"
-            onkeyup="checkPasswordMatch()" required>
+            required>
+
 
         <button type="button"
             class="btn btn-outline-secondary rounded-end"
@@ -53,9 +54,7 @@
         </button>
     </div>
 
-    <small id="password_error" style="color:red;display:none;">
-        Password mismatch
-    </small>
+
 
     <!-- LOGIN REDIRECT ROW -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -78,12 +77,11 @@
 
 </form>
 
-
 <script>
     function generateUserId() {
-        let email = document.getElementById("email").value;
+        const email = document.getElementById("email").value.trim();
         if (email.length > 0) {
-            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             let id = "";
             for (let i = 0; i < 8; i++) {
                 id += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -93,7 +91,7 @@
     }
 
     function togglePassword(inputId, btn) {
-        let input = document.getElementById(inputId);
+        const input = document.getElementById(inputId);
 
         if (input.type === "password") {
             input.type = "text";
@@ -102,48 +100,5 @@
             input.type = "password";
             btn.innerText = "Show";
         }
-    }
-
-    function checkPasswordMatch() {
-        let pass = document.getElementById("password").value;
-        let confirm = document.getElementById("confirm_password").value;
-        let error = document.getElementById("password_error");
-
-        if (confirm !== "" && pass !== confirm) {
-            error.style.display = "block";
-            return false;
-        } else {
-            error.style.display = "none";
-            return true;
-        }
-    }
-
-    function validatePasswordMatch() {
-        if (!checkPasswordMatch()) {
-            alert("Password mismatch!");
-            return false;
-        }
-        return true;
-    }
-
-    /* ===== EMAIL ALREADY REGISTERED CHECK ===== */
-    function checkEmailExist() {
-        let email = document.getElementById("email").value;
-        if (email.length < 5) return;
-
-        fetch("check_email.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "email=" + encodeURIComponent(email)
-            })
-            .then(res => res.text())
-            .then(data => {
-                if (data === "exists") {
-                    alert("Email already registered! Redirecting to login...");
-                    window.location.href = "login.php";
-                }
-            });
     }
 </script>
