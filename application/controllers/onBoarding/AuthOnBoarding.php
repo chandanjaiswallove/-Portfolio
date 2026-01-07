@@ -54,26 +54,25 @@ class AuthOnBoarding extends CI_Controller
 }
 
 
-
-    ///============== login student =================/
-    
-    public function modeLloginStudent()
+public function modeLloginStudent()
 {
     $result = $this->OnBoarding_Model->loginStudent();
 
-    // ❌ LOGIN ERROR
+    // LOGIN ERROR
     if (is_string($result)) {
 
         if ($result === 'invalid_credentials') {
             sweetAlert('Login Failed', 'User ID or Email not found.', 'error', base_url('onBoarding'));
+            redirect('onBoarding'); exit;
         }
 
         if ($result === 'wrong_password') {
             sweetAlert('Login Failed', 'Incorrect password.', 'error', base_url('onBoarding'));
+            redirect('onBoarding'); exit;
         }
     }
 
-    // ✅ LOGIN SUCCESS
+    // LOGIN SUCCESS
     if (is_array($result) && $result['status'] === 'success') {
 
         $user = $result['user'];
@@ -85,14 +84,15 @@ class AuthOnBoarding extends CI_Controller
             'logged_in' => true
         ]);
 
+        // SweetAlert via helper
         sweetAlert('Welcome', 'Login successful!', 'success', base_url('admin_playground'));
+        redirect('admin_playground'); exit;
     }
 }
 
 
-    //// logout system
 
-    public function logout()
+public function logout()
 {
     // 🔓 REMOVE SPECIFIC SESSION DATA
     $this->session->unset_userdata([
@@ -102,9 +102,19 @@ class AuthOnBoarding extends CI_Controller
     ]);
 
     // OR (FULL DESTROY)
-     $this->session->sess_destroy();
+    $this->session->sess_destroy();
 
-    redirect('onBoarding');
+    // Cache clear headers (back button safe)
+    $this->output
+         ->set_header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    $this->output
+         ->set_header("Pragma: no-cache");
+    $this->output
+         ->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+    // SweetAlert via helper
+    sweetAlert('Logged Out', 'You have been logged out successfully!', 'success', base_url('onBoarding'));
+    redirect('onBoarding'); exit;
 }
 
 
