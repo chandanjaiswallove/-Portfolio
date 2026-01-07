@@ -1,6 +1,3 @@
-
-
-
 <main class="drake-main">
 
 
@@ -21,8 +18,7 @@
         <div class="row">
             <div class="col-md-12 mb-2">
                 <div class="input-group submit-btn-wrap">
-                    <button type="submit" class="theme-btn w-100 scroll-animation" data-animation="fade_from_right"
-                        style="background:transparent;color:var(--text-color);border:1px solid #565656;">
+                    <button type="submit" class="theme-btn w-100 scroll-animation" data-animation="fade_from_right">
                         Update Password
                     </button>
                 </div>
@@ -34,5 +30,3 @@
 
 
 </main>
-
-
