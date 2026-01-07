@@ -1,5 +1,9 @@
-<form method="POST" action="register.php" class="contact-form"
+
+
+
+<form method="POST" action="<?= base_url('userOnBoard'); ?>" class="contact-form"
     onsubmit="return validatePasswordMatch()">
+
 
     <!-- EMAIL -->
     <div class="input-group mb-3 scroll-animation" data-animation="fade_from_top">

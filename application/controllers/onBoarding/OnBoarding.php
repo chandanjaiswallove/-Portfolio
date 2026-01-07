@@ -10,6 +10,8 @@ class OnBoarding extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Card_Model', 'Card'); // common data (logo / card)
+        $this->load->model('OnBoarding_Model', 'OnBoard'); //OnBoarding model load here
+
     }
 
     private function load_auth_page($page)
@@ -49,5 +51,13 @@ class OnBoarding extends CI_Controller
     public function new_credentials()
     {
         $this->load_auth_page('new_credentials');
+    }
+
+
+
+    // model function call here for Authentication
+
+    public function modeLregisterUser() {
+
     }
 }

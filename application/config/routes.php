@@ -64,6 +64,12 @@ $route['onBoarding_credentials'] = 'onBoarding/OnBoarding/new_credentials';
 
 $route['onBoarding_verify'] = 'onBoarding/OnBoarding/loaDverify';
 
+/// OnBoarding Model function calling here from OnBoarding Contrllers
+
+
+// Handle signup form submission
+$route['userOnBoard'] = 'OnBoarding/OnBoarding/modeLregisterUser';
+
 ///================= onBoarding controller end ===============
 
 
