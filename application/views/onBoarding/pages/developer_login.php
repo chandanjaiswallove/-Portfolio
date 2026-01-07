@@ -1,5 +1,5 @@
 <!-- LOGIN FORM -->
-<form method="POST" action="login.php" class="contact-form">
+    <form method="POST" action="<?= base_url('useronHome'); ?>">
 
     <!-- USER ID -->
     <div class="input-group mb-3 scroll-animation" data-animation="fade_from_bottom">

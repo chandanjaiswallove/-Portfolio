@@ -69,6 +69,13 @@ $route['onBoarding_verify'] = 'onBoarding/OnBoarding/loaDverify';
 
 // Handle signup form submission
 $route['useronWay'] = 'onBoarding/AuthOnBoarding/modeLregisterUser';
+$route['useronHome'] = 'onBoarding/AuthOnBoarding/modeLloginStudent';
+
+
+//   logout funciton route here 
+$route['logout'] = 'onBoarding/AuthOnBoarding/logout';
+
+
 
 ///================= onBoarding controller end ===============
 

@@ -458,7 +458,9 @@
                                 <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                                 <li> <a href="edit-profile.html"> <i
                                             data-feather="settings"></i><span>Settings</span></a></li>
-                                <li><a class="btn btn-pill btn-outline-primary btn-sm" href="login.html">Log Out</a>
+                                <li>
+
+                                    <a class="btn btn-pill btn-outline-primary btn-sm" href="<?= base_url('logout'); ?>">Log Out</a>
                                 </li>
                             </ul>
                         </li>

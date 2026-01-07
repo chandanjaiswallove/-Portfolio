@@ -8,14 +8,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class AdminDashboard extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Card_Model', 'Card'); // Header/footer ka Card_Model load huwa 
-        $this->load->model('Dashboard_Model', 'Dash'); // Dashboard Model ka load huwa
+   public function __construct()
+{
+    parent::__construct();
 
-
+    // 🔐 SESSION CHECK
+    if (!$this->session->userdata('logged_in')) {
+        redirect('onBoarding');
+        exit;
     }
+
+    // 🚫 Cache disable
+    $this->output
+         ->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+    $this->output
+         ->set_header("Pragma: no-cache");
+
+    // Models
+    $this->load->model('Card_Model', 'Card');
+    $this->load->model('Dashboard_Model', 'Dash');
+}
+
 
     // Generic page loader
     private function load_page($page)

@@ -53,4 +53,60 @@ class AuthOnBoarding extends CI_Controller
     }
 }
 
+
+
+    ///============== login student =================/
+    
+    public function modeLloginStudent()
+{
+    $result = $this->OnBoarding_Model->loginStudent();
+
+    // ❌ LOGIN ERROR
+    if (is_string($result)) {
+
+        if ($result === 'invalid_credentials') {
+            sweetAlert('Login Failed', 'User ID or Email not found.', 'error', base_url('onBoarding'));
+        }
+
+        if ($result === 'wrong_password') {
+            sweetAlert('Login Failed', 'Incorrect password.', 'error', base_url('onBoarding'));
+        }
+    }
+
+    // ✅ LOGIN SUCCESS
+    if (is_array($result) && $result['status'] === 'success') {
+
+        $user = $result['user'];
+
+        // 🔐 SESSION SET
+        $this->session->set_userdata([
+            'user_id'   => $user->user_id,
+            'email'     => $user->email,
+            'logged_in' => true
+        ]);
+
+        sweetAlert('Welcome', 'Login successful!', 'success', base_url('admin_playground'));
+    }
+}
+
+
+    //// logout system
+
+    public function logout()
+{
+    // 🔓 REMOVE SPECIFIC SESSION DATA
+    $this->session->unset_userdata([
+        'user_id',
+        'email',
+        'logged_in'
+    ]);
+
+    // OR (FULL DESTROY)
+     $this->session->sess_destroy();
+
+    redirect('onBoarding');
+}
+
+
+
 }

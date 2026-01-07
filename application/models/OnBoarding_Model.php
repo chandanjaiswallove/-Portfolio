@@ -45,6 +45,36 @@ class OnBoarding_Model extends CI_Model
 
 
 
+    //=============== Login Student with Set Session ============///
+
+   public function loginStudent()
+{
+    $user_id  = trim($this->input->post('user_id'));
+    $email    = trim($this->input->post('email'));
+    $password = (string) $this->input->post('password');
+
+    // ================= GET SINGLE USER =================
+    $user = $this->db
+        ->where('user_id', $user_id)
+        ->where('email', $email)
+        ->get('register_directory')
+        ->row();
+
+    if (!$user) {
+        return 'invalid_credentials';
+    }
+
+    // ================= PASSWORD VERIFY =================
+    if (!password_verify($password, $user->password)) {
+        return 'wrong_password';
+    }
+
+    // ================= SUCCESS =================
+    return [
+        'status' => 'success',
+        'user'   => $user
+    ];
+}
 
 
 
