@@ -25,9 +25,11 @@ class AdminDashboard extends CI_Controller
         $data['about'] = $this->Dash->get_aboutData();       // ✅ About data  from Dashboard_Model
         $data['service'] = $this->Dash->get_serviceData();       // services_directory Data from Dashboard_Model
         $data['skill'] = $this->Dash->get_myskill_directory();  // get_myskill_directory Data from Dashboard_Model
-        $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Mode
+        $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Model
         $data['testimonials'] = $this->Dash->get_testimonial_directory();   // get_testimonial_directory ata from Dashboard_Model
-        $data['company_logos'] = $this->Dash->get_company_logoData();
+        $data['company_logos'] = $this->Dash->get_company_logoData();   // get_company_logoData from Dashboard_Model
+        $data['portfolios'] = $this->Dash->get_portfolio_projects();    //
+
 
 
 

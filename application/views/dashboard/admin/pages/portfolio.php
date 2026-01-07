@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Page Sidebar Ends-->
 <div class="page-body">
     <div class="container-fluid">
@@ -37,7 +33,6 @@
                     <div class="card">
 
                         <div class="card-body">
-
                             <!-- Button -->
                             <button class="btn btn-primary" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalCenter1">
@@ -68,57 +63,75 @@
                                                             <label class="form-label">Project Image Type</label><br>
 
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="image_type" value="full"
-                                                                    onclick="toggleImage('full')" required>
-                                                                <label class="form-check-label">Full Project
-                                                                    Image</label>
+                                                                <input class="form-check-input" type="radio" name="image_type"
+                                                                    value="full" onclick="toggleImage('full')" required>
+                                                                <label class="form-check-label">Full Image</label>
                                                             </div>
 
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="image_type" value="small"
-                                                                    onclick="toggleImage('small')">
-                                                                <label class="form-check-label">Small Project
-                                                                    Image</label>
+                                                                <input class="form-check-input" type="radio" name="image_type"
+                                                                    value="small" onclick="toggleImage('small')">
+                                                                <label class="form-check-label">Small Image</label>
                                                             </div>
                                                         </div>
 
                                                         <!-- FULL IMAGE -->
                                                         <div class="col-md-6 mb-3 d-none" id="fullImageBox">
                                                             <label class="form-label">Full Project Image</label>
-                                                            <input type="file" class="form-control"
-                                                                name="full_project_image" accept="image/*"
-                                                                onchange="previewFull(this)">
 
-                                                            <img id="fullPreview"
-                                                                src="https://via.placeholder.com/300x180" class="mt-2"
-                                                                style="width:100%;max-width:300px;object-fit:cover;">
+                                                            <div class="input-group">
+                                                                <input type="text" id="fullImageName" class="form-control" readonly>
+                                                                <button class="btn btn-primary rounded-end" type="button"
+                                                                    onclick="document.getElementById('fullImageFile').click()">Browse</button>
+                                                                <input type="file" class="d-none" id="fullImageFile"
+                                                                    name="full_project_image" accept="image/*"
+                                                                    onchange="previewImage(this,'fullImageName','fullPreview','fullRemove')">
+                                                            </div>
+
+                                                            <div class="position-relative mt-2">
+                                                                <img id="fullPreview" style="width:300px;display:none;border-radius:8px;">
+                                                                <button type="button" id="fullRemove" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                                    style="display:none" onclick="removeImage('fullImageFile','fullImageName','fullPreview','fullRemove')">
+                                                                    Remove
+                                                                </button>
+                                                            </div>
                                                         </div>
 
                                                         <!-- SMALL IMAGE -->
                                                         <div class="col-md-6 mb-3 d-none" id="smallImageBox">
                                                             <label class="form-label">Small Project Image</label>
-                                                            <input type="file" class="form-control"
-                                                                name="small_project_image" accept="image/*"
-                                                                onchange="previewSmall(this)">
 
-                                                            <img id="smallPreview"
-                                                                src="https://via.placeholder.com/150x150" class="mt-2"
-                                                                style="width:150px;height:150px;object-fit:cover;">
+                                                            <div class="input-group">
+                                                                <input type="text" id="smallImageName" class="form-control" readonly>
+                                                                <button class="btn btn-primary rounded-end" type="button"
+                                                                    onclick="document.getElementById('smallImageFile').click()">Browse</button>
+                                                                <input type="file" class="d-none" id="smallImageFile"
+                                                                    name="small_project_image" accept="image/*"
+                                                                    onchange="previewImage(this,'smallImageName','smallPreview','smallRemove')">
+                                                            </div>
+
+                                                            <div class="position-relative mt-2">
+                                                                <img id="smallPreview" style="width:120px;height:120px;border-radius:50%;display:none;">
+                                                                <button type="button" id="smallRemove" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                                    style="display:none" onclick="removeImage('smallImageFile','smallImageName','smallPreview','smallRemove')">
+                                                                    Remove
+                                                                </button>
+                                                            </div>
                                                         </div>
+
+
 
                                                         <!-- TITLE -->
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">Project Title</label>
-                                                            <input type="text" class="form-control" name="project_title"
+                                                            <input type="text" placeholder=" Project Title" class="form-control" name="project_title"
                                                                 required>
                                                         </div>
 
                                                         <!-- LINK -->
                                                         <div class="col-md-6 mb-3">
                                                             <label class="form-label">Project Link</label>
-                                                            <input type="url" class="form-control" name="project_link"
+                                                            <input type="url" placeholder=" Project link" class="form-control" name="project_link"
                                                                 required>
                                                         </div>
 
@@ -161,8 +174,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
 
 
@@ -182,38 +193,58 @@
                                 </thead>
 
                                 <tbody>
+
+                                    <!-- ROW 1 : FULL IMAGE -->
                                     <tr>
                                         <td>1</td>
-                                        <td>12 Jan 2022</td>
-                                        <td>John Doe</td>
+                                        <td>06 Jan 2026</td>
+                                        <td>Portfolio Website</td>
+
                                         <td>
-                                            <img src="modules/assets/images/user1.jpg" alt="Profile"
-                                                style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                                            <img src="assets/images/portfolio/full1.jpg"
+                                                style="width:60px;height:40px;object-fit:cover;border-radius:6px;">
                                         </td>
-                                        <td>Google Inc.</td>
+
+                                        <td>Personal Portfolio</td>
+
                                         <td>
-                                            Php
+                                            <span class="badge bg-primary">PHP</span>
+                                            <span class="badge bg-primary">CodeIgniter</span>
+                                            <span class="badge bg-primary">Bootstrap</span>
                                         </td>
-                                        <td>Corporate Website</td>
+
+                                        <td>
+                                            <a href="https://example.com" target="_blank">
+                                                https://example.com
+                                            </a>
+                                        </td>
+
                                         <td class="text-end">
-                                            <a class="btn btn-primary btn-sm me-2" href="javascript:void(0)"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalCenter2">
-                                                <i class="fa fa-pencil"></i> Edit
+                                            <a class="btn btn-primary btn-sm editPortfolioBtn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter2"
+
+                                                data-id="1"
+                                                data-title="Personal Portfolio"
+                                                data-link="https://example.com"
+                                                data-type="full"
+                                                data-full="assets/images/portfolio/full1.jpg"
+                                                data-small=""
+                                                data-tags='["PHP","CodeIgniter","Bootstrap"]'>
+                                                <i class="fa fa-pencil"></i>
                                             </a>
 
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)">
-                                                <i class="fa fa-trash"></i> Delete
+                                            <a class="btn btn-secondary btn-sm">
+                                                <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
-
                                 </tbody>
                             </table>
 
 
 
-
-                            <!-- ✅ EDIT PORTFOLIO MODAL -->
+                            <!-- EDIT PORTFOLIO MODAL -->
                             <div class="modal fade" id="exampleModalCenter2" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
@@ -228,101 +259,71 @@
                                         <div class="modal-body">
                                             <form method="post" enctype="multipart/form-data">
 
-                                                <!-- hidden id -->
-                                                <input type="hidden" name="portfolio_id" value="1">
+                                                <input type="hidden" id="editPortfolioId" name="portfolio_id">
 
-                                                <!-- IMAGE TYPE -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Project Image Type</label><br>
-
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="image_type"
-                                                            value="full" onclick="toggleEditImage('full')" checked>
-                                                        <label class="form-check-label">Full Project Image</label>
+                                                <!-- Full Image -->
+                                                <div id="editFullBox" class="mb-3 d-none">
+                                                    <label>Full Image</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="editFullName" class="form-control" readonly>
+                                                        <button class="btn btn-primary rounded-end" type="button"
+                                                            onclick="document.getElementById('editFullFile').click()">Browse</button>
+                                                        <input type="file" id="editFullFile" class="d-none"
+                                                            name="full_project_image" accept="image/*"
+                                                            onchange="previewImage(this,'editFullName','editFullPreview','editFullRemove')">
                                                     </div>
-
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="image_type"
-                                                            value="small" onclick="toggleEditImage('small')">
-                                                        <label class="form-check-label">Small Project Image</label>
+                                                    <div class="position-relative mt-2">
+                                                        <img id="editFullPreview" style="width:300px;border-radius:8px;">
+                                                        <button id="editFullRemove" type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                            onclick="removeImage('editFullFile','editFullName','editFullPreview','editFullRemove')">
+                                                            Remove
+                                                        </button>
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-
-                                                    <!-- FULL IMAGE -->
-                                                    <div class="col-md-6 mb-3" id="editFullBox">
-                                                        <label class="form-label">Full Project Image</label>
-                                                        <input type="file" class="form-control"
-                                                            name="full_project_image" accept="image/*"
-                                                            onchange="previewEditFull(this)">
-
-                                                        <img id="editFullPreview"
-                                                            src="modules/assets/images/portfolio1.jpg" class="mt-2"
-                                                            style="width:100%;max-width:300px;object-fit:cover;">
-                                                    </div>
-
-                                                    <!-- SMALL IMAGE -->
-                                                    <div class="col-md-6 mb-3 d-none" id="editSmallBox">
-                                                        <label class="form-label">Small Project Image</label>
-                                                        <input type="file" class="form-control"
+                                                <!-- Small Image -->
+                                                <div id="editSmallBox" class="mb-3 d-none">
+                                                    <label>Small Image</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="editSmallName" class="form-control" readonly>
+                                                        <button class="btn btn-primary rounded-end" type="button"
+                                                            onclick="document.getElementById('editSmallFile').click()">Browse</button>
+                                                        <input type="file" id="editSmallFile" class="d-none"
                                                             name="small_project_image" accept="image/*"
-                                                            onchange="previewEditSmall(this)">
-
-                                                        <img id="editSmallPreview"
-                                                            src="modules/assets/images/portfolio2.jpg" class="mt-2"
-                                                            style="width:150px;height:150px;object-fit:cover;">
+                                                            onchange="previewImage(this,'editSmallName','editSmallPreview','editSmallRemove')">
                                                     </div>
+                                                    <div class="position-relative mt-2">
+                                                        <img id="editSmallPreview" style="width:120px;height:120px;border-radius:50%;">
+                                                        <button id="editSmallRemove" type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                            onclick="removeImage('editSmallFile','editSmallName','editSmallPreview','editSmallRemove')">
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                </div>
 
-                                                    <!-- TITLE -->
+                                                <!-- Title & Link -->
+                                                <div class="row">
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Project Title</label>
-                                                        <input type="text" class="form-control" name="project_title"
-                                                            value="Bureau - Architecture Studio Website" required>
+                                                        <input type="text" id="editTitle" class="form-control" name="project_title" required>
                                                     </div>
-
-                                                    <!-- LINK -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Project Link</label>
-                                                        <input type="url" class="form-control" name="project_link"
-                                                            value="https://example.com" required>
+                                                        <input type="url" id="editLink" class="form-control" name="project_link" required>
                                                     </div>
-
                                                 </div>
 
-                                                <!-- TAGS -->
+                                                <!-- Tags -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Project Tags</label>
-
-                                                    <div id="editTagWrapper">
-                                                        <div class="d-flex mb-2">
-                                                            <input type="text" name="project_tags[]"
-                                                                class="form-control me-2" value="WordPress">
-                                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                                onclick="removeTag(this)">Remove</button>
-                                                        </div>
-
-                                                        <div class="d-flex mb-2">
-                                                            <input type="text" name="project_tags[]"
-                                                                class="form-control me-2" value="PHP">
-                                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                                onclick="removeTag(this)">Remove</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <button type="button" class="btn btn-sm btn-primary"
-                                                        onclick="addEditTag()">
-                                                        + Add Tag
-                                                    </button>
+                                                    <div id="editTagWrapper"></div>
+                                                    <button type="button" class="btn btn-sm btn-primary" onclick="addEditTag()">+ Add Tag</button>
                                                 </div>
 
-                                                <!-- FOOTER -->
+                                                <!-- Footer -->
                                                 <div class="text-end">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary ms-2">
-                                                        Update Portfolio
-                                                    </button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary ms-2">Update Portfolio</button>
                                                 </div>
 
                                             </form>
@@ -348,20 +349,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 
@@ -369,6 +356,7 @@
 <!-- Container-fluid Ends-->
 <!-- Container-fluid Ends-->
 
+<!-- insert form-->
 
 <script>
     function toggleImage(type) {
@@ -406,51 +394,125 @@
     function removeTag(btn) {
         btn.parentElement.remove();
     }
+
+
+
+
+
+    function toggleImage(type) {
+        fullImageBox.classList.add('d-none');
+        smallImageBox.classList.add('d-none');
+        if (type === 'full') fullImageBox.classList.remove('d-none');
+        else smallImageBox.classList.remove('d-none');
+    }
+
+    function previewImage(input, nameId, previewId, removeId) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById(previewId).src = e.target.result;
+            document.getElementById(previewId).style.display = 'block';
+            document.getElementById(removeId).style.display = 'block';
+            document.getElementById(nameId).value = input.files[0].name;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    function removeImage(fileId, nameId, previewId, removeId) {
+        document.getElementById(fileId).value = '';
+        document.getElementById(nameId).value = '';
+        document.getElementById(previewId).src = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeId).style.display = 'none';
+    }
+
+    /* EDIT FETCH */
+    document.querySelectorAll('.editPortfolioBtn').forEach(btn => {
+        btn.onclick = () => {
+            editPortfolioId.value = btn.dataset.id;
+
+            if (btn.dataset.type === 'full') {
+                editFullBox.classList.remove('d-none');
+                editSmallBox.classList.add('d-none');
+                editFullPreview.src = btn.dataset.full;
+            } else {
+                editSmallBox.classList.remove('d-none');
+                editFullBox.classList.add('d-none');
+                editSmallPreview.src = btn.dataset.small;
+            }
+        }
+    });
 </script>
 
-
-
-
-
 <script>
-    function toggleEditImage(type) {
-        document.getElementById('editFullBox').classList.add('d-none');
-        document.getElementById('editSmallBox').classList.add('d-none');
-
-        if (type === 'full') {
-            document.getElementById('editFullBox').classList.remove('d-none');
-        } else {
-            document.getElementById('editSmallBox').classList.remove('d-none');
-        }
-    }
-
-    function previewEditFull(input) {
+    // 1️⃣ Common functions: image preview + remove
+    function previewImage(input, nameId, previewId, removeId) {
         const reader = new FileReader();
-        reader.onload = e => document.getElementById('editFullPreview').src = e.target.result;
+        reader.onload = e => {
+            document.getElementById(previewId).src = e.target.result;
+            document.getElementById(previewId).style.display = 'block';
+            document.getElementById(removeId).style.display = 'block';
+            document.getElementById(nameId).value = input.files[0].name;
+        };
         reader.readAsDataURL(input.files[0]);
     }
 
-    function previewEditSmall(input) {
-        const reader = new FileReader();
-        reader.onload = e => document.getElementById('editSmallPreview').src = e.target.result;
-        reader.readAsDataURL(input.files[0]);
+    function removeImage(fileId, nameId, previewId, removeId) {
+        document.getElementById(fileId).value = '';
+        document.getElementById(nameId).value = '';
+        document.getElementById(previewId).src = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeId).style.display = 'none';
     }
 
+    // 2️⃣ Tags (Add/Remove)
     function addEditTag() {
         document.getElementById('editTagWrapper').insertAdjacentHTML('beforeend', `
         <div class="d-flex mb-2">
             <input type="text" name="project_tags[]" class="form-control me-2">
-            <button type="button" class="btn btn-secondary btn-sm"
-                    onclick="removeTag(this)">Remove</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()">Remove</button>
         </div>
     `);
     }
 
-    function removeTag(btn) {
-        btn.parentElement.remove();
-    }
+    // 3️⃣ Edit Modal fetch
+    document.querySelectorAll('.editPortfolioBtn').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            // Basic Info
+            document.getElementById('editPortfolioId').value = btn.dataset.id;
+            document.getElementById('editTitle').value = btn.dataset.title;
+            document.getElementById('editLink').value = btn.dataset.link;
+
+            // Hide both image boxes first
+            const fullBox = document.getElementById('editFullBox');
+            const smallBox = document.getElementById('editSmallBox');
+            fullBox.classList.add('d-none');
+            smallBox.classList.add('d-none');
+
+            // Show proper image
+            if (btn.dataset.type === 'full') {
+                fullBox.classList.remove('d-none');
+                document.getElementById('editFullPreview').src = btn.dataset.full;
+                document.getElementById('editFullName').value = btn.dataset.full.split('/').pop();
+                document.getElementById('editFullRemove').style.display = 'block';
+            } else {
+                smallBox.classList.remove('d-none');
+                document.getElementById('editSmallPreview').src = btn.dataset.small;
+                document.getElementById('editSmallName').value = btn.dataset.small.split('/').pop();
+                document.getElementById('editSmallRemove').style.display = 'block';
+            }
+
+            // Populate Tags
+            const tagWrapper = document.getElementById('editTagWrapper');
+            tagWrapper.innerHTML = '';
+            JSON.parse(btn.dataset.tags || '[]').forEach(tag => {
+                tagWrapper.insertAdjacentHTML('beforeend', `
+                <div class="d-flex mb-2">
+                    <input type="text" name="project_tags[]" class="form-control me-2" value="${tag}">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()">Remove</button>
+                </div>
+            `);
+            });
+        });
+    });
 </script>
-
-
-
-

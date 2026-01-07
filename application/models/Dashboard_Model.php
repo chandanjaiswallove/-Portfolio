@@ -63,7 +63,9 @@ class Dashboard_Model extends CI_Model
             ->result();   // MULTIPLE ROWS
     }
 
-    // Dashboard_Model.php
+    // ============================================================
+    // ✅ get all data from testimonial_directory
+    // ============================================================    
     public function get_testimonial_directory()
     {
         return $this->db
@@ -72,12 +74,34 @@ class Dashboard_Model extends CI_Model
             ->result();
     }
 
-    // Dashboard_Model.php
+    // ============================================================
+    // ✅ get all data from company_logo_directory
+    // ============================================================    
     public function get_company_logoData()
     {
         return $this->db
             ->order_by('id', 'DESC')
             ->get('company_logo_directory')
             ->result(); // multiple rows
+    }
+
+    // ============================================================
+    // ✅ get all portfolio projects with tags
+    // ============================================================
+    public function get_portfolio_projects()
+    {
+        $projects = $this->db
+            ->order_by('id', 'DESC')
+            ->get('portfolio_projects')
+            ->result();
+
+        foreach ($projects as $project) {
+            $project->tags = $this->db
+                ->where('project_id', $project->id)
+                ->get('portfolio_tags')
+                ->result();
+        }
+
+        return $projects;
     }
 }
