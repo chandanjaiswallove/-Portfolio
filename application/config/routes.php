@@ -108,3 +108,16 @@ $route['projects'] = 'dashBoard/Admin/AdminDashboard/loaDProject';
 $route['pricing'] = 'dashBoard/Admin/AdminDashboard/loaDpricing_card';
 
 ///================= Dashboard  controller end =================
+
+
+
+
+
+
+///================= Dashboard  controller model function call here   =================
+$route['update_profile'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_profile';
+
+
+
+
+///================= Dashboard  controller model function call here   =================

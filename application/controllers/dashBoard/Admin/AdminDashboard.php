@@ -30,6 +30,25 @@ class AdminDashboard extends CI_Controller
 }
 
 
+    //=================== Dashboard Pages model Here ===================== ///
+
+    public function modeLupdate_profile()
+    {
+        $this->Card->save_profile_card();
+    }
+
+
+
+
+
+
+
+
+        //=================== Dashboard Pages model Here ===================== ///
+
+
+
+
     // Generic page loader
     private function load_page($page)
     {
@@ -114,4 +133,7 @@ class AdminDashboard extends CI_Controller
     {
         $this->load_page('pricing_card');
     }
+
+
+
 }
