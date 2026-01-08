@@ -83,6 +83,8 @@
                                             <input type="file" class="d-none" id="company_icon" name="company_icon"
                                                 accept="image/*"
                                                 onchange="updateFileNameAndPreview(this, 'companyIconName', 'companyIconPreview', 'companyIconRemove')">
+                                                <input type="hidden" name="remove_company_icon" id="remove_company_icon" value="0">
+
                                         </div>
 
                                         <!-- Preview container -->
@@ -119,6 +121,8 @@
                                             <input type="file" class="d-none" id="profile_photo" name="profile_photo"
                                                 accept="image/*"
                                                 onchange="updateFileNameAndPreview(this, 'profilePhotoName', 'profilePhotoPreview', 'profilePhotoRemove')">
+                                                <input type="hidden" name="remove_profile_photo" id="remove_profile_photo" value="0">
+
                                         </div>
 
                                         <!-- Preview container -->
@@ -155,6 +159,8 @@
                                             <input type="file" class="d-none" id="company_logo" name="company_logo"
                                                 accept="image/*"
                                                 onchange="updateFileNameAndPreview(this, 'companyLogoName', 'companyLogoPreview', 'companyLogoRemove')">
+                                                <input type="hidden" name="remove_company_logo" id="remove_company_logo" value="0">
+
                                         </div>
 
                                         <!-- Preview container -->
@@ -196,6 +202,8 @@
                        'companyDarkLogoPreview',
                        'companyDarkLogoRemove'
                    )">
+                   <input type="hidden" name="remove_company_dark_logo" id="remove_company_dark_logo" value="0">
+
                                         </div>
 
                                         <!-- Preview container -->
@@ -337,6 +345,20 @@ function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
     const preview = document.getElementById(previewId);
     const removeBtn = document.getElementById(removeBtnId);
 
+    // 🔁 Nayi file select hone par remove flag reset
+    if (input.id === 'company_icon') {
+        document.getElementById('remove_company_icon').value = '0';
+    }
+    if (input.id === 'profile_photo') {
+        document.getElementById('remove_profile_photo').value = '0';
+    }
+    if (input.id === 'company_logo') {
+        document.getElementById('remove_company_logo').value = '0';
+    }
+    if (input.id === 'company_dark_logo') {
+        document.getElementById('remove_company_dark_logo').value = '0';
+    }
+
     if (input.files && input.files[0]) {
         fileNameInput.value = input.files[0].name;
 
@@ -355,15 +377,23 @@ function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
 }
 
 function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
-    const fileInput = document.getElementById(fileInputId);
-    const fileNameInput = document.getElementById(nameInputId);
-    const preview = document.getElementById(previewId);
-    const removeBtn = document.getElementById(removeBtnId);
+    document.getElementById(fileInputId).value = '';
+    document.getElementById(nameInputId).value = '';
+    document.getElementById(previewId).style.display = 'none';
+    document.getElementById(removeBtnId).style.display = 'none';
 
-    fileInput.value = '';
-    fileNameInput.value = '';
-    preview.src = '';
-    preview.style.display = 'none';
-    removeBtn.style.display = 'none';
+    // 👇 Server ko signal bhejna
+    if (fileInputId === 'company_icon') {
+        document.getElementById('remove_company_icon').value = '1';
+    }
+    if (fileInputId === 'profile_photo') {
+        document.getElementById('remove_profile_photo').value = '1';
+    }
+    if (fileInputId === 'company_logo') {
+        document.getElementById('remove_company_logo').value = '1';
+    }
+    if (fileInputId === 'company_dark_logo') {
+        document.getElementById('remove_company_dark_logo').value = '1';
+    }
 }
 </script>

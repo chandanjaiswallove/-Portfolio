@@ -45,6 +45,29 @@ public function save_profile_card()
 
     // ================= OLD DATA =================
     $old = $this->db->limit(1)->get('card_directory')->row();
+    // ================= IMAGE REMOVE LOGIC =================
+$removeMap = [
+    'remove_company_icon'      => 'web_icon',
+    'remove_profile_photo'     => 'profile_photo',
+    'remove_company_logo'      => 'company_logo',
+    'remove_company_dark_logo' => 'company_dark_logo',
+];
+
+foreach ($removeMap as $removeInput => $dbField) {
+
+    if ($this->input->post($removeInput) == '1' && $old && !empty($old->$dbField)) {
+
+        $filePath = FCPATH . $old->$dbField;
+
+        if (file_exists($filePath)) {
+            unlink($filePath); // file delete
+        }
+
+        // DB se image hata do
+        $data[$dbField] = null;
+    }
+}
+
 
     // ================= IMAGE CONFIG =================
     $images = [
