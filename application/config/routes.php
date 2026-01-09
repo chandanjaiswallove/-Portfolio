@@ -117,8 +117,7 @@ $route['pricing'] = 'dashBoard/Admin/AdminDashboard/loaDpricing_card';
 ///================= Dashboard  controller model function call here   =================
 $route['update_profile'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_profile';
 $route['update_introduce'] = 'dashBoard/Admin/AdminDashboard/modeLintroduce_update';
-
-
+$route['about_update'] = 'dashBoard/Admin/AdminDashboard/modeLabout_Update';
 
 
 ///================= Dashboard  controller model function call here   =================

@@ -42,7 +42,7 @@
                 <div class="col-md-12">
 
 
-                    <form class="card" action="<?= base_url('update-about'); ?>" method="post">
+                    <form class="card" action="<?= base_url('about_update'); ?>" method="POST">
                         <div class="card-header">
                             <h4 class="card-title mb-0">Edit About</h4>
                         </div>

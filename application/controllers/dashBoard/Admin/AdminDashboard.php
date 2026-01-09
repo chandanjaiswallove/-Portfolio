@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property Card_Model $Card
  * @property Dashboard_Model $Dash
  * @property Introduce_Model $Introduce
+ * @property About_Model $About
  * 
  */
 
@@ -30,6 +31,7 @@ class AdminDashboard extends CI_Controller
     $this->load->model('Card_Model', 'Card');
     $this->load->model('Dashboard_Model', 'Dash');
     $this->load->model('Introduce_Model','Introduce');
+    $this->load->model('About_Model', 'About');
 }
 
 
@@ -46,6 +48,11 @@ class AdminDashboard extends CI_Controller
         $this->Introduce->save_introude_update();
     }
 
+
+    public function modeLabout_Update()         /// About Model function call here 
+    {
+        $this->About->save_about_Update();
+    }
 
 
 
