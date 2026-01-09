@@ -4,6 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @property Card_Model $Card
  * @property Dashboard_Model $Dash
+ * @property Introduce_Model $Introduce
+ * 
  */
 
 class AdminDashboard extends CI_Controller
@@ -27,15 +29,23 @@ class AdminDashboard extends CI_Controller
     // Models
     $this->load->model('Card_Model', 'Card');
     $this->load->model('Dashboard_Model', 'Dash');
+    $this->load->model('Introduce_Model','Introduce');
 }
 
 
     //=================== Dashboard Pages model Here ===================== ///
 
-    public function modeLupdate_profile()
+    public function modeLupdate_profile()   // Card Model Function
     {
         $this->Card->save_profile_card();
     }
+
+    
+        public function modeLintroduce_update()    // Introuduce_MOdel Function
+    {
+        $this->Introduce->save_introude_update();
+    }
+
 
 
 
