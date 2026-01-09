@@ -55,6 +55,10 @@ class AdminDashboard extends CI_Controller
     }
 
 
+    public function modeLinsertService()    /// Service Model function call here 
+    {
+        $this->Service->save_insert_service();
+    }
 
 
 

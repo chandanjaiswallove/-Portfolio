@@ -42,7 +42,8 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="post" action="<?= base_url('services/insert'); ?>" enctype="multipart/form-data">
+
+                                            <form method="POST" action="<?= base_url('insert_service'); ?>" enctype="multipart/form-data">
                                                 <div class="mb-3">
                                                     <label class="form-label">Service Title</label>
                                                     <input type="text" class="form-control" name="service_title" placeholder="Enter service title" required>
@@ -72,6 +73,8 @@
                                                     <button type="submit" class="btn btn-primary ms-2">Save Service</button>
                                                 </div>
                                             </form>
+
+
                                         </div>
                                     </div>
                                 </div>
