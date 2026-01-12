@@ -258,27 +258,7 @@ $this->load->view('fronted/layouts/ui_Header');
 								</div>
 							</div>
 
-							<div class="col-md-6 scroll-animation" data-animation="fade_from_left">
-								<div class="portfolio-item portfolio-half">
-									<div class="portfolio-item-inner">
-										<a href="modules/assets/images/portfolio2.jpg" data-lightbox="example-1">
-											<img src="modules/assets/images/portfolio2.jpg" alt="Portfolio" />
-										</a>
-
-										<img src="modules/assets/images/portfolio2.jpg" alt="Portfolio" />
-
-										<ul class="portfolio-categories">
-											<li>
-												<a href="#">WordPress</a>
-											</li>
-											<li>
-												<a href="#">Larevel/PHP</a>
-											</li>
-										</ul>
-									</div>
-									<h2><a href="#">Moonex WordPress Theme</a></h2>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -498,17 +478,14 @@ $this->load->view('fronted/layouts/ui_Header');
 						</h3>
 						<p id="required-msg">* Marked fields are required to fill.</p>
 
-						<form class="contact-form scroll-animation" data-animation="fade_from_bottom" method="POST"
-							action="https://wpriverthemes.com/HTML/drake/mailer.php">
-							<div class="alert alert-success messenger-box-contact__msg" style="display: none"
-								role="alert">
-								Your message was sent successfully.
-							</div>
-							<div class="row">
+						<form class=" scroll-animation" data-animation="fade_from_bottom" method="POST"
+							action="<?php echo base_url('insert_contact');?>">
+						
+							<div class="row contact-form">
 								<div class="col-md-6">
 									<div class="input-group">
 										<label for="full-name">full Name <sup>*</sup></label>
-										<input type="text" name="full-name" id="full-name"
+										<input type="text" name="full_name" id="full-name"
 											placeholder="Your Full Name" />
 									</div>
 								</div>
@@ -521,7 +498,7 @@ $this->load->view('fronted/layouts/ui_Header');
 								<div class="col-md-6">
 									<div class="input-group">
 										<label for="phone-number">phone <span>(optional)</span></label>
-										<input type="text" name="phone-number" id="phone-number"
+										<input type="text" name="phone_number" id="phone-number"
 											placeholder="Your number phone" />
 									</div>
 								</div>
@@ -542,13 +519,14 @@ $this->load->view('fronted/layouts/ui_Header');
 
 								<div class="col-md-12">
 									<div class="input-group submit-btn-wrap">
-										<button class="theme-btn" name="submit" type="submit" id="submit-form">
+										<button class="theme-btn" name="submit" type="submit" >
 											send message
 										</button>
 									</div>
 								</div>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</section>

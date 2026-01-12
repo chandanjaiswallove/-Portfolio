@@ -53,6 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+$route['insert_contact'] = 'Welcome/modeLsave_contactVisitor';   // Contact Model
+
 ///================= onBoarding controller start ===========
 $route['onBoardingUser'] = 'onBoarding/OnBoarding/loaDdeveloper_signup';
 
