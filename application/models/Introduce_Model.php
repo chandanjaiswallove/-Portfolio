@@ -39,7 +39,7 @@ class Introduce_Model extends CI_Model
    // 🔹 UPLOAD FILE
 if (!empty($_FILES['projectDownloads']['name'])) {
 
-    $config['upload_path']   = './uploads/projects/';
+    $config['upload_path']   = 'uploads/projects/';
     $config['allowed_types'] = 'pdf|zip|rar|doc|docx';
     $config['max_size']      = 51200; // 50 MB (KB)
     $config['file_name']     = time().'_'.$_FILES['projectDownloads']['name'];
