@@ -50,7 +50,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form method="post" enctype="multipart/form-data" action="<?= base_url('admin/add_skill'); ?>">
+                                            <form method="POST" enctype="multipart/form-data" action="<?= base_url('insert_skill'); ?>">
 
                                                 <div class="row">
                                                     <!-- SKILL LOGO -->

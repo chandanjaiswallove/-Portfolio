@@ -122,5 +122,6 @@ $route['update_profile'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_profile';
 $route['update_introduce'] = 'dashBoard/Admin/AdminDashboard/modeLintroduce_update';    /// Introduce_Model
 $route['about_update'] = 'dashBoard/Admin/AdminDashboard/modeLabout_Update';            /// About_Model
 $route['insert_service'] = 'dashBoard/Admin/AdminDashboard/modeLinsertService';         /// Service_Model
+$route['insert_skill'] = 'dashBoard/Admin/AdminDashboard/modeLskill_update';            /// Skill_Model 
 
 ///================= Dashboard  controller model function call here   =================
