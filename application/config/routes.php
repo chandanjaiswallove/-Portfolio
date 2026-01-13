@@ -129,6 +129,14 @@ $route['insert_service_update'] = 'dashBoard/Admin/AdminDashboard/modeLinsert_se
 $route['insert_skill'] = 'dashBoard/Admin/AdminDashboard/modeLskill_update';            /// Skill_Model 
 $route['update_skill'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_skill';      /// Skill_Model 
 
+$route['insertTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLinsertTestimonial';      /// Testimonial Model 
+
+$route['updateTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLupdateTestimonial';      /// Testimonial Model 
+
+
+
+
+
 
     ////// Delete function btn /////
 $route['deleteService'] = 'dashBoard/Admin/AdminDashboard/deleteSection';

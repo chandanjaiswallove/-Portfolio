@@ -48,7 +48,6 @@ class AdminDashboard extends CI_Controller
 
 
     ////// Delete function btn /////
-
     public function deleteSection()
     {
         // $this->load->model('/Service_Model');
@@ -89,7 +88,6 @@ class AdminDashboard extends CI_Controller
 
 
 
-
     public function modeLskill_update() ///  Skill Model call here
     {
         $this->Skill->insert_skill_update();
@@ -100,6 +98,17 @@ class AdminDashboard extends CI_Controller
         $this->Skill->skill_update();
     }
 
+
+    public function modeLinsertTestimonial()    /// Testimonial Model call here
+    {
+        $this->Testimonial->insertTestimonial();
+    }
+
+
+     public function modeLupdateTestimonial()    /// Testimonial Model call here
+    {
+        $this->Testimonial->insertTestimonial();
+    }
 
 
 

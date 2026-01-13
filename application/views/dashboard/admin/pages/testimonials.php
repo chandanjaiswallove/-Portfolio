@@ -14,7 +14,8 @@
                                     <use href="modules/assets2/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active"><a href="<?= base_url('testimonials'); ?>">Testimonials</a></li>
+                        <li class="breadcrumb-item active"><a href="<?= base_url('testimonials'); ?>">Testimonials</a>
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +31,6 @@
 
                         <!-- CARD BODY -->
                         <div class="card-body">
-
                             <!-- ADD BUTTON -->
                             <button class="btn btn-primary" type="button" data-bs-toggle="modal"
                                 data-bs-target="#addTestimonialModal">
@@ -41,16 +41,16 @@
                             <div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
-
                                         <div class="modal-header">
                                             <h4 class="modal-title">Add New Testimonial</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-
                                         <div class="modal-body">
-                                            <form method="post" action="" enctype="multipart/form-data">
-                                                <div class="row">
 
+
+                                            <form method="POST" action="<?php echo base_url('insertTestimonial') ?>"
+                                                enctype="multipart/form-data">
+                                                <div class="row">
                                                     <!-- Profile Name -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Profile Name</label>
@@ -73,45 +73,44 @@
                                                             required>
                                                     </div>
 
-                                                    <!-- Profile Photo -->
+
+
+                                                    <!-- Profile Photo (Insert Form) -->
                                                     <div class="col-md-6 mb-3 position-relative">
                                                         <label class="form-label">Profile Photo</label>
 
                                                         <div class="input-group mb-2">
-                                                            <input type="text" id="testimonialImageName"
+                                                            <!-- File name display -->
+                                                            <input type="text" id="insertTestimonialPhotoName"
                                                                 class="form-control" placeholder="No file chosen"
                                                                 readonly>
 
+                                                            <!-- Browse button -->
                                                             <button class="btn btn-primary rounded-end" type="button"
-                                                                onclick="document.getElementById('testimonialPhoto').click();">
+                                                                onclick="document.getElementById('insertTestimonialPhoto').click();">
                                                                 Browse
                                                             </button>
 
-                                                            <input type="file" class="d-none" id="testimonialPhoto"
-                                                                name="profile_photo" accept="image/*"
-                                                                onchange="updateFileNameAndPreview(
-                                                                    this,
-                                                                    'testimonialImageName',
-                                                                    'testimonialImagePreview',
-                                                                    'testimonialImageRemove'
-                                                                )">
+                                                            <!-- Hidden file input -->
+                                                            <input type="file" class="d-none"
+                                                                id="insertTestimonialPhoto" name="profile_photo"
+                                                                accept="image/*"
+                                                                onchange="updateFileNameAndPreview('insertTestimonialPhoto','insertTestimonialPhotoName','insertTestimonialPhotoPreview','insertTestimonialPhotoRemove')">
                                                         </div>
 
+                                                        <!-- Preview + Remove -->
                                                         <div class="d-inline-block position-relative">
-                                                            <img id="testimonialImagePreview"
+                                                            <img id="insertTestimonialPhotoPreview"
                                                                 style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
-
-                                                            <button type="button" id="testimonialImageRemove"
-                                                                onclick="removeFileWithPreview(
-                                                                    'testimonialPhoto',
-                                                                    'testimonialImageName',
-                                                                    'testimonialImagePreview',
-                                                                    'testimonialImageRemove'
-                                                                )" style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
+                                                            <button type="button" id="insertTestimonialPhotoRemove"
+                                                                onclick="removeFileWithPreview('insertTestimonialPhoto','insertTestimonialPhotoName','insertTestimonialPhotoPreview','insertTestimonialPhotoRemove')"
+                                                                style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
                                                                 &times;
                                                             </button>
                                                         </div>
                                                     </div>
+
+
 
                                                     <!-- Client Review -->
                                                     <div class="col-md-12 mb-3">
@@ -133,6 +132,9 @@
                                                     </button>
                                                 </div>
                                             </form>
+
+
+
                                         </div>
 
                                     </div>
@@ -172,10 +174,8 @@
                                                 <td><?= $row->client_project_name ?></td>
                                                 <td class="text-end">
                                                     <button class="btn btn-primary btn-sm me-2 editTestimonialBtn"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#editTestimonialModal"
-                                                        data-id="<?= $row->id ?>"
-                                                        data-name="<?= $row->profile_name ?>"
+                                                        data-bs-toggle="modal" data-bs-target="#editTestimonialModal"
+                                                        data-id="<?= $row->id ?>" data-name="<?= $row->profile_name ?>"
                                                         data-company="<?= $row->company_name ?>"
                                                         data-project="<?= $row->client_project_name ?>"
                                                         data-review="<?= htmlspecialchars($row->client_review) ?>"
@@ -241,41 +241,44 @@
                                                         id="editClientReview" style="resize:none;" required></textarea>
                                                 </div>
 
-                                                <!-- Profile Photo -->
+                                                <!-- Profile Photo (Edit Form) -->
                                                 <div class="col-md-6 mb-3 position-relative">
                                                     <label class="form-label">Profile Photo</label>
+
                                                     <div class="input-group mb-2">
+                                                        <!-- File name display -->
                                                         <input type="text" id="editTestimonialPhotoName"
                                                             class="form-control" placeholder="No file chosen" readonly>
+
+                                                        <!-- Browse button -->
                                                         <button class="btn btn-primary rounded-end" type="button"
                                                             onclick="document.getElementById('editTestimonialPhoto').click();">
                                                             Browse
                                                         </button>
+
+                                                        <!-- Hidden file input -->
                                                         <input type="file" class="d-none" id="editTestimonialPhoto"
                                                             name="profile_photo" accept="image/*"
-                                                            onchange="updateFileNameAndPreview(
-                                                                this,
-                                                                'editTestimonialPhotoName',
-                                                                'editTestimonialPhotoPreview',
-                                                                'editTestimonialPhotoRemove'
-                                                            )">
+                                                            onchange="updateFileNameAndPreview('editTestimonialPhoto','editTestimonialPhotoName','editTestimonialPhotoPreview','editTestimonialPhotoRemove')">
                                                     </div>
 
+                                                    <!-- Preview + Remove -->
                                                     <div class="d-inline-block position-relative">
                                                         <img id="editTestimonialPhotoPreview"
-                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
-
+                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
                                                         <button type="button" id="editTestimonialPhotoRemove"
-                                                            onclick="removeFileWithPreview(
-                                                                'editTestimonialPhoto',
-                                                                'editTestimonialPhotoName',
-                                                                'editTestimonialPhotoPreview',
-                                                                'editTestimonialPhotoRemove'
-                                                            )" style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;">
+                                                            onclick="removeFileWithPreview('editTestimonialPhoto','editTestimonialPhotoName','editTestimonialPhotoPreview','editTestimonialPhotoRemove')"
+                                                            style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
                                                             &times;
                                                         </button>
                                                     </div>
                                                 </div>
+
+
+
+
+
+
                                             </div>
 
                                             <input type="hidden" name="testimonial_id" id="editTestimonialId">
@@ -403,8 +406,7 @@
                                                 </td>
                                                 <td class="text-end">
                                                     <button class="btn btn-primary btn-sm me-2 editCompanyLogoBtn"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#editCompanyLogoModal"
+                                                        data-bs-toggle="modal" data-bs-target="#editCompanyLogoModal"
                                                         data-id="<?= $row->id ?>"
                                                         data-logo="<?= base_url($row->company_logo) ?>"
                                                         data-logo-name="<?= basename($row->company_logo) ?>">
@@ -497,54 +499,78 @@
 
 </div>
 
+
+
+
+
+
+
+
 <script>
-    function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
-        const fileNameInput = document.getElementById(nameInputId);
+    /* ===============================
+       GLOBAL IMAGE HANDLER
+       Works for any form with unique IDs
+    ================================ */
+
+    function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+        const fileInput = document.getElementById(fileInputId);
+        const nameInput = document.getElementById(nameInputId);
         const preview = document.getElementById(previewId);
         const removeBtn = document.getElementById(removeBtnId);
 
-        if (input.files && input.files[0]) {
-            fileNameInput.value = input.files[0].name;
+        if (fileInput?.files?.[0]) {
+            nameInput.value = fileInput.files[0].name;
+
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = e => {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
                 removeBtn.style.display = 'block';
             };
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(fileInput.files[0]);
         }
     }
 
     function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
         document.getElementById(fileInputId).value = '';
         document.getElementById(nameInputId).value = '';
+
         const preview = document.getElementById(previewId);
         preview.src = '';
         preview.style.display = 'none';
+
         document.getElementById(removeBtnId).style.display = 'none';
     }
 
-    // Edit testimonial populate modal
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.editTestimonialBtn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                document.getElementById('editTestimonialId').value = this.dataset.id;
-                document.getElementById('editProfileName').value = this.dataset.name;
-                document.getElementById('editCompanyName').value = this.dataset.company;
-                document.getElementById('editProjectName').value = this.dataset.project;
-                document.getElementById('editClientReview').value = this.dataset.review;
+    /* ===============================
+       POPULATE EDIT FORM FROM DATABASE
+       Example: Edit Testimonial Modal
+    ================================ */
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.editTestimonialBtn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const photo = this.dataset.photo;
 
-                document.getElementById('editTestimonialPhotoName').value = this.dataset.photoName;
+                // Set hidden ID
+                document.getElementById('editTestimonialId').value = id;
+
+                // Populate Edit Form fields
+                document.getElementById('editTestimonialPhotoName').value = photo ? photo.split('/').pop() : '';
                 const preview = document.getElementById('editTestimonialPhotoPreview');
-                preview.src = this.dataset.photo;
-                preview.style.display = 'block';
-                document.getElementById('editTestimonialPhotoRemove').style.display = 'block';
+                preview.src = photo || '';
+                preview.style.display = photo ? 'block' : 'none';
+                document.getElementById('editTestimonialPhotoRemove').style.display = photo ? 'block' : 'none';
             });
         });
     });
 </script>
 
+
 <script>
+    /// add company logo edit 
+
     function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
         const fileInput = document.getElementById(fileInputId);
         const fileNameInput = document.getElementById(nameInputId);
@@ -573,9 +599,9 @@
     }
 
     // Populate Edit Modal
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.editCompanyLogoBtn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.editCompanyLogoBtn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
                 document.getElementById('editCompanyLogoId').value = this.dataset.id;
                 document.getElementById('editCompanyLogoPreview').src = this.dataset.logo;
                 document.getElementById('editCompanyLogoName').value = this.dataset.logoName;
