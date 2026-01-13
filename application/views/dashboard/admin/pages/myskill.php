@@ -50,8 +50,8 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form method="POST" enctype="multipart/form-data" action="<?= base_url('insert_skill'); ?>">
 
+                                            <form method="POST" enctype="multipart/form-data" action="<?= base_url('insert_skill'); ?>">
                                                 <div class="row">
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
@@ -80,7 +80,7 @@
                                                     <!-- SKILL PROGRESS -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Progress (%)</label>
-                                                        <input type="number" class="form-control" name="skill_progress" placeholder="0-100" min="0" max="100" required>
+                                                        <input type="text" class="form-control" name="skill_progress" placeholder="0-100" min="0" max="100" required>
                                                     </div>
                                                 </div>
 
