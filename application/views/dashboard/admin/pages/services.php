@@ -29,7 +29,8 @@
 
                         <!-- ADD NEW SERVICE BUTTON -->
                         <div class="card-body">
-                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                data-bs-target="#addServiceModal">
                                 Add New Service
                             </button>
 
@@ -43,34 +44,49 @@
                                         </div>
                                         <div class="modal-body">
 
-                                            <form method="POST" action="<?= base_url('insert_service'); ?>" enctype="multipart/form-data">
+                                            <form method="POST" action="<?= base_url('insert_service'); ?>"
+                                                enctype="multipart/form-data">
                                                 <div class="mb-3">
                                                     <label class="form-label">Service Title</label>
-                                                    <input type="text" class="form-control" name="service_title" placeholder="Enter service title" required>
+                                                    <input type="text" class="form-control" name="service_title"
+                                                        placeholder="Enter service title" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Service Description</label>
-                                                    <textarea class="form-control" rows="4" name="service_paragraph" placeholder="Enter service description" style="resize:none;" required></textarea>
+                                                    <textarea class="form-control" rows="4" name="service_paragraph"
+                                                        placeholder="Enter service description" style="resize:none;"
+                                                        required></textarea>
                                                 </div>
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label">Service Icon</label>
                                                     <div class="input-group mb-2">
-                                                        <input type="text" id="insertServiceIconName" class="form-control" placeholder="No file chosen" readonly>
-                                                        <button type="button" class="btn btn-primary rounded-end" onclick="document.getElementById('insert_service_icon').click();">Browse</button>
-                                                        <input type="file" class="d-none" id="insert_service_icon" name="service_icon" accept="image/*" onchange="updateFileNameAndPreview(this,'insertServiceIconName','insertServiceIconPreview','insertServiceIconRemove')">
+                                                        <input type="text" id="insertServiceIconName"
+                                                            class="form-control" placeholder="No file chosen" readonly>
+                                                        <button type="button" class="btn btn-primary rounded-end"
+                                                            onclick="document.getElementById('insert_service_icon').click();">Browse</button>
+                                                        <input type="file" class="d-none" id="insert_service_icon"
+                                                            name="service_icon" accept="image/*"
+                                                            onchange="updateFileNameAndPreview(this,'insertServiceIconName','insertServiceIconPreview','insertServiceIconRemove')">
                                                     </div>
                                                     <div class="d-inline-block position-relative">
-                                                        <img id="insertServiceIconPreview" style="width:80px;height:80px;object-fit:contain;display:none;">
-                                                        <button type="button" id="insertServiceIconRemove" onclick="removeFileWithPreview('insert_service_icon','insertServiceIconName','insertServiceIconPreview','insertServiceIconRemove')" style="position:absolute;top:-10px;right:-20px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
+                                                        <img id="insertServiceIconPreview"
+                                                            style="width:80px;height:80px;object-fit:contain;display:none;">
+                                                        <button type="button" id="insertServiceIconRemove"
+                                                            onclick="removeFileWithPreview('insert_service_icon','insertServiceIconName','insertServiceIconPreview','insertServiceIconRemove')"
+                                                            style="position:absolute;top:-10px;right:-20px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Service Project Count</label>
-                                                    <input type="number" class="form-control" name="service_project_count" placeholder="Number of projects" required>
+                                                    <input type="number" class="form-control"
+                                                        name="service_project_count" placeholder="Number of projects"
+                                                        required>
                                                 </div>
                                                 <div class="text-end">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary ms-2">Save Service</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary ms-2">Save
+                                                        Service</button>
                                                 </div>
                                             </form>
 
@@ -107,12 +123,14 @@
                                                 <td><?= $row->projects_count ?> Projects</td>
                                                 <td>
                                                     <?php if ($row->service_icon): ?>
-                                                        <img src="<?= base_url($row->service_icon) ?>" style="width:40px;height:40px;object-fit:contain;">
+                                                        <img src="<?= base_url($row->service_icon) ?>"
+                                                            style="width:40px;height:40px;object-fit:contain;">
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-end">
                                                     <!-- EDIT BUTTON -->
-                                                    <button type="button" class="btn btn-primary btn-sm editServiceBtn" data-bs-toggle="modal" data-bs-target="#editServiceModal"
+                                                    <button type="button" class="btn btn-primary btn-sm editServiceBtn"
+                                                        data-bs-toggle="modal" data-bs-target="#editServiceModal"
                                                         data-id="<?= $row->id ?>"
                                                         data-title="<?= htmlspecialchars($row->heading) ?>"
                                                         data-desc="<?= htmlspecialchars($row->description) ?>"
@@ -121,8 +139,11 @@
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
 
+
                                                     <!-- DELETE BUTTON -->
-                                                    <a class="btn btn-danger btn-sm" href="<?= base_url('admin/delete_service/' . $row->id) ?>" onclick="return confirm('Are you sure?');">
+                                                    <a class="btn btn-danger btn-sm"
+                                                        href="<?= base_url('admin/delete_service/' . $row->id) ?>"
+                                                        onclick="return confirm('Are you sure?');">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </a>
                                                 </td>
@@ -146,43 +167,65 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="<?= base_url('services/update'); ?>" enctype="multipart/form-data">
+
+
+                                        <form method="POST" action="<?= base_url('insert_service_update'); ?>"
+                                            enctype="multipart/form-data">
                                             <input type="hidden" name="id" id="edit_service_id">
+                                            <input type="hidden" name="remove_icon" id="remove_icon" value="0">
+
 
                                             <div class="mb-3">
                                                 <label class="form-label">Service Title</label>
-                                                <input type="text" class="form-control" name="service_title" placeholder="Enter service title" required>
+                                                <input type="text" class="form-control" name="service_title"
+                                                    placeholder="Enter service title" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Service Description</label>
-                                                <textarea class="form-control" rows="4" name="service_paragraph" placeholder="Enter service description" style="resize:none;" required></textarea>
+                                                <textarea class="form-control" rows="4" name="service_paragraph"
+                                                    placeholder="Enter service description" style="resize:none;"
+                                                    required></textarea>
                                             </div>
 
                                             <!-- ICON -->
                                             <div class="mb-3 position-relative">
                                                 <label class="form-label">Service Icon</label>
                                                 <div class="input-group mb-2">
-                                                    <input type="text" id="editServiceIconName" class="form-control" placeholder="No file chosen" readonly>
-                                                    <button class="btn btn-primary rounded-end" type="button" onclick="document.getElementById('edit_service_icon').click();">Browse</button>
-                                                    <input type="file" class="d-none" id="edit_service_icon" name="service_icon" accept="image/*" onchange="updateFileNameAndPreview(this,'editServiceIconName','editServiceIconPreview','editServiceIconRemove')">
+                                                    <input type="text" id="editServiceIconName" class="form-control"
+                                                        placeholder="No file chosen" readonly>
+                                                    <button class="btn btn-primary rounded-end" type="button"
+                                                        onclick="document.getElementById('edit_service_icon').click();">Browse</button>
+                                                    <input type="file" class="d-none" id="edit_service_icon"
+                                                        name="service_icon" accept="image/*"
+                                                        onchange="updateFileNameAndPreview(this,'editServiceIconName','editServiceIconPreview','editServiceIconRemove')">
                                                 </div>
                                                 <div class="d-inline-block position-relative">
-                                                    <img id="editServiceIconPreview" style="width:80px;height:80px;object-fit:contain;display:none;">
-                                                    <button type="button" id="editServiceIconRemove" onclick="removeFileWithPreview('edit_service_icon','editServiceIconName','editServiceIconPreview','editServiceIconRemove')" style="position:absolute;top:-10px;right:-20px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
+                                                    <img id="editServiceIconPreview"
+                                                        style="width:80px;height:80px;object-fit:contain;display:none;">
+                                                    <button type="button" id="editServiceIconRemove"
+                                                        onclick="removeFileWithPreview('edit_service_icon','editServiceIconName','editServiceIconPreview','editServiceIconRemove')"
+                                                        style="position:absolute;top:-10px;right:-20px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
                                                 </div>
-                                                <small class="text-muted d-block mt-1">Leave empty to keep existing icon</small>
+                                                <small class="text-muted d-block mt-1">Leave empty to keep existing
+                                                    icon</small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Service Project Count</label>
-                                                <input type="number" class="form-control" name="service_project_count" placeholder="Number of projects" required>
+                                                <input type="number" class="form-control" name="service_project_count"
+                                                    placeholder="Number of projects" required>
                                             </div>
 
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-primary ms-2">Update Service</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary ms-2">Update
+                                                    Service</button>
                                             </div>
                                         </form>
+
+
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -197,62 +240,115 @@
 
     <!-- ======================= JS ======================= -->
     <script>
+        /*
+        ===================================================
+        FILE SELECT → PREVIEW + NAME SHOW
+        ===================================================
+        */
         function updateFileNameAndPreview(input, nameInputId, previewId, removeBtnId) {
             const fileNameInput = document.getElementById(nameInputId);
             const preview = document.getElementById(previewId);
             const removeBtn = document.getElementById(removeBtnId);
 
             if (input.files && input.files[0]) {
+                // filename show
                 fileNameInput.value = input.files[0].name;
+
+                // image preview
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
                     removeBtn.style.display = 'block';
-                }
+                };
                 reader.readAsDataURL(input.files[0]);
+
+                // 🔥 IMPORTANT: new image select → remove_icon reset
+                const removeIconInput = document.getElementById('remove_icon');
+                if (removeIconInput) {
+                    removeIconInput.value = '0';
+                }
             }
         }
 
+        /*
+        ===================================================
+        REMOVE IMAGE (× BUTTON CLICK)
+        ===================================================
+        */
         function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+            // file input clear
             document.getElementById(fileInputId).value = '';
+
+            // filename clear
             document.getElementById(nameInputId).value = '';
-            document.getElementById(previewId).src = '';
-            document.getElementById(previewId).style.display = 'none';
+
+            // preview hide
+            const preview = document.getElementById(previewId);
+            preview.src = '';
+            preview.style.display = 'none';
+
+            // remove button hide
             document.getElementById(removeBtnId).style.display = 'none';
+
+            // 🔥🔥 MOST IMPORTANT: backend ko signal
+            const removeIconInput = document.getElementById('remove_icon');
+            if (removeIconInput) {
+                removeIconInput.value = '1';
+            }
         }
 
-        // ======================= EDIT BUTTON FETCH DATA =======================
-        document.querySelectorAll('.editServiceBtn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const id = this.dataset.id;
-                const title = this.dataset.title;
-                const desc = this.dataset.desc;
-                const count = this.dataset.count;
-                const icon = this.dataset.icon;
-                const iconName = icon ? icon.split('/').pop() : '';
+        /*
+        ===================================================
+        EDIT BUTTON CLICK → DATA FETCH INTO MODAL
+        ===================================================
+        */
+        document.addEventListener('DOMContentLoaded', function () {
 
-                document.querySelector('#edit_service_id').value = id;
-                document.querySelector('#editServiceModal input[name="service_title"]').value = title;
-                document.querySelector('#editServiceModal textarea[name="service_paragraph"]').value = desc;
-                document.querySelector('#editServiceModal input[name="service_project_count"]').value = count;
+            document.querySelectorAll('.editServiceBtn').forEach(btn => {
+                btn.addEventListener('click', function () {
 
-                const preview = document.getElementById('editServiceIconPreview');
-                const nameInput = document.getElementById('editServiceIconName');
-                const removeBtn = document.getElementById('editServiceIconRemove');
+                    // fetch data from button
+                    const id = this.dataset.id;
+                    const title = this.dataset.title;
+                    const desc = this.dataset.desc;
+                    const count = this.dataset.count;
+                    const icon = this.dataset.icon;
+                    const iconName = icon ? icon.split('/').pop() : '';
 
-                if (icon) {
-                    preview.src = icon;
-                    preview.style.display = 'block';
-                    nameInput.value = iconName;
-                    removeBtn.style.display = 'block';
-                } else {
-                    preview.src = '';
-                    preview.style.display = 'none';
-                    nameInput.value = '';
-                    removeBtn.style.display = 'none';
-                }
+                    // set form values
+                    document.getElementById('edit_service_id').value = id;
+                    document.querySelector('#editServiceModal input[name="service_title"]').value = title;
+                    document.querySelector('#editServiceModal textarea[name="service_paragraph"]').value = desc;
+                    document.querySelector('#editServiceModal input[name="service_project_count"]').value = count;
+
+                    // reset remove_icon on modal open
+                    const removeIconInput = document.getElementById('remove_icon');
+                    if (removeIconInput) {
+                        removeIconInput.value = '0';
+                    }
+
+                    // icon preview handling
+                    const preview = document.getElementById('editServiceIconPreview');
+                    const nameInput = document.getElementById('editServiceIconName');
+                    const removeBtn = document.getElementById('editServiceIconRemove');
+
+                    if (icon) {
+                        preview.src = icon;
+                        preview.style.display = 'block';
+                        nameInput.value = iconName;
+                        removeBtn.style.display = 'block';
+                    } else {
+                        preview.src = '';
+                        preview.style.display = 'none';
+                        nameInput.value = '';
+                        removeBtn.style.display = 'none';
+                    }
+                });
             });
+
         });
     </script>
+
+
 </div>

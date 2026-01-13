@@ -64,6 +64,14 @@ class AdminDashboard extends CI_Controller
         $this->Service->save_insert_service();
     }
 
+        public function modeLinsert_service_update()    /// Service Model function call here 
+    {
+        $this->Service->service_update();
+    }
+
+
+
+
     public function modeLskill_update() ///  Skill Model call here
     {
         $this->Skill->insert_skill_update();
