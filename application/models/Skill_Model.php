@@ -8,8 +8,8 @@ class Skill_Model extends CI_Model
         parent::__construct();
     }
 
-    public function skill_update() {
-        
+    public function skill_update()
+    {
+
     }
-  
 }
