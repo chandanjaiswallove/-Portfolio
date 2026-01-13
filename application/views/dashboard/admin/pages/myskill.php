@@ -51,22 +51,27 @@
 
                                         <div class="modal-body">
 
-                                            <form method="POST" enctype="multipart/form-data" action="<?= base_url('insert_skill'); ?>">
+                                            <form method="POST" enctype="multipart/form-data"
+                                                action="<?= base_url('insert_skill'); ?>">
                                                 <div class="row">
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Logo</label>
                                                         <div class="input-group mb-2">
-                                                            <input type="text" id="skillLogoName" class="form-control" placeholder="No file chosen" readonly>
+                                                            <input type="text" id="skillLogoName" class="form-control"
+                                                                placeholder="No file chosen" readonly>
                                                             <button type="button" class="btn btn-primary rounded-end"
                                                                 onclick="document.getElementById('skill_logo').click();">Browse</button>
-                                                            <input type="file" class="d-none" id="skill_logo" name="skill_logo" accept="image/*"
+                                                            <input type="file" class="d-none" id="skill_logo"
+                                                                name="skill_logo" accept="image/*"
                                                                 onchange="handleFilePreview(this,'skillLogoName','skillLogoPreview','skillLogoRemove')">
                                                         </div>
 
                                                         <div class="d-inline-block position-relative">
-                                                            <img id="skillLogoPreview" style="width:80px;height:80px;object-fit:contain;display:none;">
-                                                            <button type="button" id="skillLogoRemove" onclick="removeFile('skill_logo','skillLogoName','skillLogoPreview','skillLogoRemove')"
+                                                            <img id="skillLogoPreview"
+                                                                style="width:80px;height:80px;object-fit:contain;display:none;">
+                                                            <button type="button" id="skillLogoRemove"
+                                                                onclick="removeFile('skill_logo','skillLogoName','skillLogoPreview','skillLogoRemove')"
                                                                 style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;display:none;cursor:pointer;">&times;</button>
                                                         </div>
                                                     </div>
@@ -74,19 +79,23 @@
                                                     <!-- SKILL TITLE -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Title</label>
-                                                        <input type="text" class="form-control" name="skill_title" placeholder="Ex: HTML / CSS / PHP" required>
+                                                        <input type="text" class="form-control" name="skill_title"
+                                                            placeholder="Ex: HTML / CSS / PHP" required>
                                                     </div>
 
                                                     <!-- SKILL PROGRESS -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Progress (%)</label>
-                                                        <input type="text" class="form-control" name="skill_progress" placeholder="0-100" min="0" max="100" required>
+                                                        <input type="text" class="form-control" name="skill_progress"
+                                                            placeholder="0-100" min="0" max="100" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="text-end">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary ms-2">Save Skill</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary ms-2">Save
+                                                        Skill</button>
                                                 </div>
 
                                             </form>
@@ -121,16 +130,17 @@
                                                 <td><?= $row->skill_name ?></td>
                                                 <td><?= $row->skill_percentage ?></td>
                                                 <td class="text-start">
-                                                    <img src="<?= base_url($row->skill_logo) ?>" title="<?= basename($row->skill_logo) ?>"
+                                                    <img src="<?= base_url($row->skill_logo) ?>"
+                                                        title="<?= basename($row->skill_logo) ?>"
                                                         style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
-                                                    <div style="font-size:12px;color:#777;"><?= basename($row->skill_logo) ?></div>
+                                                    <div style="font-size:12px;color:#777;"><?= basename($row->skill_logo) ?>
+                                                    </div>
                                                 </td>
                                                 <td class="text-end">
                                                     <!-- EDIT BUTTON -->
                                                     <button type="button" class="btn btn-primary btn-sm me-2 editSkillBtn"
                                                         data-bs-toggle="modal" data-bs-target="#editSkillModal"
-                                                        data-id="<?= $row->id ?>"
-                                                        data-name="<?= $row->skill_name ?>"
+                                                        data-id="<?= $row->id ?>" data-name="<?= $row->skill_name ?>"
                                                         data-progress="<?= rtrim($row->skill_percentage, '%') ?>"
                                                         data-logo="<?= base_url($row->skill_logo) ?>"
                                                         data-logo-name="<?= basename($row->skill_logo) ?>">
@@ -138,9 +148,12 @@
                                                     </button>
 
                                                     <!-- DELETE BUTTON -->
-                                                    <a href="<?= base_url('admin/delete_skill/' . $row->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this skill?');">
+                                                    <a href="<?= base_url('/PENDING') ?>"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure to delete this skill?');">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </a>
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -164,28 +177,33 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form method="post" action="<?= base_url('admin/update_skill'); ?>" enctype="multipart/form-data">
 
-                                            <input type="hidden" name="logo_id">
-
+                                        <form method="POST" action="<?= base_url('update_skill'); ?>"
+                                            enctype="multipart/form-data">
+                                            <input type="hidden" name="logo_id" id="logo_id">
+                                            <input type="hidden" name="remove_logo" id="remove_logo" value="0">
                                             <div class="row">
                                                 <!-- SKILL LOGO -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Skill Logo</label>
                                                     <div class="input-group mb-2">
-                                                        <input type="text" id="editSkillLogoName" class="form-control" readonly>
+                                                        <input type="text" id="editSkillLogoName" class="form-control"
+                                                            readonly>
                                                         <button type="button" class="btn btn-primary rounded-end"
                                                             onclick="document.getElementById('edit_skill_logo').click();">Browse</button>
-                                                        <input type="file" class="d-none" id="edit_skill_logo" name="skill_logo" accept="image/*"
+                                                        <input type="file" class="d-none" id="edit_skill_logo"
+                                                            name="skill_logo" accept="image/*"
                                                             onchange="handleFilePreview(this,'editSkillLogoName','editSkillLogoPreview','editSkillLogoRemove')">
                                                     </div>
                                                     <div class="d-inline-block position-relative">
-                                                        <img id="editSkillLogoPreview" style="width:80px;height:80px;object-fit:contain;display:none;">
+                                                        <img id="editSkillLogoPreview"
+                                                            style="width:80px;height:80px;object-fit:contain;display:none;">
                                                         <button type="button" id="editSkillLogoRemove"
                                                             onclick="removeFile('edit_skill_logo','editSkillLogoName','editSkillLogoPreview','editSkillLogoRemove')"
                                                             style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">&times;</button>
                                                     </div>
-                                                    <small class="text-muted d-block mt-1">Leave empty to keep existing logo</small>
+                                                    <small class="text-muted d-block mt-1">Leave empty to keep existing
+                                                        logo</small>
                                                 </div>
 
                                                 <!-- SKILL TITLE -->
@@ -197,18 +215,19 @@
                                                 <!-- SKILL PROGRESS -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Skill Progress (%)</label>
-                                                    <input type="number" class="form-control" name="skill_progress" min="0" max="100" required>
+                                                    <input type="text" class="form-control" name="skill_progress"
+                                                        min="0" max="100" required>
                                                 </div>
                                             </div>
 
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
                                                 <button type="submit" class="btn btn-primary ms-2">Update Skill</button>
                                             </div>
-
                                         </form>
-                                    </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +248,7 @@
             if (input.files && input.files[0]) {
                 fileNameInput.value = input.files[0].name;
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
                     removeBtn.style.display = 'block';
@@ -241,15 +260,21 @@
         function removeFile(fileInputId, nameInputId, previewId, removeBtnId) {
             document.getElementById(fileInputId).value = '';
             document.getElementById(nameInputId).value = '';
+
             const preview = document.getElementById(previewId);
             preview.src = '';
             preview.style.display = 'none';
+
             document.getElementById(removeBtnId).style.display = 'none';
+
+            // 🔥 VERY IMPORTANT (backend ko signal)
+            document.getElementById('remove_logo').value = '1';
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.editSkillBtn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.editSkillBtn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const id = this.dataset.id;
                     const name = this.dataset.name;
                     const progress = this.dataset.progress;
@@ -260,6 +285,8 @@
                     modal.querySelector('input[name="logo_id"]').value = id;
                     modal.querySelector('input[name="skill_title"]').value = name;
                     modal.querySelector('input[name="skill_progress"]').value = progress;
+                    // 🔥 YEH LINE ADD KARO (IMPORTANT)
+                    document.getElementById('remove_logo').value = '0';
 
                     document.getElementById('editSkillLogoName').value = logoName;
                     const preview = document.getElementById('editSkillLogoPreview');

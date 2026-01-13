@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property Card_Model $Card
  * @property Dashboard_Model $Dash
  * @property Introduce_Model $Introduce
+ * @property Service_Model $Service
  * @property About_Model $About 
  * @property Skill_Model $Skill
  */
@@ -31,6 +32,7 @@ class AdminDashboard extends CI_Controller
     $this->load->model('Card_Model', 'Card');
     $this->load->model('Dashboard_Model', 'Dash');
     $this->load->model('Introduce_Model','Introduce');
+    $this->load->model('Service_Model','Service');
     $this->load->model('About_Model', 'About');
     $this->load->model('Skill_Model', 'Skill');
 }
@@ -64,8 +66,14 @@ class AdminDashboard extends CI_Controller
 
     public function modeLskill_update() ///  Skill Model call here
     {
-        $this->Skill->skill_update();
+        $this->Skill->insert_skill_update();
     }
+
+    public function modeLupdate_skill()  ///  Skill Model call here
+{
+    $this->Skill->skill_update();
+}
+
 
 
 
