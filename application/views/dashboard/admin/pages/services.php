@@ -140,12 +140,50 @@
                                                     </button>
 
 
+
                                                     <!-- DELETE BUTTON -->
-                                                    <a class="btn btn-danger btn-sm"
-                                                        href="<?= base_url('admin/delete_service/' . $row->id) ?>"
-                                                        onclick="return confirm('Are you sure?');">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
+                                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter1?id=<?php echo $row->id;?>">Delete</button>
+
+
+
+                                                    <!-- ADD MODAL -->
+                 <div class="modal fade" id="exampleModalCenter1?id=<?php echo $row->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter1" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body"> 
+                            <div class="modal-toggle-wrapper">  
+                              <ul class="modal-img">
+                                <li></li>
+                              </ul>
+                              <form action="">
+                              <h4 class="text-center pb-2">You are about to Delete Row <?php echo $row->id; ?></h4>
+                              <p class="text-center">Attackers on malicious activity may trick you into doing something dangrous like installing software or revealing your personal informations.</p>
+                              <a href="<?php echo base_url('deleteService?id='.$row->id); ?>" class="btn btn-secondary d-flex m-auto">Yes, Delete</a>      
+                              </form>                        
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -225,7 +263,7 @@
                                         </form>
 
 
-                                        
+
                                     </div>
                                 </div>
                             </div>

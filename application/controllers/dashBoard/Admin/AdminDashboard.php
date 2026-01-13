@@ -12,30 +12,48 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class AdminDashboard extends CI_Controller
 {
-   public function __construct()
-{
-    parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-    // 🔐 SESSION CHECK
-    if (!$this->session->userdata('logged_in')) {
-        redirect('onBoarding');
-        exit;
+        // 🔐 SESSION CHECK
+        if (!$this->session->userdata('logged_in')) {
+            redirect('onBoarding');
+            exit;
+        }
+
+        // 🚫 Cache disable
+        $this->output
+            ->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+        $this->output
+            ->set_header("Pragma: no-cache");
+
+        // Models
+        $this->load->model('Card_Model', 'Card');
+        $this->load->model('Dashboard_Model', 'Dash');
+        $this->load->model('Introduce_Model', 'Introduce');
+        $this->load->model('Service_Model', 'Service');
+        $this->load->model('About_Model', 'About');
+        $this->load->model('Skill_Model', 'Skill');
     }
 
-    // 🚫 Cache disable
-    $this->output
-         ->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-    $this->output
-         ->set_header("Pragma: no-cache");
 
-    // Models
-    $this->load->model('Card_Model', 'Card');
-    $this->load->model('Dashboard_Model', 'Dash');
-    $this->load->model('Introduce_Model','Introduce');
-    $this->load->model('Service_Model','Service');
-    $this->load->model('About_Model', 'About');
-    $this->load->model('Skill_Model', 'Skill');
-}
+
+
+
+
+
+
+
+
+
+    ////// Delete function btn /////
+
+    public function deleteSection()
+    {
+        // $this->load->model('/Service_Model');
+        $this->Service->deleteBtn();
+    }
 
 
     //=================== Dashboard Pages model Here ===================== ///
@@ -46,8 +64,8 @@ class AdminDashboard extends CI_Controller
     }
 
 
-    
-        public function modeLintroduce_update()    // Introuduce_MOdel Function
+
+    public function modeLintroduce_update()    // Introuduce_MOdel Function
     {
         $this->Introduce->save_introude_update();
     }
@@ -64,7 +82,7 @@ class AdminDashboard extends CI_Controller
         $this->Service->save_insert_service();
     }
 
-        public function modeLinsert_service_update()    /// Service Model function call here 
+    public function modeLinsert_service_update()    /// Service Model function call here 
     {
         $this->Service->service_update();
     }
@@ -78,16 +96,16 @@ class AdminDashboard extends CI_Controller
     }
 
     public function modeLupdate_skill()  ///  Skill Model call here
-{
-    $this->Skill->skill_update();
-}
+    {
+        $this->Skill->skill_update();
+    }
 
 
 
 
 
 
-        //=================== Dashboard Pages model Here ===================== ///
+    //=================== Dashboard Pages model Here ===================== ///
 
 
 
@@ -176,6 +194,8 @@ class AdminDashboard extends CI_Controller
     {
         $this->load_page('pricing_card');
     }
+
+
 
 
 

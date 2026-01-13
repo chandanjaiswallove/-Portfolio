@@ -130,4 +130,8 @@ $route['insert_skill'] = 'dashBoard/Admin/AdminDashboard/modeLskill_update';    
 $route['update_skill'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_skill';      /// Skill_Model 
 
 
+    ////// Delete function btn /////
+$route['deleteService'] = 'dashBoard/Admin/AdminDashboard/deleteSection';
+
+
 ///================= Dashboard  controller model function call here   =================
