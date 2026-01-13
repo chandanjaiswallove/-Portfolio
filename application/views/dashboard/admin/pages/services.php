@@ -142,30 +142,43 @@
 
 
                                                     <!-- DELETE BUTTON -->
-                                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter1?id=<?php echo $row->id;?>">Delete</button>
+                                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal_<?= $row->id; ?>">
+                                                        Delete
+                                                    </button>
 
+                                                    <!-- DELETE MODAL -->
+                                                    <div class="modal fade" id="deleteModal_<?= $row->id; ?>" tabindex="-1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content bg-warning">
 
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Delete Row <?= $row->id; ?></h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
 
-                                                    <!-- ADD MODAL -->
-                 <div class="modal fade" id="exampleModalCenter1?id=<?php echo $row->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter1" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-body"> 
-                            <div class="modal-toggle-wrapper">  
-                              <ul class="modal-img">
-                                <li></li>
-                              </ul>
-                              <form action="">
-                              <h4 class="text-center pb-2">You are about to Delete Row <?php echo $row->id; ?></h4>
-                              <p class="text-center">Attackers on malicious activity may trick you into doing something dangrous like installing software or revealing your personal informations.</p>
-                              <a href="<?php echo base_url('deleteService?id='.$row->id); ?>" class="btn btn-secondary d-flex m-auto">Yes, Delete</a>      
-                              </form>                        
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  
+                                                                <!-- Modal Body -->
+                                                                <div class="modal-body text-center">
+                                                                    <p>Are you sure you want to delete this row? <br> This action
+                                                                        cannot be undone.</p>
+                                                                </div>
+
+                                                                <!-- Modal Footer -->
+                                                                <div class="modal-footer justify-content-center">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                    <a href="<?= base_url('deleteService?id=' . $row->id); ?>"
+                                                                        class="btn btn-danger">
+                                                                        Yes, Delete
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
 

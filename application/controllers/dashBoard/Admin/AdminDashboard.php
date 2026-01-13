@@ -8,6 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property Service_Model $Service
  * @property About_Model $About 
  * @property Skill_Model $Skill
+ * @property Testimonial_Model $Testimonial
  */
 
 class AdminDashboard extends CI_Controller
@@ -35,6 +36,8 @@ class AdminDashboard extends CI_Controller
         $this->load->model('Service_Model', 'Service');
         $this->load->model('About_Model', 'About');
         $this->load->model('Skill_Model', 'Skill');
+        $this->load->model('Testimonial_Model', 'Testimonial');
+
     }
 
 
@@ -105,10 +108,10 @@ class AdminDashboard extends CI_Controller
     }
 
 
-     public function modeLupdateTestimonial()    /// Testimonial Model call here
-    {
-        $this->Testimonial->insertTestimonial();
-    }
+    //  public function modeLupdateTestimonial()    /// Testimonial Model call here
+    // {
+    //     $this->Testimonial->insertTestimonial();
+    // }
 
 
 

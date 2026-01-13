@@ -25,7 +25,7 @@ class Testimonial_Model extends CI_Model
     // ================= UPLOAD CONFIG =================
     if (!empty($_FILES['profile_photo']['name'])) {
 
-        $upload_path = './uploads/testimonials/';
+        $upload_path = 'uploads/testimonials/';
         if (!is_dir($upload_path)) {
             mkdir($upload_path, 0755, true);
         }

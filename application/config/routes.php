@@ -131,7 +131,7 @@ $route['update_skill'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_skill';    
 
 $route['insertTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLinsertTestimonial';      /// Testimonial Model 
 
-$route['updateTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLupdateTestimonial';      /// Testimonial Model 
+// $route['updateTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLupdateTestimonial';      /// Testimonial Model 
 
 
 

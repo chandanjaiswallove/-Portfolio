@@ -211,7 +211,9 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form method="post" action="" enctype="multipart/form-data">
+
+
+                                        <form method="POST" action="" enctype="multipart/form-data">
                                             <div class="row">
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
@@ -291,6 +293,8 @@
                                                 </button>
                                             </div>
                                         </form>
+
+                                        
                                     </div>
 
                                 </div>
