@@ -36,7 +36,7 @@ class Dashboard_Model extends CI_Model
     public function get_serviceData()
     {
         return $this->db
-            ->order_by('id', 'DESC')
+            ->order_by('id', 'ASC')
             ->get('services_directory')
             ->result();
     }
@@ -47,7 +47,7 @@ class Dashboard_Model extends CI_Model
     public function get_myskill_directory()
     {
         return $this->db
-            ->order_by('id', 'DESC')
+            ->order_by('id', 'ASC')
             ->get('myskill_directory')
             ->result();   // ✅ MULTIPLE ROWS
     }
