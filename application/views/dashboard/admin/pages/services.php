@@ -139,8 +139,7 @@
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
 
-
-
+                                                        <!-- delete function modal here -->
                                                     <!-- DELETE BUTTON -->
                                                     <button class="btn btn-danger" type="button" data-bs-toggle="modal"
                                                         data-bs-target="#deleteModal_<?= $row->id; ?>">
@@ -151,7 +150,7 @@
                                                     <div class="modal fade" id="deleteModal_<?= $row->id; ?>" tabindex="-1"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content bg-warning">
+                                                            <div class="modal-content bg-white">
 
                                                                 <!-- Modal Header -->
                                                                 <div class="modal-header">
