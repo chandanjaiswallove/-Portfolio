@@ -108,10 +108,10 @@ class AdminDashboard extends CI_Controller
     }
 
 
-    //  public function modeLupdateTestimonial()    /// Testimonial Model call here
-    // {
-    //     $this->Testimonial->insertTestimonial();
-    // }
+     public function modeLupdateTestimonial()    /// Testimonial Model call here
+    {
+        $this->Testimonial->update_Testimonials();
+    }
 
 
 

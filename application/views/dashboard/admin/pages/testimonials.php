@@ -173,7 +173,7 @@
                                                 <td><?= $row->client_review ?></td>
                                                 <td><?= $row->client_project_name ?></td>
                                                 <td class="text-end">
-                                             
+
 
 
                                                     <button class="btn btn-primary btn-sm me-2 editTestimonialBtn"
@@ -219,7 +219,14 @@
                                     <div class="modal-body">
 
 
-                                        <form method="POST" action="" enctype="multipart/form-data">
+                                        <form method="POST" action="<?php echo base_url('updateTestimonial') ?>"
+                                            enctype="multipart/form-data">
+
+                                            <!-- REQUIRED -->
+                                            <input type="hidden" name="testimonial_id" id="editTestimonialId">
+                                            <input type="hidden" name="remove_image" id="editRemoveImage" value="0">
+
+
                                             <div class="row">
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
@@ -274,22 +281,25 @@
                                                     <div class="d-inline-block position-relative">
                                                         <img id="editTestimonialPhotoPreview"
                                                             style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
-                                                        <button type="button" id="editTestimonialPhotoRemove"
-                                                            onclick="removeFileWithPreview('editTestimonialPhoto','editTestimonialPhotoName','editTestimonialPhotoPreview','editTestimonialPhotoRemove')"
-                                                            style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
-                                                            &times;
-                                                        </button>
+<button type="button" id="editTestimonialPhotoRemove" onclick="removeFileWithPreview(
+  'editTestimonialPhoto',
+  'editTestimonialPhotoName',
+  'editTestimonialPhotoPreview',
+  'editTestimonialPhotoRemove',
+  'editRemoveImage'
+)">
+    &times;
+</button>
+<!-- 🔥 add this comment outside the onclick -->
+
+
+
+
                                                     </div>
                                                 </div>
 
-
-
-
-
-
                                             </div>
 
-                                            <input type="hidden" name="testimonial_id" id="editTestimonialId">
 
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-secondary"
@@ -422,11 +432,13 @@
                                                         data-logo-name="<?= basename($row->company_logo) ?>">
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
+
                                                     <a href="<?= base_url('admin/delete_company_logo/' . $row->id) ?>"
                                                         class="btn btn-secondary btn-sm"
                                                         onclick="return confirm('Are you sure to delete this logo?');">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </a>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -578,140 +590,150 @@
 </script> -->
 
 <script>
-/* ===============================
-   GLOBAL IMAGE HANDLER
-   Ye functions INSERT + EDIT dono forms me kaam karte hain
-=============================== */
+    /* ===============================
+       GLOBAL IMAGE HANDLER
+       Ye functions INSERT + EDIT dono forms me kaam karte hain
+    =============================== */
 
-/*
-  Jab user file select karta hai:
-  - file ka naam text box me dikhata hai
-  - image ka preview show karta hai
-*/
-function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+    /*
+      Jab user file select karta hai:
+      - file ka naam text box me dikhata hai
+      - image ka preview show karta hai
+    */
+    function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
 
-    // File input element (hidden file input)
-    const fileInput = document.getElementById(fileInputId);
+        // File input element (hidden file input)
+        const fileInput = document.getElementById(fileInputId);
 
-    // Text input jisme file ka naam dikhate hain
-    const nameInput = document.getElementById(nameInputId);
+        // Text input jisme file ka naam dikhate hain
+        const nameInput = document.getElementById(nameInputId);
 
-    // Image preview element
-    const preview = document.getElementById(previewId);
+        // Image preview element
+        const preview = document.getElementById(previewId);
 
-    // Remove (×) button
-    const removeBtn = document.getElementById(removeBtnId);
+        // Remove (×) button
+        const removeBtn = document.getElementById(removeBtnId);
 
-    // Agar file select hui hai
-    if (fileInput?.files?.[0]) {
+        // Agar file select hui hai
+        if (fileInput?.files?.[0]) {
 
-        // File ka naam text input me set
-        nameInput.value = fileInput.files[0].name;
+            // File ka naam text input me set
+            nameInput.value = fileInput.files[0].name;
 
-        // FileReader image ko read karta hai
-        const reader = new FileReader();
+            // FileReader image ko read karta hai
+            const reader = new FileReader();
 
-        reader.onload = e => {
-            // Image preview show
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-            removeBtn.style.display = 'block';
-        };
-
-        // Image read start
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-}
-
-/*
-  Jab user remove (×) pe click kare:
-  - file clear ho jaye
-  - preview hide ho jaye
-*/
-function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
-
-    // File input clear
-    document.getElementById(fileInputId).value = '';
-
-    // File name clear
-    document.getElementById(nameInputId).value = '';
-
-    // Preview hide
-    const preview = document.getElementById(previewId);
-    preview.src = '';
-    preview.style.display = 'none';
-
-    // Remove button hide
-    document.getElementById(removeBtnId).style.display = 'none';
-}
-
-
-/* ===============================
-   EDIT MODAL DATA PREFILL LOGIC
-   Ye part EDIT button click pe kaam karta hai
-=============================== */
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Sare Edit buttons select karo
-    document.querySelectorAll('.editTestimonialBtn').forEach(function (btn) {
-
-        // Jab Edit button click ho
-        btn.addEventListener('click', function () {
-
-            /* ===============================
-               STEP 1: Button se data uthao
-               (HTML ke data-* attributes se)
-            ================================ */
-
-            const id      = this.dataset.id;
-            const name    = this.dataset.name;
-            const company = this.dataset.company;
-            const project = this.dataset.project;
-            const review  = this.dataset.review;
-            const photo   = this.dataset.photo;
-
-            /* ===============================
-               STEP 2: Hidden ID set karo
-               (Update ke time kaam aayega)
-            ================================ */
-
-            document.getElementById('editTestimonialId').value = id;
-
-            /* ===============================
-               STEP 3: Text fields fill karo
-            ================================ */
-
-            document.getElementById('editProfileName').value  = name;
-            document.getElementById('editCompanyName').value  = company;
-            document.getElementById('editProjectName').value  = project;
-            document.getElementById('editClientReview').value = review;
-
-            /* ===============================
-               STEP 4: Image preview set karo
-            ================================ */
-
-            const preview   = document.getElementById('editTestimonialPhotoPreview');
-            const removeBtn = document.getElementById('editTestimonialPhotoRemove');
-            const photoName = document.getElementById('editTestimonialPhotoName');
-
-            if (photo) {
-                // Agar pehle se image hai
-                preview.src = photo;
+            reader.onload = e => {
+                // Image preview show
+                preview.src = e.target.result;
                 preview.style.display = 'block';
                 removeBtn.style.display = 'block';
+            };
 
-                // Sirf file name show karo
-                photoName.value = photo.split('/').pop();
-            } else {
-                // Agar image nahi hai
-                preview.style.display = 'none';
-                removeBtn.style.display = 'none';
-                photoName.value = '';
-            }
+            // Image read start
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+
+    /*
+      Jab user remove (×) pe click kare:
+      - file clear ho jaye
+      - preview hide ho jaye
+    */
+    function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId, removeInputId) {
+
+        // clear file input
+        document.getElementById(fileInputId).value = '';
+
+        // clear filename
+        document.getElementById(nameInputId).value = '';
+
+        // hide preview
+        const preview = document.getElementById(previewId);
+        preview.src = '';
+        preview.style.display = 'none';
+
+        // hide remove button
+        document.getElementById(removeBtnId).style.display = 'none';
+
+        // 🔥 tell backend to delete image
+        if (removeInputId) {
+            document.getElementById(removeInputId).value = '1';
+        }
+    }
+
+
+
+
+
+
+
+    /* ===============================
+       EDIT MODAL DATA PREFILL LOGIC
+       Ye part EDIT button click pe kaam karta hai
+    =============================== */
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Sare Edit buttons select karo
+        document.querySelectorAll('.editTestimonialBtn').forEach(function (btn) {
+
+            // Jab Edit button click ho
+            btn.addEventListener('click', function () {
+
+                /* ===============================
+                   STEP 1: Button se data uthao
+                   (HTML ke data-* attributes se)
+                ================================ */
+
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const company = this.dataset.company;
+                const project = this.dataset.project;
+                const review = this.dataset.review;
+                const photo = this.dataset.photo;
+
+                /* ===============================
+                   STEP 2: Hidden ID set karo
+                   (Update ke time kaam aayega)
+                ================================ */
+
+                document.getElementById('editTestimonialId').value = id;
+
+                /* ===============================
+                   STEP 3: Text fields fill karo
+                ================================ */
+
+                document.getElementById('editProfileName').value = name;
+                document.getElementById('editCompanyName').value = company;
+                document.getElementById('editProjectName').value = project;
+                document.getElementById('editClientReview').value = review;
+
+                /* ===============================
+                   STEP 4: Image preview set karo
+                ================================ */
+
+                const preview = document.getElementById('editTestimonialPhotoPreview');
+                const removeBtn = document.getElementById('editTestimonialPhotoRemove');
+                const photoName = document.getElementById('editTestimonialPhotoName');
+
+                if (photo) {
+                    // Agar pehle se image hai
+                    preview.src = photo;
+                    preview.style.display = 'block';
+                    removeBtn.style.display = 'block';
+
+                    // Sirf file name show karo
+                    photoName.value = photo.split('/').pop();
+                } else {
+                    // Agar image nahi hai
+                    preview.style.display = 'none';
+                    removeBtn.style.display = 'none';
+                    photoName.value = '';
+                }
+            });
         });
     });
-});
 </script>
 
 
