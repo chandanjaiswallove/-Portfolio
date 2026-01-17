@@ -114,6 +114,11 @@ class AdminDashboard extends CI_Controller
     }
 
 
+    public function modeLinsertCompanyLogo()    /// Testimonial Model call here
+    {
+        $this->Testimonial->uploadCompanyLogoImage();
+    }
+
 
 
 

@@ -352,8 +352,8 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form method="post" enctype="multipart/form-data">
 
+                                            <form method="POST" action="<?php echo base_url('insertCompanyLogo'); ?>" enctype="multipart/form-data">
                                                 <div class="mb-3 col-md-12 position-relative">
                                                     <label class="form-label">Company Logo</label>
 
@@ -392,8 +392,8 @@
                                                         Save Logo
                                                     </button>
                                                 </div>
-
                                             </form>
+                                            
                                         </div>
 
                                     </div>

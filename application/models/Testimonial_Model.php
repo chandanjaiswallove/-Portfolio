@@ -89,6 +89,7 @@ class Testimonial_Model extends CI_Model
     }
 
 
+    ////    edit and fetch /////
 public function update_Testimonials()
 {
     $id = $this->input->post('testimonial_id', true);
@@ -156,6 +157,76 @@ public function update_Testimonials()
         sweetAlert('Error', 'Testimonial update failed', 'error', 'testimonials');
     }
 }
+
+
+
+
+    //// Testimonials Company Logo Insert ////////
+
+    public function uploadCompanyLogoImage()
+    {
+        $logoImagePath = null;
+
+        if (!empty($_FILES['company_logo']['name'])) {
+
+            $logoUploadDirectory = FCPATH . 'uploads/testimonials/';
+
+            if (!is_dir($logoUploadDirectory)) {
+                mkdir($logoUploadDirectory, 0755, true);
+            }
+
+            $uploadSettings = [
+                'upload_path'   => $logoUploadDirectory,
+                'allowed_types' => 'jpg|jpeg|png|webp',
+                'max_size'      => 5120,
+                'encrypt_name'  => TRUE
+            ];
+
+            $this->load->library('upload', $uploadSettings);
+            $this->upload->initialize($uploadSettings, TRUE);
+
+            if (!$this->upload->do_upload('company_logo')) {
+
+                sweetAlert(
+                    'Upload Failed',
+                    $this->upload->display_errors('', ''),
+                    'error',
+                    'testimonials'
+                );
+                return;
+            }
+
+            // Upload successful
+            $uploadedFileData = $this->upload->data();
+
+            // Relative path for DB
+            $logoImagePath = 'uploads/testimonials/' . $uploadedFileData['file_name'];
+
+            // ================= DB INSERT =================
+            $insertData = [
+                'company_logo' => $logoImagePath,
+                'date'         => date('Y-m-d H:i:s')
+            ];
+
+            $this->db->insert('company_logo_directory', $insertData);
+            // =============================================
+
+            sweetAlert(
+                'Success',
+                'Company logo uploaded successfully',
+                'success',
+                'testimonials'
+            );
+            return;
+        }
+
+        sweetAlert(
+            'Error',
+            'No image selected',
+            'error',
+            'testimonials'
+        );
+    }
 
 
 
