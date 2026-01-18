@@ -175,18 +175,12 @@
                                                 <td class="text-end">
 
 
-
-                                                    <button class="btn btn-primary btn-sm me-2 editTestimonialBtn"
-                                                        data-bs-toggle="modal" data-bs-target="#editTestimonialModal"
-                                                        data-id="<?= $row->id ?>"
-                                                        data-name="<?= htmlspecialchars($row->profile_name, ENT_QUOTES) ?>"
-                                                        data-company="<?= htmlspecialchars($row->company_name, ENT_QUOTES) ?>"
-                                                        data-project="<?= htmlspecialchars($row->client_project_name, ENT_QUOTES) ?>"
-                                                        data-review="<?= htmlspecialchars($row->client_review, ENT_QUOTES) ?>"
-                                                        data-photo="<?= !empty($row->profile_photo) ? base_url($row->profile_photo) : '' ?>"
-                                                        data-photo-name="<?= !empty($row->profile_photo) ? basename($row->profile_photo) : '' ?>">
+                                                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                                                        data-bs-target="#editTestimonialModal">
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
+
+
 
 
 
@@ -219,7 +213,7 @@
                                     <div class="modal-body">
 
 
-                                        <form method="POST" action="<?php echo base_url('updateTestimonial') ?>"
+                                        <form method="POST" action="<?php echo base_url('updateTestimonial'); ?>"
                                             enctype="multipart/form-data">
 
                                             <!-- REQUIRED -->
@@ -228,6 +222,7 @@
 
 
                                             <div class="row">
+
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Profile Name</label>
@@ -242,73 +237,92 @@
                                                         id="editCompanyName" required>
                                                 </div>
 
-                                                <!-- Client Project Name -->
+                                                <!-- Project Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Client Project Name</label>
                                                     <input type="text" class="form-control" name="client_project_name"
                                                         id="editProjectName" required>
                                                 </div>
 
-                                                <!-- Client Review -->
+                                                <!-- Profile Photo -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label class="form-label">Profile Photo</label>
+
+                                                    <!-- Fake input + Browse button -->
+                                                    <div class="input-group mb-2">
+
+                                                        <!-- Sirf file ka naam dikhane ke liye -->
+                                                        <input type="text" id="editProfilePhotoName"
+                                                            class="form-control" placeholder="No file chosen" readonly>
+
+                                                        <!-- Browse button -->
+                                                        <button class="btn btn-primary rounded-end" type="button"
+                                                            onclick="document.getElementById('editProfilePhotoFile').click();">
+                                                            Browse
+                                                        </button>
+
+                                                        <!-- Actual file input (hidden) -->
+                                                        <input type="file" class="d-none" id="editProfilePhotoFile"
+                                                            name="profile_photo" accept="image/*" onchange="
+            updateFileNameAndPreview(
+                'editProfilePhotoFile',
+                'editProfilePhotoName',
+                'editProfilePhotoPreview',
+                'editProfilePhotoRemove'
+            )
+        ">
+                                                    </div>
+
+                                                    <!-- Image Preview + Remove Button -->
+                                                    <div class="d-inline-block position-relative mt-2">
+
+                                                        <!-- Profile photo preview -->
+                                                        <img id="editProfilePhotoPreview"
+                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
+
+                                                        <!-- Remove (×) button -->
+                                                        <button type="button" id="editProfilePhotoRemove" onclick="
+            removeFileWithPreview(
+                'editProfilePhotoFile',
+                'editProfilePhotoName',
+                'editProfilePhotoPreview',
+                'editProfilePhotoRemove'
+            )
+        " style="display:none;
+                position:absolute;
+                top:-10px;
+                right:-10px;
+                border:none;
+                background:none;
+                font-size:20px;
+                color:#fe6a49;
+                cursor:pointer;">
+                                                            &times;
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Review -->
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label">Client Review</label>
                                                     <textarea class="form-control" rows="4" name="client_review"
                                                         id="editClientReview" style="resize:none;" required></textarea>
                                                 </div>
 
-                                                <!-- Profile Photo (Edit Form) -->
-                                                <div class="col-md-6 mb-3 position-relative">
-                                                    <label class="form-label">Profile Photo</label>
-
-                                                    <div class="input-group mb-2">
-                                                        <!-- File name display -->
-                                                        <input type="text" id="editTestimonialPhotoName"
-                                                            class="form-control" placeholder="No file chosen" readonly>
-
-                                                        <!-- Browse button -->
-                                                        <button class="btn btn-primary rounded-end" type="button"
-                                                            onclick="document.getElementById('editTestimonialPhoto').click();">
-                                                            Browse
-                                                        </button>
-
-                                                        <!-- Hidden file input -->
-                                                        <input type="file" class="d-none" id="editTestimonialPhoto"
-                                                            name="profile_photo" accept="image/*"
-                                                            onchange="updateFileNameAndPreview('editTestimonialPhoto','editTestimonialPhotoName','editTestimonialPhotoPreview','editTestimonialPhotoRemove')">
-                                                    </div>
-
-                                                    <!-- Preview + Remove -->
-                                                    <div class="d-inline-block position-relative">
-                                                        <img id="editTestimonialPhotoPreview"
-                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
-                                                        <button type="button" id="editTestimonialPhotoRemove" onclick="removeFileWithPreview(
-  'editTestimonialPhoto',
-  'editTestimonialPhotoName',
-  'editTestimonialPhotoPreview',
-  'editTestimonialPhotoRemove',
-  'editRemoveImage'
-)">
-                                                            &times;
-                                                        </button>
-                                                        <!-- 🔥 add this comment outside the onclick -->
-
-
-
-
-                                                    </div>
-                                                </div>
-
                                             </div>
 
-
+                                            <!-- Buttons -->
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Cancel
+                                                </button>
+
                                                 <button type="submit" class="btn btn-primary ms-2">
                                                     Update Testimonial
                                                 </button>
                                             </div>
                                         </form>
+
 
 
                                     </div>
@@ -571,218 +585,10 @@
 
 
 
-<!-- <script>
-    /* ===============================
-       GLOBAL IMAGE HANDLER
-       Works for any form with unique IDs
-    ================================ */
-
-    function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
-        const fileInput = document.getElementById(fileInputId);
-        const nameInput = document.getElementById(nameInputId);
-        const preview = document.getElementById(previewId);
-        const removeBtn = document.getElementById(removeBtnId);
-
-        if (fileInput?.files?.[0]) {
-            nameInput.value = fileInput.files[0].name;
-
-            const reader = new FileReader();
-            reader.onload = e => {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                removeBtn.style.display = 'block';
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-
-    function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
-        document.getElementById(fileInputId).value = '';
-        document.getElementById(nameInputId).value = '';
-
-        const preview = document.getElementById(previewId);
-        preview.src = '';
-        preview.style.display = 'none';
-
-        document.getElementById(removeBtnId).style.display = 'none';
-    }
-
-    /* ===============================
-       POPULATE EDIT FORM FROM DATABASE
-       Example: Edit Testimonial Modal
-    ================================ */
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.editTestimonialBtn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const photo = this.dataset.photo;
-
-                // Set hidden ID
-                document.getElementById('editTestimonialId').value = id;
-
-                // Populate Edit Form fields
-                document.getElementById('editTestimonialPhotoName').value = photo ? photo.split('/').pop() : '';
-                const preview = document.getElementById('editTestimonialPhotoPreview');
-                preview.src = photo || '';
-                preview.style.display = photo ? 'block' : 'none';
-                document.getElementById('editTestimonialPhotoRemove').style.display = photo ? 'block' : 'none';
-            });
-        });
-    });
-</script> -->
-
-<script>
-    /* ===============================
-       GLOBAL IMAGE HANDLER
-       Ye functions INSERT + EDIT dono forms me kaam karte hain
-    =============================== */
-
-    /*
-      Jab user file select karta hai:
-      - file ka naam text box me dikhata hai
-      - image ka preview show karta hai
-    */
-    function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
-
-        // File input element (hidden file input)
-        const fileInput = document.getElementById(fileInputId);
-
-        // Text input jisme file ka naam dikhate hain
-        const nameInput = document.getElementById(nameInputId);
-
-        // Image preview element
-        const preview = document.getElementById(previewId);
-
-        // Remove (×) button
-        const removeBtn = document.getElementById(removeBtnId);
-
-        // Agar file select hui hai
-        if (fileInput?.files?.[0]) {
-
-            // File ka naam text input me set
-            nameInput.value = fileInput.files[0].name;
-
-            // FileReader image ko read karta hai
-            const reader = new FileReader();
-
-            reader.onload = e => {
-                // Image preview show
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                removeBtn.style.display = 'block';
-            };
-
-            // Image read start
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-
-    /*
-      Jab user remove (×) pe click kare:
-      - file clear ho jaye
-      - preview hide ho jaye
-    */
-    function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId, removeInputId) {
-
-        // clear file input
-        document.getElementById(fileInputId).value = '';
-
-        // clear filename
-        document.getElementById(nameInputId).value = '';
-
-        // hide preview
-        const preview = document.getElementById(previewId);
-        preview.src = '';
-        preview.style.display = 'none';
-
-        // hide remove button
-        document.getElementById(removeBtnId).style.display = 'none';
-
-        // 🔥 tell backend to delete image
-        if (removeInputId) {
-            document.getElementById(removeInputId).value = '1';
-        }
-    }
 
 
 
-
-
-
-
-    /* ===============================
-       EDIT MODAL DATA PREFILL LOGIC
-       Ye part EDIT button click pe kaam karta hai
-    =============================== */
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-        // Sare Edit buttons select karo
-        document.querySelectorAll('.editTestimonialBtn').forEach(function (btn) {
-
-            // Jab Edit button click ho
-            btn.addEventListener('click', function () {
-
-                /* ===============================
-                   STEP 1: Button se data uthao
-                   (HTML ke data-* attributes se)
-                ================================ */
-
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const company = this.dataset.company;
-                const project = this.dataset.project;
-                const review = this.dataset.review;
-                const photo = this.dataset.photo;
-
-                /* ===============================
-                   STEP 2: Hidden ID set karo
-                   (Update ke time kaam aayega)
-                ================================ */
-
-                document.getElementById('editTestimonialId').value = id;
-
-                /* ===============================
-                   STEP 3: Text fields fill karo
-                ================================ */
-
-                document.getElementById('editProfileName').value = name;
-                document.getElementById('editCompanyName').value = company;
-                document.getElementById('editProjectName').value = project;
-                document.getElementById('editClientReview').value = review;
-
-                /* ===============================
-                   STEP 4: Image preview set karo
-                ================================ */
-
-                const preview = document.getElementById('editTestimonialPhotoPreview');
-                const removeBtn = document.getElementById('editTestimonialPhotoRemove');
-                const photoName = document.getElementById('editTestimonialPhotoName');
-
-                if (photo) {
-                    // Agar pehle se image hai
-                    preview.src = photo;
-                    preview.style.display = 'block';
-                    removeBtn.style.display = 'block';
-
-                    // Sirf file name show karo
-                    photoName.value = photo.split('/').pop();
-                } else {
-                    // Agar image nahi hai
-                    preview.style.display = 'none';
-                    removeBtn.style.display = 'none';
-                    photoName.value = '';
-                }
-            });
-        });
-    });
-</script>
-
-
-
-
-
+<!-- company logo edit  -->
 <script>
     /* ===============================
        New image select

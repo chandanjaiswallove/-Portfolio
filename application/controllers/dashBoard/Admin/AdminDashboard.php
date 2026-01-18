@@ -44,9 +44,30 @@ class AdminDashboard extends CI_Controller
 
 
 
+    // Generic page loader
+    private function load_page($page)
+    {
+        $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
+        $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data from Dashboard_Model
+        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data  from Dashboard_Model
+        $data['service'] = $this->Dash->get_serviceData();       // services_directory Data from Dashboard_Model
+        $data['skill'] = $this->Dash->get_myskill_directory();  // get_myskill_directory Data from Dashboard_Model
+        $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Model
+        $data['testimonials'] = $this->Dash->get_testimonial_directory();   // get_testimonial_directory ata from Dashboard_Model
+        $data['company_logos'] = $this->Dash->get_company_logoData();   // get_company_logoData from Dashboard_Model
+        $data['portfolios'] = $this->Dash->get_portfolio_projects();    //  project page data from Dashboard_Model
 
 
 
+        // Header
+        $this->load->view('dashboard/admin/layouts/dashHeader', $data);
+
+        // Page content
+        $this->load->view('dashboard/admin/pages/' . $page, $data);
+
+        // Footer
+        $this->load->view('dashboard/admin/layouts/dashFooter', $data);
+    }
 
 
 
@@ -60,11 +81,11 @@ class AdminDashboard extends CI_Controller
 
     //=================== Dashboard Pages model Here ===================== ///
 
+
     public function modeLupdate_profile()   // Card Model Function
     {
         $this->Card->save_profile_card();
     }
-
 
 
     public function modeLintroduce_update()    // Introuduce_MOdel Function
@@ -90,7 +111,6 @@ class AdminDashboard extends CI_Controller
     }
 
 
-
     public function modeLskill_update() ///  Skill Model call here
     {
         $this->Skill->insert_skill_update();
@@ -107,8 +127,7 @@ class AdminDashboard extends CI_Controller
         $this->Testimonial->insertTestimonial();
     }
 
-
-     public function modeLupdateTestimonial()    /// Testimonial Model call here
+    public function modeLupdateTestimonial()    /// Testimonial Model call here
     {
         $this->Testimonial->update_Testimonials();
     }
@@ -118,7 +137,7 @@ class AdminDashboard extends CI_Controller
     {
         $this->Testimonial->uploadCompanyLogoImage();
     }
-    
+
 
     public function modeLupdateCompanyLogoImage()       /// Testimonial Model call here
     {
@@ -127,42 +146,13 @@ class AdminDashboard extends CI_Controller
 
 
 
-
-    //=================== Dashboard Pages model Here ===================== ///
-
-
-
-
-    // Generic page loader
-    private function load_page($page)
-    {
-        $data['card'] = $this->Card->get_card(); // Header/footer ke liye data Profile_card ka Data
-        $data['intro'] = $this->Dash->get_introduceData(); // Header/footer ke liye data Profile_card ka Data from Dashboard_Model
-        $data['about'] = $this->Dash->get_aboutData();       // ✅ About data  from Dashboard_Model
-        $data['service'] = $this->Dash->get_serviceData();       // services_directory Data from Dashboard_Model
-        $data['skill'] = $this->Dash->get_myskill_directory();  // get_myskill_directory Data from Dashboard_Model
-        $data['contacts'] = $this->Dash->get_contact_directory();   // get_contact_directory Data from Dashboard_Model
-        $data['testimonials'] = $this->Dash->get_testimonial_directory();   // get_testimonial_directory ata from Dashboard_Model
-        $data['company_logos'] = $this->Dash->get_company_logoData();   // get_company_logoData from Dashboard_Model
-        $data['portfolios'] = $this->Dash->get_portfolio_projects();    //  project page data from Dashboard_Model
+    //=================== Dashboard Pages model End ===================== ///
 
 
 
 
 
-
-
-        // Header
-        $this->load->view('dashboard/admin/layouts/dashHeader', $data);
-
-        // Page content
-        $this->load->view('dashboard/admin/pages/' . $page, $data);
-
-        // Footer
-        $this->load->view('dashboard/admin/layouts/dashFooter', $data);
-    }
-
-    // Ab har page method sirf load_page ko call karega
+    ///////////////////// Ab har page method sirf load_page ko call karega //////////////
     public function loaDadmin_dashboard()
     {
         $this->load_page('admin_dashboard');

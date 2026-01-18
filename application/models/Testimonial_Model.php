@@ -10,6 +10,16 @@ class Testimonial_Model extends CI_Model
 
 
 
+    ////    edit and fetch /////
+    // Update testimonial
+   public function update_Testimonials()
+{
+    
+}
+
+
+
+
     ///// Testimonail Insert ///////////
     public function insertTestimonial()
     {
@@ -89,74 +99,8 @@ class Testimonial_Model extends CI_Model
     }
 
 
-    ////    edit and fetch /////
-public function update_Testimonials()
-{
-    $id = $this->input->post('testimonial_id', true);
 
-    if (empty($id)) {
-        sweetAlert('Error', 'Invalid Testimonial ID', 'error', 'testimonials');
-        return;
-    }
 
-    // ================= FORM DATA =================
-    $data = [
-        'profile_name'        => $this->input->post('profile_name', true),
-        'company_name'        => $this->input->post('company_name', true),
-        'client_project_name' => $this->input->post('client_project_name', true),
-        'client_review'       => $this->input->post('client_review', true),
-    ];
-
-    // ================= GET OLD IMAGE =================
-    $oldRow = $this->db->get_where('testimonial_directory', ['id' => $id])->row();
-    $oldImage = $oldRow->profile_photo ?? null;
-
-    // ================= CASE 1: IMAGE REMOVED (×) =================
-    if ($this->input->post('remove_image') == '1') {
-        if (!empty($oldImage) && file_exists(FCPATH . $oldImage)) {
-            unlink(FCPATH . $oldImage);
-        }
-        $data['profile_photo'] = null;
-    }
-
-    // ================= CASE 2: NEW IMAGE UPLOADED =================
-    if (!empty($_FILES['profile_photo']['name'])) {
-
-        $upload_path = 'uploads/testimonials/';
-        if (!is_dir($upload_path)) mkdir($upload_path, 0755, true);
-
-        $config = [
-            'upload_path'   => $upload_path,
-            'allowed_types' => 'jpg|jpeg|png|webp',
-            'max_size'      => 5120,
-            'encrypt_name'  => TRUE
-        ];
-
-        $this->load->library('upload');
-        $this->upload->initialize($config);
-
-        if (!$this->upload->do_upload('profile_photo')) {
-            sweetAlert('Upload Failed', strip_tags($this->upload->display_errors()), 'error', 'testimonials');
-            return;
-        }
-
-        $uploadData = $this->upload->data();
-        $data['profile_photo'] = $upload_path . $uploadData['file_name'];
-
-        // Delete old image only if it exists and remove_image wasn't set
-        if (!empty($oldImage) && $this->input->post('remove_image') != '1' && file_exists(FCPATH . $oldImage)) {
-            unlink(FCPATH . $oldImage);
-        }
-    }
-
-    // ================= UPDATE QUERY =================
-    $this->db->where('id', $id);
-    if ($this->db->update('testimonial_directory', $data)) {
-        sweetAlert('Success', 'Testimonial updated successfully', 'success', 'testimonials');
-    } else {
-        sweetAlert('Error', 'Testimonial update failed', 'error', 'testimonials');
-    }
-}
 
 
 
@@ -176,10 +120,10 @@ public function update_Testimonials()
             }
 
             $uploadSettings = [
-                'upload_path'   => $logoUploadDirectory,
+                'upload_path' => $logoUploadDirectory,
                 'allowed_types' => 'jpg|jpeg|png|webp',
-                'max_size'      => 5120,
-                'encrypt_name'  => TRUE
+                'max_size' => 5120,
+                'encrypt_name' => TRUE
             ];
 
             $this->load->library('upload', $uploadSettings);
@@ -205,7 +149,7 @@ public function update_Testimonials()
             // ================= DB INSERT =================
             $insertData = [
                 'company_logo' => $logoImagePath,
-                'date'         => date('Y-m-d H:i:s')
+                'date' => date('Y-m-d H:i:s')
             ];
 
             $this->db->insert('company_logo_directory', $insertData);
@@ -231,141 +175,141 @@ public function update_Testimonials()
 
     ////    Testimonials Company Logo Update    ////
 
-public function updateCompanyLogoImage()
-{
-    /* =====================================================
-       1️⃣ Logo ID & Remove Flag lena (form ke hidden inputs)
-    ===================================================== */
-    $logoId     = $this->input->post('logo_id');
-    $removeLogo = $this->input->post('remove_logo'); // 0 ya 1
+    public function updateCompanyLogoImage()
+    {
+        /* =====================================================
+        1️⃣ Logo ID & Remove Flag lena (form ke hidden inputs)
+        ===================================================== */
+        $logoId = $this->input->post('logo_id');
+        $removeLogo = $this->input->post('remove_logo'); // 0 ya 1
 
-    if (!$logoId) {
-        sweetAlert('Error', 'Invalid logo ID', 'error', 'testimonials');
-        return;
-    }
-
-    /* =====================================================
-       2️⃣ Database se OLD image ka path nikalna
-    ===================================================== */
-    $oldData = $this->db
-        ->select('company_logo')
-        ->where('id', $logoId)
-        ->get('company_logo_directory')
-        ->row();
-
-    if (!$oldData) {
-        sweetAlert('Error', 'Record not found', 'error', 'testimonials');
-        return;
-    }
-
-    $oldImagePath = $oldData->company_logo; // example: uploads/testimonials/old.webp
-
-
-    /* =====================================================
-       3️⃣ CASE 1: User ne NEW image select ki hai
-       - old delete
-       - new upload
-       - DB update
-    ===================================================== */
-    if (!empty($_FILES['company_logo']['name'])) {
-
-        // ===== Upload Folder =====
-        $uploadPath = FCPATH . 'uploads/testimonials/';
-
-        if (!is_dir($uploadPath)) {
-            mkdir($uploadPath, 0755, true);
+        if (!$logoId) {
+            sweetAlert('Error', 'Invalid logo ID', 'error', 'testimonials');
+            return;
         }
 
-        // ===== Upload Config =====
-        $config = [
-            'upload_path'   => $uploadPath,
-            'allowed_types' => 'jpg|jpeg|png|webp',
-            'max_size'      => 5120,
-            'encrypt_name'  => true
-        ];
+        /* =====================================================
+        2️⃣ Database se OLD image ka path nikalna
+        ===================================================== */
+        $oldData = $this->db
+            ->select('company_logo')
+            ->where('id', $logoId)
+            ->get('company_logo_directory')
+            ->row();
 
-        $this->load->library('upload');
-        $this->upload->initialize($config);
+        if (!$oldData) {
+            sweetAlert('Error', 'Record not found', 'error', 'testimonials');
+            return;
+        }
 
-        // ===== Upload Attempt =====
-        if (!$this->upload->do_upload('company_logo')) {
+        $oldImagePath = $oldData->company_logo; // example: uploads/testimonials/old.webp
+
+
+        /* =====================================================
+        3️⃣ CASE 1: User ne NEW image select ki hai
+        - old delete
+        - new upload
+        - DB update
+        ===================================================== */
+        if (!empty($_FILES['company_logo']['name'])) {
+
+            // ===== Upload Folder =====
+            $uploadPath = FCPATH . 'uploads/testimonials/';
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            // ===== Upload Config =====
+            $config = [
+                'upload_path' => $uploadPath,
+                'allowed_types' => 'jpg|jpeg|png|webp',
+                'max_size' => 5120,
+                'encrypt_name' => true
+            ];
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            // ===== Upload Attempt =====
+            if (!$this->upload->do_upload('company_logo')) {
+                sweetAlert(
+                    'Upload Failed',
+                    $this->upload->display_errors('', ''),
+                    'error',
+                    'testimonials'
+                );
+                return;
+            }
+
+            // ===== New Image Data =====
+            $uploadData = $this->upload->data();
+            $newImagePath = 'uploads/testimonials/' . $uploadData['file_name'];
+
+            // ===== OLD image delete (folder se) =====
+            if (!empty($oldImagePath) && file_exists(FCPATH . $oldImagePath)) {
+                unlink(FCPATH . $oldImagePath);
+            }
+
+            // ===== Database Update =====
+            $this->db->where('id', $logoId);
+            $this->db->update('company_logo_directory', [
+                'company_logo' => $newImagePath,
+                'date' => date('Y-m-d H:i:s')
+            ]);
+
             sweetAlert(
-                'Upload Failed',
-                $this->upload->display_errors('', ''),
-                'error',
+                'Success',
+                'Company logo updated successfully',
+                'success',
                 'testimonials'
             );
             return;
         }
 
-        // ===== New Image Data =====
-        $uploadData   = $this->upload->data();
-        $newImagePath = 'uploads/testimonials/' . $uploadData['file_name'];
 
-        // ===== OLD image delete (folder se) =====
-        if (!empty($oldImagePath) && file_exists(FCPATH . $oldImagePath)) {
-            unlink(FCPATH . $oldImagePath);
+        /* =====================================================
+        4️⃣ CASE 2: New image nahi di
+        BUT remove (×) click kiya
+        - sirf OLD image delete
+        - DB empty
+        ===================================================== */
+        if ($removeLogo == 1) {
+
+            // Folder se old image delete
+            if (!empty($oldImagePath) && file_exists(FCPATH . $oldImagePath)) {
+                unlink(FCPATH . $oldImagePath);
+            }
+
+            // Database update (logo empty)
+            $this->db->where('id', $logoId);
+            $this->db->update('company_logo_directory', [
+                'company_logo' => null,
+                'date' => date('Y-m-d H:i:s')
+            ]);
+
+            sweetAlert(
+                'Success',
+                'Company logo removed successfully',
+                'success',
+                'testimonials'
+            );
+            return;
         }
 
-        // ===== Database Update =====
-        $this->db->where('id', $logoId);
-        $this->db->update('company_logo_directory', [
-            'company_logo' => $newImagePath,
-            'date'         => date('Y-m-d H:i:s')
-        ]);
 
+        /* =====================================================
+        5️⃣ CASE 3: Kuch bhi nahi kiya
+        - no upload
+        - no remove
+        ===================================================== */
         sweetAlert(
-            'Success',
-            'Company logo updated successfully',
-            'success',
+            'Info',
+            'No changes made',
+            'info',
             'testimonials'
         );
-        return;
     }
-
-
-    /* =====================================================
-       4️⃣ CASE 2: New image nahi di
-       BUT remove (×) click kiya
-       - sirf OLD image delete
-       - DB empty
-    ===================================================== */
-    if ($removeLogo == 1) {
-
-        // Folder se old image delete
-        if (!empty($oldImagePath) && file_exists(FCPATH . $oldImagePath)) {
-            unlink(FCPATH . $oldImagePath);
-        }
-
-        // Database update (logo empty)
-        $this->db->where('id', $logoId);
-        $this->db->update('company_logo_directory', [
-            'company_logo' => null,
-            'date'         => date('Y-m-d H:i:s')
-        ]);
-
-        sweetAlert(
-            'Success',
-            'Company logo removed successfully',
-            'success',
-            'testimonials'
-        );
-        return;
-    }
-
-
-    /* =====================================================
-       5️⃣ CASE 3: Kuch bhi nahi kiya
-       - no upload
-       - no remove
-    ===================================================== */
-    sweetAlert(
-        'Info',
-        'No changes made',
-        'info',
-        'testimonials'
-    );
-}
 
 
 

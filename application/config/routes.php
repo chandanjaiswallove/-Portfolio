@@ -140,7 +140,7 @@ $route['updateCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLupdateCompany
 
 
 
-    ////// Delete function btn /////
+////// Delete function btn /////
 $route['deleteService'] = 'dashBoard/Admin/AdminDashboard/deleteSection';
 
 
