@@ -118,6 +118,12 @@ class AdminDashboard extends CI_Controller
     {
         $this->Testimonial->uploadCompanyLogoImage();
     }
+    
+
+    public function modeLupdateCompanyLogoImage()       /// Testimonial Model call here
+    {
+        $this->Testimonial->updateCompanyLogoImage();
+    }
 
 
 

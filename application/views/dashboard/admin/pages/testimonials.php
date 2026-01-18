@@ -281,16 +281,16 @@
                                                     <div class="d-inline-block position-relative">
                                                         <img id="editTestimonialPhotoPreview"
                                                             style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
-<button type="button" id="editTestimonialPhotoRemove" onclick="removeFileWithPreview(
+                                                        <button type="button" id="editTestimonialPhotoRemove" onclick="removeFileWithPreview(
   'editTestimonialPhoto',
   'editTestimonialPhotoName',
   'editTestimonialPhotoPreview',
   'editTestimonialPhotoRemove',
   'editRemoveImage'
 )">
-    &times;
-</button>
-<!-- 🔥 add this comment outside the onclick -->
+                                                            &times;
+                                                        </button>
+                                                        <!-- 🔥 add this comment outside the onclick -->
 
 
 
@@ -353,7 +353,8 @@
 
                                         <div class="modal-body">
 
-                                            <form method="POST" action="<?php echo base_url('insertCompanyLogo'); ?>" enctype="multipart/form-data">
+                                            <form method="POST" action="<?php echo base_url('insertCompanyLogo'); ?>"
+                                                enctype="multipart/form-data">
                                                 <div class="mb-3 col-md-12 position-relative">
                                                     <label class="form-label">Company Logo</label>
 
@@ -393,7 +394,7 @@
                                                     </button>
                                                 </div>
                                             </form>
-                                            
+
                                         </div>
 
                                     </div>
@@ -438,7 +439,7 @@
                                                         onclick="return confirm('Are you sure to delete this logo?');">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </a>
-                                                    
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -463,35 +464,75 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form method="post" enctype="multipart/form-data">
 
+                                        <form method="POST" action="<?php echo base_url('updateCompanyLogo'); ?>"
+                                            enctype="multipart/form-data">
+
+                                            <!-- Company Logo Section -->
                                             <div class="mb-3 col-md-12 position-relative">
                                                 <label class="form-label">Company Logo</label>
 
+                                                <!-- Fake input + Browse button -->
                                                 <div class="input-group mb-2">
+
+                                                    <!-- Sirf file ka naam dikhane ke liye -->
                                                     <input type="text" id="editCompanyLogoName" class="form-control"
                                                         placeholder="No file chosen" readonly>
-                                                    <button class="btn btn-primary rounded-end" type="button"
+
+                                                    <!-- Browse button jo hidden file input ko click karta hai -->
+                                                    <button class="btn btn-primary" type="button"
                                                         onclick="document.getElementById('editCompanyLogoFile').click();">
                                                         Browse
                                                     </button>
+
+                                                    <!-- Actual file input (hidden) -->
                                                     <input type="file" class="d-none" id="editCompanyLogoFile"
-                                                        name="company_logo" accept="image/*"
-                                                        onchange="updateFileNameAndPreview('editCompanyLogoFile','editCompanyLogoName','editCompanyLogoPreview','editCompanyLogoRemove')">
+                                                        name="company_logo" accept="image/*" onchange="
+                     updateFileNameAndPreview(
+                       'editCompanyLogoFile',
+                       'editCompanyLogoName',
+                       'editCompanyLogoPreview',
+                       'editCompanyLogoRemove'
+                     )
+                   ">
                                                 </div>
 
+                                                <!-- Image Preview + Remove Button -->
                                                 <div class="d-inline-block position-relative mt-2">
+
+                                                    <!-- Logo preview -->
                                                     <img id="editCompanyLogoPreview"
-                                                        style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
-                                                    <button type="button" id="editCompanyLogoRemove"
-                                                        onclick="removeFileWithPreview('editCompanyLogoFile','editCompanyLogoName','editCompanyLogoPreview','editCompanyLogoRemove')"
-                                                        style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;">
+                                                        style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
+
+                                                    <!-- Remove (×) button -->
+                                                    <button type="button" id="editCompanyLogoRemove" onclick="
+                      removeFileWithPreview(
+                        'editCompanyLogoFile',
+                        'editCompanyLogoName',
+                        'editCompanyLogoPreview',
+                        'editCompanyLogoRemove'
+                      )
+                    " style="display:none;
+                           position:absolute;
+                           top:-10px;
+                           right:-10px;
+                           border:none;
+                           background:none;
+                           font-size:20px;
+                           color:#fe6a49;
+                           cursor:pointer;">
                                                         &times;
                                                     </button>
                                                 </div>
                                             </div>
 
+                                            <!-- 🔴 Logo ka database ID (update ke liye) -->
                                             <input type="hidden" name="logo_id" id="editCompanyLogoId">
+
+                                            <!-- 🔴 IMPORTANT FLAG
+         0 = kuch remove nahi
+         1 = old image delete karni hai -->
+                                            <input type="hidden" name="remove_logo" id="editRemoveLogo" value="0">
 
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -503,6 +544,8 @@
                                             </div>
 
                                         </form>
+
+
                                     </div>
 
                                 </div>
@@ -741,9 +784,14 @@
 
 
 <script>
-    /// add company logo edit 
-
+    /* ===============================
+       New image select
+    ================================ */
     function updateFileNameAndPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+
+        // 🔴 New image select = remove cancel
+        document.getElementById('editRemoveLogo').value = 0;
+
         const fileInput = document.getElementById(fileInputId);
         const fileNameInput = document.getElementById(nameInputId);
         const preview = document.getElementById(previewId);
@@ -751,8 +799,9 @@
 
         if (fileInput.files && fileInput.files[0]) {
             fileNameInput.value = fileInput.files[0].name;
+
             const reader = new FileReader();
-            reader.onload = e => {
+            reader.onload = function (e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
                 removeBtn.style.display = 'block';
@@ -761,27 +810,59 @@
         }
     }
 
+
+    /* ===============================
+       Remove image (❌ click)
+    ================================ */
     function removeFileWithPreview(fileInputId, nameInputId, previewId, removeBtnId) {
+
         document.getElementById(fileInputId).value = '';
         document.getElementById(nameInputId).value = '';
+
         const preview = document.getElementById(previewId);
         preview.src = '';
         preview.style.display = 'none';
+
         document.getElementById(removeBtnId).style.display = 'none';
+
+        // 🔴 Backend ko batao: image remove karni hai
+        document.getElementById('editRemoveLogo').value = 1;
     }
 
-    // Populate Edit Modal
+
+    /* ===============================
+       Populate Edit Modal
+    ================================ */
     document.addEventListener('DOMContentLoaded', function () {
+
         document.querySelectorAll('.editCompanyLogoBtn').forEach(function (btn) {
+
             btn.addEventListener('click', function () {
+
+                // ID set
                 document.getElementById('editCompanyLogoId').value = this.dataset.id;
-                document.getElementById('editCompanyLogoPreview').src = this.dataset.logo;
+
+                // File name show
                 document.getElementById('editCompanyLogoName').value = this.dataset.logoName;
-                document.getElementById('editCompanyLogoPreview').style.display = 'block';
+
+                // Preview image
+                const preview = document.getElementById('editCompanyLogoPreview');
+                preview.src = this.dataset.logo;
+                preview.style.display = 'block';
+
+                // Remove button show
                 document.getElementById('editCompanyLogoRemove').style.display = 'block';
+
+                // 🔴 Modal open hote hi reset remove flag
+                document.getElementById('editRemoveLogo').value = 0;
             });
+
         });
+
     });
 </script>
+
+
+
 
 </div>

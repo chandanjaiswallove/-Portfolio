@@ -133,9 +133,9 @@ $route['insertTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLinsertTestimo
 
 $route['updateTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLupdateTestimonial';      /// Testimonial Model 
 
-$route['insertCompanyLogo'] ='dashBoard/Admin/AdminDashboard/modeLinsertCompanyLogo';     /// Testimonial Model insertLogo Company
+$route['insertCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLinsertCompanyLogo';     /// Testimonial Model insertLogo Company
 
-
+$route['updateCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLupdateCompanyLogoImage';     /// Testimonial Model updateCompanyLogo function
 
 
 
