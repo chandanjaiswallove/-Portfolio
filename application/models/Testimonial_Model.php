@@ -12,10 +12,10 @@ class Testimonial_Model extends CI_Model
 
     ////    edit and fetch /////
     // Update testimonial
-   public function update_Testimonials()
-{
-    
-}
+    public function update_Testimonials()
+    {
+
+    }
 
 
 

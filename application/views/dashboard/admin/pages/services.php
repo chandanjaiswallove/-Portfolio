@@ -150,23 +150,23 @@
                                                     <div class="modal fade" id="deleteModal_<?= $row->id; ?>" tabindex="-1"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content bg-white">
+                                                            <div class="modal-content bg-dark ">
 
                                                                 <!-- Modal Header -->
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Delete Row <?= $row->id; ?></h5>
+                                                                <div class="modal-header border-0">
+                                                                    <h5 class="modal-title text-white ">Delete Row <?= $row->id; ?></h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"></button>
                                                                 </div>
 
                                                                 <!-- Modal Body -->
-                                                                <div class="modal-body text-center">
+                                                                <div class="modal-body text-center ">
                                                                     <p>Are you sure you want to delete this row? <br> This action
                                                                         cannot be undone.</p>
                                                                 </div>
 
                                                                 <!-- Modal Footer -->
-                                                                <div class="modal-footer justify-content-center">
+                                                                <div class="modal-footer justify-content-center border-0">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Cancel</button>
                                                                     <a href="<?= base_url('deleteService?id=' . $row->id); ?>"

@@ -175,13 +175,13 @@
                                                 <td class="text-end">
 
 
-                                                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
-                                                        data-bs-target="#editTestimonialModal">
-                                                        <i class="fa fa-pencil"></i> Edit
+                                            
+                                                    <button class="btn btn-primary btn-sm me-2" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#editTestimonialModal_<?= $row->id; ?>">
+                                                          <i class="fa fa-pencil"></i> Edit
                                                     </button>
 
-
-
+                                                    
 
 
                                                     <a href="<?= base_url('admin/delete_testimonial/' . $row->id) ?>"
@@ -189,20 +189,12 @@
                                                         onclick="return confirm('Are you sure to delete this testimonial?');">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </a>
+
+                                                    
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="8" class="text-center text-muted">No testimonials found</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- EDIT MODAL testimonal 1-->
-                        <div class="modal fade" id="editTestimonialModal" tabindex="-1" aria-hidden="true">
+                                                           <!-- EDIT MODAL testimonal 1-->
+                        <div class="modal fade" id="editTestimonialModal_<?= $row->id; ?>" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -215,33 +207,32 @@
 
                                         <form method="POST" action="<?php echo base_url('updateTestimonial'); ?>"
                                             enctype="multipart/form-data">
-
-                                            <!-- REQUIRED -->
-                                            <input type="hidden" name="testimonial_id" id="editTestimonialId">
-                                            <input type="hidden" name="remove_image" id="editRemoveImage" value="0">
-
-
                                             <div class="row">
+                                                                    <input type="hidden" name="testimonial_id" value="<?= $row->id; ?>">
+
 
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Profile Name</label>
                                                     <input type="text" class="form-control" name="profile_name"
-                                                        id="editProfileName" required>
+                                                        id="editProfileName" value="<?php echo $row->profile_name; ?>"
+                                                        required>
                                                 </div>
 
                                                 <!-- Company Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Company Name</label>
                                                     <input type="text" class="form-control" name="company_name"
-                                                        id="editCompanyName" required>
+                                                        id="editCompanyName" value="<?php echo $row->company_name; ?>"
+                                                        required>
                                                 </div>
 
                                                 <!-- Project Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Client Project Name</label>
                                                     <input type="text" class="form-control" name="client_project_name"
-                                                        id="editProjectName" required>
+                                                        id="editProjectName"
+                                                        value="<?php echo $row->client_project_name; ?>" required>
                                                 </div>
 
                                                 <!-- Profile Photo -->
@@ -278,7 +269,8 @@
 
                                                         <!-- Profile photo preview -->
                                                         <img id="editProfilePhotoPreview"
-                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
+                                                            src="<?php echo base_url('') . $row->profile_photo; ?>"
+                                                            style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:block;">
 
                                                         <!-- Remove (×) button -->
                                                         <button type="button" id="editProfilePhotoRemove" onclick="
@@ -306,7 +298,8 @@
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label">Client Review</label>
                                                     <textarea class="form-control" rows="4" name="client_review"
-                                                        id="editClientReview" style="resize:none;" required></textarea>
+                                                        id="editClientReview" style="resize:none;"
+                                                        required><?php echo $row->client_review; ?></textarea>
                                                 </div>
 
                                             </div>
@@ -331,6 +324,17 @@
                             </div>
                         </div>
 
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8" class="text-center text-muted">No testimonials found</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+         
                     </div>
                 </div>
             </div>

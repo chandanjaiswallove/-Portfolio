@@ -60,8 +60,10 @@
                                                         <div class="input-group mb-2">
                                                             <input type="text" id="skillLogoName" class="form-control"
                                                                 placeholder="No file chosen" readonly>
+
                                                             <button type="button" class="btn btn-primary rounded-end"
                                                                 onclick="document.getElementById('skill_logo').click();">Browse</button>
+
                                                             <input type="file" class="d-none" id="skill_logo"
                                                                 name="skill_logo" accept="image/*"
                                                                 onchange="handleFilePreview(this,'skillLogoName','skillLogoPreview','skillLogoRemove')">
@@ -70,6 +72,7 @@
                                                         <div class="d-inline-block position-relative">
                                                             <img id="skillLogoPreview"
                                                                 style="width:80px;height:80px;object-fit:contain;display:none;">
+
                                                             <button type="button" id="skillLogoRemove"
                                                                 onclick="removeFile('skill_logo','skillLogoName','skillLogoPreview','skillLogoRemove')"
                                                                 style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;display:none;cursor:pointer;">&times;</button>
@@ -188,9 +191,11 @@
                                                     <label class="form-label">Skill Logo</label>
                                                     <div class="input-group mb-2">
                                                         <input type="text" id="editSkillLogoName" class="form-control"
-                                                            readonly>
+                                                            placeholder="No file chosen" readonly>
+
                                                         <button type="button" class="btn btn-primary rounded-end"
                                                             onclick="document.getElementById('edit_skill_logo').click();">Browse</button>
+                                                            
                                                         <input type="file" class="d-none" id="edit_skill_logo"
                                                             name="skill_logo" accept="image/*"
                                                             onchange="handleFilePreview(this,'editSkillLogoName','editSkillLogoPreview','editSkillLogoRemove')">
