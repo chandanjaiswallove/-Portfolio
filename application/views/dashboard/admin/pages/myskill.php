@@ -151,11 +151,55 @@
                                                     </button>
 
                                                     <!-- DELETE BUTTON -->
-                                                    <a href="<?= base_url('/PENDING') ?>"
-                                                        class="btn btn-danger btn-sm"
+                                                    <!-- <a href="<?= base_url('/') ?>" class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Are you sure to delete this skill?');">
                                                         <i class="fa fa-trash"></i> Delete
-                                                    </a>
+                                                    </a> -->
+
+                                                    <!-- DELETE BUTTON -->
+                                                    <button class="btn btn-danger btn-sm me-2" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#skillDeleteModal_<?= $row->id; ?>">
+                                                        <i class="fa fa-trash"></i> Delete
+                                                    </button>
+
+                                                    <div class="modal fade" id="skillDeleteModal_<?= $row->id; ?>" tabindex="1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content bg-dark">
+                                                                <div class="modal-header border-0">
+                                                                    <h5 class="modal-title text-white">Delete <?= $row->id; ?>
+                                                                    </h5>
+                                                                    <button class="btn-close" type="button"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+
+                                                                <div class="modal-body text-center border-0">
+                                                                    <p>Are you sure you want to delete this row? <br> This
+                                                                        action
+                                                                        cannot be undone.</p>
+                                                                </div>
+
+                                                                <div class="modal-footer border-0 justify-content-center ">
+                                                                    <button class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+
+                                                                      <a href="<?= base_url('removeSkills?id=' . $row->id); ?>"
+                                                                        class="btn btn-danger">
+                                                                        Yes, Delete
+                                                                    </a>
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+
+
 
                                                 </td>
                                             </tr>
@@ -195,7 +239,7 @@
 
                                                         <button type="button" class="btn btn-primary rounded-end"
                                                             onclick="document.getElementById('edit_skill_logo').click();">Browse</button>
-                                                            
+
                                                         <input type="file" class="d-none" id="edit_skill_logo"
                                                             name="skill_logo" accept="image/*"
                                                             onchange="handleFilePreview(this,'editSkillLogoName','editSkillLogoPreview','editSkillLogoRemove')">

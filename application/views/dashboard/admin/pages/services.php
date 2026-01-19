@@ -154,7 +154,7 @@
 
                                                                 <!-- Modal Header -->
                                                                 <div class="modal-header border-0">
-                                                                    <h5 class="modal-title text-white ">Delete Row <?= $row->id; ?></h5>
+                                                                <h5 class="modal-title text-white ">Delete Row <?= $row->id; ?></h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"></button>
                                                                 </div>

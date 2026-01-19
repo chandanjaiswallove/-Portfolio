@@ -78,6 +78,11 @@ class AdminDashboard extends CI_Controller
         $this->Service->deleteBtn();
     }
 
+    public function modeLdeleteSkill()  /// deldeteSkill function load from my skill model
+    {
+        $this->Skill->deleteSkill();
+    }
+
 
     //=================== Dashboard Pages model Here ===================== ///
 
