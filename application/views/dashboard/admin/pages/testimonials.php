@@ -491,11 +491,53 @@
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
 
-                                                    <a href="<?= base_url('admin/delete_company_logo/' . $row->id) ?>"
-                                                        class="btn btn-secondary btn-sm"
-                                                        onclick="return confirm('Are you sure to delete this logo?');">
+
+                                                    <!-- Delete Button and Delete Modal  -->
+
+                                                    <button class="btn btn-secondary btn-sm me-2" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteTestimonialLogo_<?= $row->id; ?>">
                                                         <i class="fa fa-trash"></i> Delete
-                                                    </a>
+                                                    </button>
+
+                                                    <!-- Delete Modal here -->
+
+                                                    <div class="modal fade " id="deleteTestimonialLogo_<?= $row->id; ?>"
+                                                        tabindex="1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content"
+                                                                style="background:transparent; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);">
+
+                                                                <div class="modal-header border-0">
+                                                                    <h5 class="modal-title text-white">Delete Row
+                                                                        <?= $row->id; ?>
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+
+                                                                <div class="modal-body text-center border-0">
+                                                                    <p>Are you sure you want to delete this row? </br>
+                                                                        This action cannot be undone.</p>
+                                                                </div>
+
+                                                                <div class="modal-footer justify-content-center border-0">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+
+                                                                    <a href="<?= base_url('testimonialremoveLogo?id=' . $row->id); ?>"
+                                                                        class="btn btn-primary"> Yes, Delete</a>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+
+
 
                                                 </td>
                                             </tr>

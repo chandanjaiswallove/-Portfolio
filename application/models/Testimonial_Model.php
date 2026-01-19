@@ -321,9 +321,21 @@ class Testimonial_Model extends CI_Model
         $userId = $_GET['id'];
 
         if ($this->db->query("DELETE FROM testimonial_directory WHERE id = '$userId'")) {
-            sweetAlert('success', 'Delete Successfully', 'success', 'testimonials');
+            sweetAlert('Success', 'Delete Successfully', 'success', 'testimonials');
         } else {
-            sweetAlert('failed', 'Failed', 'error', 'testimonials');
+            sweetAlert('Failed', 'Failed', 'error', 'testimonials');
+        }
+    }
+
+
+    public function testimonialremoveLogo()     //// Remove Testimonial Company Logo Delete
+    {
+        $logoId = $_GET['id'];
+
+        if ($this->db->query("DELETE FROM company_logo_directory WHERE id = '$logoId'")) {
+            sweetAlert('Success', 'Delete Successfully', 'success', 'testimonials');
+        } else {
+            sweetAlert('Failed', 'Failed', 'error', 'testimonials');
         }
     }
 

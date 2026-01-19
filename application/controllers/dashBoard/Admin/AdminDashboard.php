@@ -87,6 +87,12 @@ class AdminDashboard extends CI_Controller
         $this->Testimonial->removeTestimonial();
     }
 
+
+    public function modeLtestimonialremoveLogo()    //// Remove Testimonail Company logo model function call here 
+    {
+        $this->Testimonial->testimonialremoveLogo();
+    }
+
     //=================== Dashboard Pages model Here ===================== ///
 
 
