@@ -141,7 +141,7 @@
 
                                                         <!-- delete function modal here -->
                                                     <!-- DELETE BUTTON -->
-                                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                                    <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
                                                         data-bs-target="#deleteModal_<?= $row->id; ?>">
                                                         Delete
                                                     </button>
@@ -170,7 +170,7 @@
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Cancel</button>
                                                                     <a href="<?= base_url('deleteService?id=' . $row->id); ?>"
-                                                                        class="btn btn-danger">
+                                                                        class="btn btn-primary">
                                                                         Yes, Delete
                                                                     </a>
                                                                 </div>

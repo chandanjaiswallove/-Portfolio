@@ -157,7 +157,7 @@
                                                     </a> -->
 
                                                     <!-- DELETE BUTTON -->
-                                                    <button class="btn btn-danger btn-sm me-2" type="button"
+                                                    <button class="btn btn-secondary btn-sm me-2" type="button"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#skillDeleteModal_<?= $row->id; ?>">
                                                         <i class="fa fa-trash"></i> Delete
@@ -185,7 +185,7 @@
                                                                         data-bs-dismiss="modal">Cancel</button>
 
                                                                       <a href="<?= base_url('removeSkills?id=' . $row->id); ?>"
-                                                                        class="btn btn-danger">
+                                                                        class="btn btn-primary">
                                                                         Yes, Delete
                                                                     </a>
                                                                 </div>

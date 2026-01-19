@@ -83,6 +83,9 @@ class AdminDashboard extends CI_Controller
         $this->Skill->deleteSkill();
     }
 
+    public function modeLremoveTestimonial() {      //// removeTestimonial function load from Testimonial model
+        $this->Testimonial->removeTestimonial();
+    }
 
     //=================== Dashboard Pages model Here ===================== ///
 

@@ -313,4 +313,15 @@ class Testimonial_Model extends CI_Model
 
 
 
+    public function removeTestimonial()     //// Remove Testimonial Remove Testional function for delete
+    {
+        $userId = $_GET['id'];
+
+        if($this->db->query("DELETE FROM testimonial_directory WHERE id = '$userId'")) {
+            sweetAlert('success', 'Delete Successfully', 'success', 'testimonials');
+        } else {
+            sweetAlert('failed', 'Failed', 'error', 'testimonials');
+        }
+    }
+
 }

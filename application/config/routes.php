@@ -143,6 +143,6 @@ $route['updateCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLupdateCompany
 ////// Delete function btn /////
 $route['deleteService'] = 'dashBoard/Admin/AdminDashboard/deleteSection';
 $route['removeSkills'] = 'dashBoard/Admin/AdminDashboard/modeLdeleteSkill';
-
+$route['removeTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLremoveTestimonial';
 
 ///================= Dashboard  controller model function call here   =================

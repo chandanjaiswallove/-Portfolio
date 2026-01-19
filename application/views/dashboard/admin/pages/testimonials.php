@@ -47,7 +47,6 @@
                                         </div>
                                         <div class="modal-body">
 
-
                                             <form method="POST" action="<?php echo base_url('insertTestimonial') ?>"
                                                 enctype="multipart/form-data">
                                                 <div class="row">
@@ -133,8 +132,6 @@
                                                 </div>
                                             </form>
 
-
-
                                         </div>
 
                                     </div>
@@ -163,7 +160,7 @@
                                         <?php foreach ($testimonials as $row): ?>
                                             <tr>
                                                 <td><?= $row->id ?></td>
-                                                <td><?= date('d M Y', strtotime($row->created_at)) ?></td>
+                                                <td><?= date('d M Y', strtotime($row->updated_at)) ?></td>
                                                 <td><?= $row->profile_name ?></td>
                                                 <td>
                                                     <img src="<?= base_url($row->profile_photo) ?>"
@@ -175,26 +172,74 @@
                                                 <td class="text-end">
 
 
-                                            
-                                                    <button class="btn btn-primary btn-sm me-2" type="button" data-bs-toggle="modal"
+
+                                                    <button class="btn btn-primary btn-sm me-2" type="button"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#editTestimonialModal_<?= $row->id; ?>">
-                                                          <i class="fa fa-pencil"></i> Edit
+                                                        <i class="fa fa-pencil"></i> Edit
                                                     </button>
 
-                                                    
+
+                                                    <!-- /// Delte button and delete modal and delete function -->
+                                                    <button class="btn btn-secondary btn-sm me-2" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#tableTestimonialModal<?= $row->id; ?>">
+                                                        <i class="fa fa-trash "></i> Delete
+                                                    </button>
+
+                                                    <div class="modal fade" id="tableTestimonialModal<?= $row->id; ?>" tabindex="1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content bg-dark">
+                                                                <div class="modal-header border-0">
+                                                                    <h5 class="modal-title text-white">Delete <?= $row->id; ?>
+                                                                    </h5>
+                                                                    <button class="btn-close" type="button"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+
+                                                                <div class="modal-body text-center border-0">
+                                                                    <p>Are you sure you want to delete this row? <br> This
+                                                                        action
+                                                                        cannot be undone.</p>
+                                                                </div>
+
+                                                                <div class="modal-footer border-0 justify-content-center ">
+                                                                    <button class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+
+                                                                    <a href="<?= base_url('removeTestimonial?id=' . $row->id); ?>"
+                                                                        class="btn btn-primary">
+                                                                        Yes, Delete
+                                                                    </a>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
-                                                    <a href="<?= base_url('admin/delete_testimonial/' . $row->id) ?>"
-                                                        class="btn btn-secondary btn-sm"
-                                                        onclick="return confirm('Are you sure to delete this testimonial?');">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
 
-                                                    
+
+
                                                 </td>
                                             </tr>
-                                                           <!-- EDIT MODAL testimonal 1-->
-                        <div class="modal fade" id="editTestimonialModal_<?= $row->id; ?>" tabindex="-1" aria-hidden="true">
+
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8" class="text-center text-muted">No testimonials found</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+
+                        <!-- EDIT MODAL testimonal 1-->
+                        <div class="modal fade" id="editTestimonialModal_<?= $row->id; ?>" tabindex="-1"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -204,11 +249,10 @@
 
                                     <div class="modal-body">
 
-
                                         <form method="POST" action="<?php echo base_url('updateTestimonial'); ?>"
                                             enctype="multipart/form-data">
                                             <div class="row">
-                                                                    <input type="hidden" name="testimonial_id" value="<?= $row->id; ?>">
+                                                <input type="hidden" name="testimonial_id" value="<?= $row->id; ?>">
 
 
                                                 <!-- Profile Name -->
@@ -324,22 +368,16 @@
                             </div>
                         </div>
 
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="8" class="text-center text-muted">No testimonials found</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-         
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
 
 
 
