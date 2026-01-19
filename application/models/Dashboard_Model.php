@@ -69,7 +69,7 @@ class Dashboard_Model extends CI_Model
     public function get_testimonial_directory()
     {
         return $this->db
-            ->order_by('id', 'DESC')
+            ->order_by('id', 'ASC')
             ->get('testimonial_directory')
             ->result();
     }

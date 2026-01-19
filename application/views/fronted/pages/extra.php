@@ -99,6 +99,42 @@ $this->load->view('fronted/layouts/ui_Header');
 
         </div>
     </div>
+<!-- 
+
+        // Update testimonial
+    public function update_Testimonials()
+    {
+        $id = $_GET['id'];
+        $profileName = $_POST['profile_name'];
+        $companyName = $_POST['company_name'];
+        $clientProjectName = $_POST['client_project_name'];
+
+        // $config['upload_path'] = '';
+        // $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        // $config['max_size'] = 5120; // 5MB
+        // $config['encrypt_name'] = TRUE;
+
+        // $this->load->library('upload');
+        
+        // $this->upload->initialize($config);
+
+        if(isset($_POST['updateTestimonial']))
+        {
+            $this->db->query("UPDATE testimonial_directory SET company_name = '$companyName'  WHERE id = '$id'");
+            redirect(base_url('testimonials'));
+        }
+        
+        
+    }
+
+    public function deleteLogo()
+    {
+        $id = $_GET['id'];
+        $imageStatus = $_POST['profile_photo'];
+        $this->db->query("UPDATE testimonial_directory SET profile_photo = '$imageStatus'  WHERE id = '$id'");
+        redirect(base_url('testimonials'));
+
+    } -->
 
 
 

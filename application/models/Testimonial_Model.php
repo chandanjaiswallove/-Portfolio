@@ -15,7 +15,10 @@ class Testimonial_Model extends CI_Model
     public function update_Testimonials()
     {
 
+
     }
+
+
 
 
 
@@ -317,7 +320,7 @@ class Testimonial_Model extends CI_Model
     {
         $userId = $_GET['id'];
 
-        if($this->db->query("DELETE FROM testimonial_directory WHERE id = '$userId'")) {
+        if ($this->db->query("DELETE FROM testimonial_directory WHERE id = '$userId'")) {
             sweetAlert('success', 'Delete Successfully', 'success', 'testimonials');
         } else {
             sweetAlert('failed', 'Failed', 'error', 'testimonials');

@@ -187,8 +187,8 @@
                                                         <i class="fa fa-trash "></i> Delete
                                                     </button>
 
-                                                    <div class="modal fade" id="tableTestimonialModal<?= $row->id; ?>" tabindex="1"
-                                                        aria-hidden="true">
+                                                    <div class="modal fade" id="tableTestimonialModal<?= $row->id; ?>"
+                                                        tabindex="1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content bg-dark">
                                                                 <div class="modal-header border-0">
@@ -212,7 +212,7 @@
                                                                         class="btn btn-primary">
                                                                         Yes, Delete
                                                                     </a>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -350,6 +350,7 @@
 
                                             <!-- Buttons -->
                                             <div class="text-end">
+
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                     Cancel
                                                 </button>
@@ -536,7 +537,7 @@
                                                         placeholder="No file chosen" readonly>
 
                                                     <!-- Browse button jo hidden file input ko click karta hai -->
-                                                    <button class="btn btn-primary" type="button"
+                                                    <button class="btn btn-primary rounded-end" type="button"
                                                         onclick="document.getElementById('editCompanyLogoFile').click();">
                                                         Browse
                                                     </button>
