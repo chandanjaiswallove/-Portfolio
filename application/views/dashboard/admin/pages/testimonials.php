@@ -505,8 +505,15 @@
                                                     <div class="modal fade " id="deleteTestimonialLogo_<?= $row->id; ?>"
                                                         tabindex="1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content"
-                                                                style="background:transparent; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);">
+                                                            <div class="modal-content" style="
+                    background: transparent;
+                    backdrop-filter: blur(6px);
+                    -webkit-backdrop-filter: blur(6px);
+                    box-shadow:
+                        0 0 2px rgba(255, 253, 253, 0.31),
+                        0 0 3px rgba(255, 253, 253, 0.31);
+                    border-radius: 12px;
+                ">
 
                                                                 <div class="modal-header border-0">
                                                                     <h5 class="modal-title text-white">Delete Row
