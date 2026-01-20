@@ -173,11 +173,18 @@
 
 
 
-                                                    <button class="btn btn-primary btn-sm me-2" type="button"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#editTestimonialModal_<?= $row->id; ?>">
+                                                    <button type="button" class="btn btn-primary btn-sm me-2 editTestimonialBtn"
+                                                        data-bs-toggle="modal" data-bs-target="#editTestimonialModal"
+                                                        data-id="<?= $row->id ?>"
+                                                        data-profile-name="<?= htmlspecialchars($row->profile_name) ?>"
+                                                        data-company-name="<?= htmlspecialchars($row->company_name) ?>"
+                                                        data-project-name="<?= htmlspecialchars($row->client_project_name) ?>"
+                                                        data-review="<?= htmlspecialchars($row->client_review) ?>"
+                                                        data-photo="<?= base_url($row->profile_photo) ?>"
+                                                        data-photo-name="<?= basename($row->profile_photo) ?>">
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
+
 
 
                                                     <!-- /// Delte button and delete modal and delete function -->
@@ -238,8 +245,7 @@
 
 
                         <!-- EDIT MODAL testimonal 1-->
-                        <div class="modal fade" id="editTestimonialModal_<?= $row->id; ?>" tabindex="-1"
-                            aria-hidden="true">
+                        <div class="modal fade" id="editTestimonialModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -252,31 +258,29 @@
                                         <form method="POST" action="<?php echo base_url('updateTestimonial'); ?>"
                                             enctype="multipart/form-data">
                                             <div class="row">
-                                                <input type="hidden" name="testimonial_id" value="<?= $row->id; ?>">
-
+                                                <input type="hidden" name="remove_profile_photo"
+                                                    id="editRemoveProfilePhoto" value="0">
+                                                <input type="hidden" name="testimonial_id" id="editTestimonialId">
 
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Profile Name</label>
                                                     <input type="text" class="form-control" name="profile_name"
-                                                        id="editProfileName" value="<?php echo $row->profile_name; ?>"
-                                                        required>
+                                                        id="editProfileName" required>
                                                 </div>
 
                                                 <!-- Company Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Company Name</label>
                                                     <input type="text" class="form-control" name="company_name"
-                                                        id="editCompanyName" value="<?php echo $row->company_name; ?>"
-                                                        required>
+                                                        id="editCompanyName" required>
                                                 </div>
 
                                                 <!-- Project Name -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Client Project Name</label>
                                                     <input type="text" class="form-control" name="client_project_name"
-                                                        id="editProjectName"
-                                                        value="<?php echo $row->client_project_name; ?>" required>
+                                                        id="editProjectName" required>
                                                 </div>
 
                                                 <!-- Profile Photo -->
@@ -342,8 +346,7 @@
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label">Client Review</label>
                                                     <textarea class="form-control" rows="4" name="client_review"
-                                                        id="editClientReview" style="resize:none;"
-                                                        required><?php echo $row->client_review; ?></textarea>
+                                                        id="editClientReview" style="resize:none;" required></textarea>
                                                 </div>
 
                                             </div>
@@ -382,7 +385,7 @@
 
 
 
-    <!-- Container-fluid starts-->
+    <!-- Container-fluid starts 222-->
     <div class="container-fluid">
         <div class="edit-profile">
             <div class="row">
@@ -728,8 +731,11 @@
     }
 
 
+
+
+
     /* ===============================
-       Populate Edit Modal
+       Populate Edit Modal FOR COMPANY LOGO
     ================================ */
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -753,6 +759,57 @@
 
                 // 🔴 Modal open hote hi reset remove flag
                 document.getElementById('editRemoveLogo').value = 0;
+            });
+
+        });
+
+    });
+</script>
+
+
+<!-- TESTIMONAOL EDIT PREFILL CODE  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelectorAll('.editTestimonialBtn').forEach(button => {
+
+            button.addEventListener('click', function () {
+
+                document.getElementById('editTestimonialId').value =
+                    this.dataset.id;
+
+                document.getElementById('editProfileName').value =
+                    this.dataset.profileName;
+
+                document.getElementById('editCompanyName').value =
+                    this.dataset.companyName;
+
+                document.getElementById('editProjectName').value =
+                    this.dataset.projectName;
+
+                document.getElementById('editClientReview').value =
+                    this.dataset.review;
+
+                // Image handling
+                const preview = document.getElementById('editProfilePhotoPreview');
+                const fileNameInput = document.getElementById('editProfilePhotoName');
+                const removeBtn = document.getElementById('editProfilePhotoRemove');
+
+                // ❌ HERE IS THE FIX
+                const photo = this.dataset.photo;
+                const photoName = this.dataset.photoName;
+
+                if (photo) {
+                    preview.src = photo;
+                    fileNameInput.value = photoName;
+                    removeBtn.style.display = 'block';
+                } else {
+                    preview.src = '';
+                    fileNameInput.value = '';
+                    removeBtn.style.display = 'none';
+                }
+
+                document.getElementById('editRemoveProfilePhoto').value = 0;
             });
 
         });

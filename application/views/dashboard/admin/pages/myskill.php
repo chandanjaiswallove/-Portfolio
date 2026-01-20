@@ -54,6 +54,8 @@
                                             <form method="POST" enctype="multipart/form-data"
                                                 action="<?= base_url('insert_skill'); ?>">
                                                 <div class="row">
+
+                                                
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Logo</label>
@@ -75,9 +77,11 @@
 
                                                             <button type="button" id="skillLogoRemove"
                                                                 onclick="removeFile('skill_logo','skillLogoName','skillLogoPreview','skillLogoRemove')"
-                                                                style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;display:none;cursor:pointer;">&times;</button>
+                                            style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;display:none;cursor:pointer;">&times;</button>
                                                         </div>
                                                     </div>
+
+
 
                                                     <!-- SKILL TITLE -->
                                                     <div class="col-md-6 mb-3">
@@ -151,18 +155,13 @@
                                                     </button>
 
                                                     <!-- DELETE BUTTON -->
-                                                    <!-- <a href="<?= base_url('/') ?>" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Are you sure to delete this skill?');">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a> -->
-
-                                                    <!-- DELETE BUTTON -->
                                                     <button class="btn btn-secondary btn-sm me-2" type="button"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#skillDeleteModal_<?= $row->id; ?>">
                                                         <i class="fa fa-trash"></i> Delete
                                                     </button>
 
+                                                    <!-- DELETE MODAL -->
                                                     <div class="modal fade" id="skillDeleteModal_<?= $row->id; ?>" tabindex="1"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -196,8 +195,6 @@
                                                         </div>
 
                                                     </div>
-
-
 
 
 

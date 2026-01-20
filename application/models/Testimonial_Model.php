@@ -12,11 +12,91 @@ class Testimonial_Model extends CI_Model
 
     ////    edit and fetch /////
     // Update testimonial
-    public function update_Testimonials()
-    {
+public function update_Testimonials()
+{
+    // ================= GET ID =================
+    $id = $this->input->post('testimonial_id');
 
+    // ================= FETCH OLD DATA =================
+    $old = $this->db
+        ->where('id', $id)
+        ->get('testimonial_directory')
+        ->row();
 
+    if (!$old) {
+        sweetAlert('Error', 'Testimonial not found', 'error', 'testimonials');
+        return;
     }
+
+    // ================= UPLOAD CONFIG =================
+    $config['upload_path'] = './uploads/testimonials/';
+    $config['allowed_types'] = 'jpg|jpeg|png|webp';
+    $config['max_size'] = 2048; // 2 MB
+    $config['encrypt_name'] = TRUE;
+
+    $this->load->library('upload');
+    $this->upload->initialize($config);
+
+    // ================= DEFAULT OLD PHOTO =================
+    $profile_photo = $old->profile_photo;
+    $remove_photo = $this->input->post('remove_profile_photo'); // hidden input
+
+    // ==================================================
+    // CASE 1️⃣ : USER CLICKED REMOVE (×)
+    // ==================================================
+    if ($remove_photo == '1') {
+
+        if (!empty($old->profile_photo) && file_exists(FCPATH . $old->profile_photo)) {
+            unlink(FCPATH . $old->profile_photo);
+        }
+
+        $profile_photo = null; // DB me bhi remove
+    }
+
+    // ==================================================
+    // CASE 2️⃣ : USER UPLOADED NEW IMAGE
+    // ==================================================
+    if (!empty($_FILES['profile_photo']['name'])) {
+
+        if (!$this->upload->do_upload('profile_photo')) {
+            sweetAlert(
+                'Upload Failed',
+                strip_tags($this->upload->display_errors()),
+                'error',
+                'testimonials'
+            );
+            return;
+        }
+
+        // old image delete
+        if (!empty($old->profile_photo) && file_exists(FCPATH . $old->profile_photo)) {
+            unlink(FCPATH . $old->profile_photo);
+        }
+
+        $uploadData = $this->upload->data();
+        $profile_photo = 'uploads/testimonials/' . $uploadData['file_name'];
+    }
+
+    // ================= UPDATE DATA =================
+    $data = [
+        'profile_name'        => $this->input->post('profile_name', true),
+        'company_name'        => $this->input->post('company_name', true),
+        'client_project_name' => $this->input->post('client_project_name', true),
+        'client_review'       => $this->input->post('client_review', true),
+        'profile_photo'       => $profile_photo,
+        'updated_at'          => date('Y-m-d H:i:s')
+    ];
+
+    // ================= DB UPDATE =================
+    $this->db->where('id', $id);
+
+    if ($this->db->update('testimonial_directory', $data)) {
+        sweetAlert('Success', 'Testimonial updated successfully', 'success', 'testimonials');
+    } else {
+        sweetAlert('Error', 'Update failed', 'error', 'testimonials');
+    }
+}
+
 
 
 
