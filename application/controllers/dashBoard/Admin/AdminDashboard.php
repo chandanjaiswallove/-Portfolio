@@ -9,6 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property About_Model $About 
  * @property Skill_Model $Skill
  * @property Testimonial_Model $Testimonial
+ * @property PortfolioProject_Model $PortProject
  */
 
 class AdminDashboard extends CI_Controller
@@ -37,6 +38,7 @@ class AdminDashboard extends CI_Controller
         $this->load->model('About_Model', 'About');
         $this->load->model('Skill_Model', 'Skill');
         $this->load->model('Testimonial_Model', 'Testimonial');
+        $this->load->model('PortfolioProject_Model' , 'PortProject');
 
     }
 
@@ -91,6 +93,11 @@ class AdminDashboard extends CI_Controller
     public function modeLtestimonialremoveLogo()    //// Remove Testimonail Company logo model function call here 
     {
         $this->Testimonial->testimonialremoveLogo();
+    }
+
+    public function modeLportfolioProjectRemove()   ////  Remove Portfolio Project PortfolioProject_Model function call here
+    {
+        $this->PortProject->portfolioProjectRemove();
     }
 
     //=================== Dashboard Pages model Here ===================== ///

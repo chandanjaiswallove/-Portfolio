@@ -193,9 +193,45 @@
                                                 <i class="fa fa-pencil"></i>
                                             </a>
 
-                                            <a class="btn btn-secondary btn-sm">
+                                            <!-- Delete modal and button -->
+                                            <button class="btn btn-secondary btn-sm" type="button"
+                                                data-bs-target="#projectDelModal_<?= $row->id; ?>"
+                                                data-bs-toggle="modal">
                                                 <i class="fa fa-trash"></i>
-                                            </a>
+                                            </button>
+
+                                            <div class="modal fade" id="projectDelModal_<?= $row->id; ?>" tabindex="1"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content bg-dark">
+                                                        <div class="modal-header border-0 ">
+                                                            <h5 class="modal-title text-white">Delete Row
+                                                                <?= $row->id; ?></h5>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <div class="modal-body text-center border-0">
+                                                            <p>Are you sure you want to delete this row ? </br> you
+                                                                cannot be do undo.</p>
+
+                                                        </div>
+
+                                                        <div class="modal-footer border-0 justify-content-center">
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-bs-dismiss="modal">Cancel</button>
+                                                            <a href="<?= base_url('portfolioProjectRemove?id=' . $row->id); ?>"
+                                                                class="btn btn-primary">Yes, Delete</a>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+
+
                                         </td>
                                     </tr>
                                 </tbody>
