@@ -55,7 +55,7 @@
                                                 action="<?= base_url('insert_skill'); ?>">
                                                 <div class="row">
 
-                                                
+
                                                     <!-- SKILL LOGO -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Skill Logo</label>
@@ -283,6 +283,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- JS Functions -->
     <script>

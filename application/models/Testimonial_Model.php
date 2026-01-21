@@ -15,7 +15,7 @@ class Testimonial_Model extends CI_Model
 public function update_Testimonials()
 {
     // ================= GET ID =================
-    $id = $this->input->post('testimonial_id');
+    $id = $this->input->post('editTestId');
 
     // ================= FETCH OLD DATA =================
     $old = $this->db
@@ -39,7 +39,7 @@ public function update_Testimonials()
 
     // ================= DEFAULT OLD PHOTO =================
     $profile_photo = $old->profile_photo;
-    $remove_photo = $this->input->post('remove_profile_photo'); // hidden input
+    $remove_photo = $this->input->post('rProfilephoto'); // here
 
     // ==================================================
     // CASE 1️⃣ : USER CLICKED REMOVE (×)
@@ -96,6 +96,7 @@ public function update_Testimonials()
         sweetAlert('Error', 'Update failed', 'error', 'testimonials');
     }
 }
+
 
 
 

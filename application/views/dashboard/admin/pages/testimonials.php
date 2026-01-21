@@ -79,6 +79,7 @@
                                                         <label class="form-label">Profile Photo</label>
 
                                                         <div class="input-group mb-2">
+
                                                             <!-- File name display -->
                                                             <input type="text" id="insertTestimonialPhotoName"
                                                                 class="form-control" placeholder="No file chosen"
@@ -86,15 +87,19 @@
 
                                                             <!-- Browse button -->
                                                             <button class="btn btn-primary rounded-end" type="button"
-                                                                onclick="document.getElementById('insertTestimonialPhoto').click();">
+                                                                onclick="openImageInput('insertTestimonialPhoto')">
                                                                 Browse
                                                             </button>
 
                                                             <!-- Hidden file input -->
                                                             <input type="file" class="d-none"
                                                                 id="insertTestimonialPhoto" name="profile_photo"
-                                                                accept="image/*"
-                                                                onchange="updateFileNameAndPreview('insertTestimonialPhoto','insertTestimonialPhotoName','insertTestimonialPhotoPreview','insertTestimonialPhotoRemove')">
+                                                                accept="image/*" onchange="handleImageChange(
+                'insertTestimonialPhoto',
+                'insertTestimonialPhotoName',
+                'insertTestimonialPhotoPreview',
+                'insertTestimonialPhotoRemove'
+            )">
                                                         </div>
 
                                                         <!-- Preview + Remove -->
@@ -102,12 +107,17 @@
                                                             <img id="insertTestimonialPhotoPreview"
                                                                 style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;">
                                                             <button type="button" id="insertTestimonialPhotoRemove"
-                                                                onclick="removeFileWithPreview('insertTestimonialPhoto','insertTestimonialPhotoName','insertTestimonialPhotoPreview','insertTestimonialPhotoRemove')"
-                                                                style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
+                                                                onclick="removeImage(
+                'insertTestimonialPhoto',
+                'insertTestimonialPhotoName',
+                'insertTestimonialPhotoPreview',
+                'insertTestimonialPhotoRemove'
+            )" style="position:absolute;top:-10px;right:-10px;border:none;background:none;font-size:20px;color:#fe6a49;cursor:pointer;display:none;">
                                                                 &times;
                                                             </button>
                                                         </div>
                                                     </div>
+
 
 
 
@@ -178,12 +188,13 @@
                                                         data-id="<?= $row->id ?>"
                                                         data-profile-name="<?= htmlspecialchars($row->profile_name) ?>"
                                                         data-company-name="<?= htmlspecialchars($row->company_name) ?>"
-                                                        data-project-name="<?= htmlspecialchars($row->client_project_name) ?>"
-                                                        data-review="<?= htmlspecialchars($row->client_review) ?>"
-                                                        data-photo="<?= base_url($row->profile_photo) ?>"
-                                                        data-photo-name="<?= basename($row->profile_photo) ?>">
+                                                        data-client-review="<?= htmlspecialchars($row->client_review) ?>"
+                                                        data-client-project="<?= htmlspecialchars($row->client_project_name) ?>"
+                                                        data-profile-photo="<?= $row->profile_photo ?>">
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </button>
+
+
 
 
 
@@ -258,9 +269,8 @@
                                         <form method="POST" action="<?php echo base_url('updateTestimonial'); ?>"
                                             enctype="multipart/form-data">
                                             <div class="row">
-                                                <input type="hidden" name="remove_profile_photo"
-                                                    id="editRemoveProfilePhoto" value="0">
-                                                <input type="hidden" name="testimonial_id" id="editTestimonialId">
+                                                <input type="hidden" name="rProfilephoto" id="rProfilephoto" value="0">
+                                                <input type="hidden" name="editTestId" id="editTestId">
 
                                                 <!-- Profile Name -->
                                                 <div class="col-md-6 mb-3">
@@ -322,23 +332,16 @@
 
                                                         <!-- Remove (×) button -->
                                                         <button type="button" id="editProfilePhotoRemove" onclick="
-            removeFileWithPreview(
-                'editProfilePhotoFile',
-                'editProfilePhotoName',
-                'editProfilePhotoPreview',
-                'editProfilePhotoRemove'
-            )
-        " style="display:none;
-                position:absolute;
-                top:-10px;
-                right:-10px;
-                border:none;
-                background:none;
-                font-size:20px;
-                color:#fe6a49;
-                cursor:pointer;">
+    removeImage(
+        'editProfilePhotoFile',
+        'editProfilePhotoName',
+        'editProfilePhotoPreview',
+        'editProfilePhotoRemove'
+    )
+" style="display:none; position:absolute; top:-10px; right:-10px; border:none; background:none; font-size:20px; color:#fe6a49; cursor:pointer;">
                                                             &times;
                                                         </button>
+
                                                     </div>
                                                 </div>
 
@@ -676,6 +679,135 @@
 
 
 
+<!-- Testimonial insert edit js  -->
+<script>
+    /* =====================================================
+       1️⃣ BROWSE BUTTON CLICK
+       (Insert / Edit dono ke liye)
+    ===================================================== */
+    function openImageInput(inputId) {
+        const input = document.getElementById(inputId);
+        if (input) input.click();
+    }
+
+    /* =====================================================
+       2️⃣ IMAGE SELECT → NAME SHOW + PREVIEW
+       (Reusable for ALL image fields)
+    ===================================================== */
+    function handleImageChange(inputId, nameId, previewId, removeBtnId) {
+
+        const input = document.getElementById(inputId);
+        const nameField = document.getElementById(nameId);
+        const preview = document.getElementById(previewId);
+        const removeBtn = document.getElementById(removeBtnId);
+
+        if (input.files && input.files[0]) {
+
+            // file name
+            nameField.value = input.files[0].name;
+
+            // preview
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                if (removeBtn) removeBtn.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+
+            // EDIT form ke liye (remove flag reset)
+            const removeFlag = document.getElementById('rProfilephoto');
+            if (removeFlag) removeFlag.value = 0;
+        }
+    }
+
+    /* =====================================================
+       3️⃣ IMAGE REMOVE (× button)
+    ===================================================== */
+    function removeImage(inputId, nameId, previewId, removeBtnId) {
+
+        document.getElementById(inputId).value = '';
+        document.getElementById(nameId).value = '';
+
+        const preview = document.getElementById(previewId);
+        preview.src = '';
+        preview.style.display = 'none';
+
+        const removeBtn = document.getElementById(removeBtnId);
+        if (removeBtn) removeBtn.style.display = 'none';
+
+        // EDIT form ke liye backend ko signal
+        const removeFlag = document.getElementById('rProfilephoto');
+        if (removeFlag) removeFlag.value = 1;
+    }
+
+    /* =====================================================
+       4️⃣ ATTRIBUTES SE PREFILL (EDIT MODAL)
+       👉 table ke Edit button se data aata hai
+    ===================================================== */
+    document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelectorAll('.editTestimonialBtn').forEach(btn => {
+
+            btn.addEventListener('click', function () {
+
+                /* ===============================
+                   TEXT FIELD PREFILL
+                =============================== */
+                document.getElementById('editTestId').value =
+                    this.dataset.id || '';
+
+                document.getElementById('editProfileName').value =
+                    this.dataset.profileName || '';
+
+                document.getElementById('editCompanyName').value =
+                    this.dataset.companyName || '';
+
+                document.getElementById('editProjectName').value =
+                    this.dataset.clientProject || '';
+
+                document.getElementById('editClientReview').value =
+                    this.dataset.clientReview || '';
+
+                /* ===============================
+                   IMAGE PREFILL + REMOVE ICON
+                =============================== */
+                const preview = document.getElementById('editProfilePhotoPreview');
+                const nameInput = document.getElementById('editProfilePhotoName');
+                const removeBtn = document.getElementById('editProfilePhotoRemove');
+                const removeFlg = document.getElementById('rProfilephoto');
+
+                // reset remove flag
+                removeFlg.value = 0;
+
+                if (this.dataset.profilePhoto && this.dataset.profilePhoto !== '') {
+
+                    // image show
+                    preview.src = "<?= base_url() ?>" + this.dataset.profilePhoto;
+                    preview.style.display = 'block';
+
+                    // file name show
+                    nameInput.value = this.dataset.profilePhoto.split('/').pop();
+
+                    // remove icon SHOW
+                    removeBtn.style.display = 'block';
+
+                } else {
+
+                    // no image case
+                    preview.src = '';
+                    preview.style.display = 'none';
+                    nameInput.value = '';
+                    removeBtn.style.display = 'none';
+                }
+            });
+
+        });
+
+    });
+</script>
+
+
 
 
 
@@ -767,55 +899,6 @@
 </script>
 
 
-<!-- TESTIMONAOL EDIT PREFILL CODE  -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        document.querySelectorAll('.editTestimonialBtn').forEach(button => {
-
-            button.addEventListener('click', function () {
-
-                document.getElementById('editTestimonialId').value =
-                    this.dataset.id;
-
-                document.getElementById('editProfileName').value =
-                    this.dataset.profileName;
-
-                document.getElementById('editCompanyName').value =
-                    this.dataset.companyName;
-
-                document.getElementById('editProjectName').value =
-                    this.dataset.projectName;
-
-                document.getElementById('editClientReview').value =
-                    this.dataset.review;
-
-                // Image handling
-                const preview = document.getElementById('editProfilePhotoPreview');
-                const fileNameInput = document.getElementById('editProfilePhotoName');
-                const removeBtn = document.getElementById('editProfilePhotoRemove');
-
-                // ❌ HERE IS THE FIX
-                const photo = this.dataset.photo;
-                const photoName = this.dataset.photoName;
-
-                if (photo) {
-                    preview.src = photo;
-                    fileNameInput.value = photoName;
-                    removeBtn.style.display = 'block';
-                } else {
-                    preview.src = '';
-                    fileNameInput.value = '';
-                    removeBtn.style.display = 'none';
-                }
-
-                document.getElementById('editRemoveProfilePhoto').value = 0;
-            });
-
-        });
-
-    });
-</script>
 
 
 
