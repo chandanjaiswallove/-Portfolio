@@ -147,4 +147,7 @@ $route['removeTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLremoveTestimo
 $route['testimonialremoveLogo'] = 'dashBoard/Admin/AdminDashboard/modeLtestimonialremoveLogo';
 $route['portfolioProjectRemove'] = 'dashBoard/Admin/AdminDashboard/modeLportfolioProjectRemove';
 $route['insertPortProj'] = 'dashBoard/Admin/AdminDashboard/modeLinsertPortProj';
+$route['updatePortProj'] = 'dashBoard/Admin/AdminDashboard/modeLupdatePortProj';
+
+
 ///================= Dashboard  controller model function call here   =================

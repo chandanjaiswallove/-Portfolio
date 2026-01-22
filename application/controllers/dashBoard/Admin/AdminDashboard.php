@@ -170,6 +170,10 @@ class AdminDashboard extends CI_Controller
         $this->PortProject->insertPortProj();
     }
 
+    public function modeLupdatePortProj()   /// Portfolio Project_Model function load here
+    {
+        $this->PortProject->updatePortProj();
+    }
 
 
     //=================== Dashboard Pages model End ===================== ///

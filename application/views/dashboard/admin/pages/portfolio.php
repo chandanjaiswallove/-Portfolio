@@ -63,7 +63,8 @@
 
                                                             <div class="input-group">
                                                                 <input type="text" id="fullImageName"
-                                                                    class="form-control" readonly>
+                                                                    value="No file chosen" class="form-control"
+                                                                    readonly>
                                                                 <button class="btn btn-primary rounded-end"
                                                                     type="button"
                                                                     onclick="document.getElementById('fullImageFile').click()">Browse</button>
@@ -248,16 +249,20 @@
 
                                         <!-- BODY -->
                                         <div class="modal-body">
-                                            <form method="post" enctype="multipart/form-data">
 
+                                            <form method="POST" action="<?php echo base_url('updatePortProj'); ?>"
+                                                enctype="multipart/form-data">
                                                 <input type="hidden" id="editProjectId" name="Project_id">
+                                                <input type="hidden" name="remove_full_image" id="removeFullImage"
+                                                    value="0">
+
 
                                                 <!-- Full Image -->
                                                 <div id="editFullBox" class="mb-3 d-none">
                                                     <label>Full Image</label>
                                                     <div class="input-group">
                                                         <input type="text" id="editFullName" class="form-control"
-                                                            readonly>
+                                                            value="No file chosen" readonly>
                                                         <button class="btn btn-primary rounded-end" type="button"
                                                             onclick="document.getElementById('editFullFile').click()">Browse</button>
                                                         <input type="file" id="editFullFile" class="d-none"
@@ -269,34 +274,20 @@
                                                             style="width:300px;border-radius:8px;">
                                                         <button id="editFullRemove" type="button"
                                                             class="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                                            onclick="removeImage('editFullFile','editFullName','editFullPreview','editFullRemove')">
+                                                            onclick="removeImage(
+        'editFullFile',
+        'editFullName',
+        'editFullPreview',
+        'editFullRemove',
+        'removeFullImage'
+    )">
                                                             Remove
                                                         </button>
+
                                                     </div>
                                                 </div>
 
-                                                <!-- Small Image -->
-                                                <div id="editSmallBox" class="mb-3 d-none">
-                                                    <label>Small Image</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="editSmallName" class="form-control"
-                                                            readonly>
-                                                        <button class="btn btn-primary rounded-end" type="button"
-                                                            onclick="document.getElementById('editSmallFile').click()">Browse</button>
-                                                        <input type="file" id="editSmallFile" class="d-none"
-                                                            name="small_project_image" accept="image/*"
-                                                            onchange="previewImage(this,'editSmallName','editSmallPreview','editSmallRemove')">
-                                                    </div>
-                                                    <div class="position-relative mt-2">
-                                                        <img id="editSmallPreview"
-                                                            style="width:120px;height:120px;border-radius:50%;">
-                                                        <button id="editSmallRemove" type="button"
-                                                            class="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                                            onclick="removeImage('editSmallFile','editSmallName','editSmallPreview','editSmallRemove')">
-                                                            Remove
-                                                        </button>
-                                                    </div>
-                                                </div>
+
 
                                                 <!-- Title & Link -->
                                                 <div class="row">
@@ -329,6 +320,7 @@
                                                 </div>
 
                                             </form>
+
                                         </div>
 
                                     </div>
@@ -359,7 +351,7 @@
 <!-- Container-fluid Ends-->
 
 <!-- insert form-->
-
+<!-- 
 <script>
     function toggleImage(type) {
         document.getElementById('fullImageBox').classList.add('d-none');
@@ -443,9 +435,235 @@
             }
         }
     });
-</script>
+</script> -->
 
 <script>
+    // INSERT FORM ONLY
+    function insertToggleImage(type) {
+        document.getElementById('fullImageBox').classList.add('d-none');
+        document.getElementById('smallImageBox').classList.add('d-none');
+
+        if (type === 'full')
+            document.getElementById('fullImageBox').classList.remove('d-none');
+        else
+            document.getElementById('smallImageBox').classList.remove('d-none');
+    }
+
+    function insertPreviewImage(input, nameId, previewId, removeId) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById(previewId).src = e.target.result;
+            document.getElementById(previewId).style.display = 'block';
+            document.getElementById(removeId).style.display = 'block';
+            document.getElementById(nameId).value = input.files[0].name;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    function insertRemoveImage(fileId, nameId, previewId, removeId) {
+        document.getElementById(fileId).value = '';
+        document.getElementById(nameId).value = '';
+        document.getElementById(previewId).src = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeId).style.display = 'none';
+    }
+
+    function addTag() {
+        document.getElementById('tagWrapper').insertAdjacentHTML('beforeend', `
+        <div class="d-flex mb-2">
+            <input type="text" name="project_tags[]" class="form-control me-2">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()">Remove</button>
+        </div>
+        `);
+    }
+</script>
+
+<!-- edit form -->
+<!-- <script>
+    // ==============================
+    // 1️⃣ Image Preview
+    // ==============================
+    function previewImage(input, nameId, previewId, removeId) {
+        if (!input.files || !input.files[0]) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById(previewId).src = e.target.result;
+            document.getElementById(previewId).style.display = 'block';
+            document.getElementById(removeId).style.display = 'block';
+            document.getElementById(nameId).value = input.files[0].name;
+
+            // 🔁 New image selected → remove flag reset
+            document.getElementById('removeFullImage').value = '0';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    // ==============================
+    // 2️⃣ Remove Image (DB + File)
+    // ==============================
+    function removeImage(fileId, nameId, previewId, removeId) {
+        document.getElementById(fileId).value = '';
+        document.getElementById(nameId).value = '';
+        document.getElementById(previewId).src = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeId).style.display = 'none';
+
+        // ⭐ Backend ko signal
+        document.getElementById('removeFullImage').value = '1';
+    }
+
+    // ==============================
+    // 3️⃣ Tags Add / Remove
+    // ==============================
+    function addEditTag() {
+        document.getElementById('editTagWrapper').insertAdjacentHTML('beforeend', `
+            <div class="d-flex mb-2">
+                <input type="text" name="project_tags[]" class="form-control me-2">
+                <button type="button" class="btn btn-secondary btn-sm"
+                    onclick="this.parentElement.remove()">Remove</button>
+            </div>
+        `);
+    }
+
+    // ==============================
+    // 4️⃣ Edit Modal Data Load
+    // ==============================
+    document.querySelectorAll('.editProjectBtn').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            // Reset remove flag every time modal opens
+            document.getElementById('removeFullImage').value = '0';
+
+            // Basic data
+            document.getElementById('editProjectId').value = btn.dataset.id;
+            document.getElementById('editTitle').value = btn.dataset.title;
+            document.getElementById('editLink').value = btn.dataset.link;
+
+            // Show full image box
+            const fullBox = document.getElementById('editFullBox');
+            fullBox.classList.remove('d-none');
+
+            // Image preview
+            document.getElementById('editFullPreview').src = btn.dataset.full;
+            document.getElementById('editFullPreview').style.display = 'block';
+            document.getElementById('editFullName').value = btn.dataset.full.split('/').pop();
+            document.getElementById('editFullRemove').style.display = 'block';
+
+            // Tags
+            const tagWrapper = document.getElementById('editTagWrapper');
+            tagWrapper.innerHTML = '';
+
+            JSON.parse(btn.dataset.tags || '[]').forEach(tag => {
+                tagWrapper.insertAdjacentHTML('beforeend', `
+                    <div class="d-flex mb-2">
+                        <input type="text" name="project_tags[]" class="form-control me-2" value="${tag}">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="this.parentElement.remove()">Remove</button>
+                    </div>
+                `);
+            });
+        });
+    });
+</script> -->
+
+
+<script>
+    // ==============================
+    // 1️⃣ Image Preview
+    // ==============================
+    function previewImage(input, nameId, previewId, removeId) {
+        if (!input.files || !input.files[0]) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById(previewId).src = e.target.result;
+            document.getElementById(previewId).style.display = 'block';
+            document.getElementById(removeId).style.display = 'block';
+            document.getElementById(nameId).value = input.files[0].name;
+
+            document.getElementById('removeFullImage').value = '0';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    // ==============================
+    // 2️⃣ Remove Image
+    // ==============================
+    function removeImage(fileId, nameId, previewId, removeId) {
+        document.getElementById(fileId).value = '';
+        document.getElementById(nameId).value = '';
+        document.getElementById(previewId).src = '';
+        document.getElementById(previewId).style.display = 'none';
+        document.getElementById(removeId).style.display = 'none';
+
+        document.getElementById('removeFullImage').value = '1';
+    }
+
+    // ==============================
+    // 3️⃣ Add Tag
+    // ==============================
+    function addEditTag() {
+        document.getElementById('editTagWrapper').insertAdjacentHTML('beforeend', `
+            <div class="d-flex mb-2">
+                <input type="text" name="project_tags[]" class="form-control me-2">
+                <button type="button" class="btn btn-secondary btn-sm"
+                    onclick="this.parentElement.remove()">Remove</button>
+            </div>
+        `);
+    }
+
+    // ==============================
+    // 4️⃣ Edit Modal Load (FIXED)
+    // ==============================
+    document.querySelectorAll('.editProjectBtn').forEach(btn => {
+        btn.addEventListener('click', () => {
+
+            document.getElementById('removeFullImage').value = '0';
+
+            document.getElementById('editProjectId').value = btn.dataset.id;
+            document.getElementById('editTitle').value = btn.dataset.title;
+            document.getElementById('editLink').value = btn.dataset.link;
+
+            document.getElementById('editFullBox').classList.remove('d-none');
+
+            const preview = document.getElementById('editFullPreview');
+            const removeBtn = document.getElementById('editFullRemove');
+            const nameInput = document.getElementById('editFullName');
+
+            // ✅ IMAGE EXISTS?
+            if (btn.dataset.full && btn.dataset.full !== '') {
+                preview.src = btn.dataset.full;
+                preview.style.display = 'block';
+                removeBtn.style.display = 'block';
+                nameInput.value = btn.dataset.full.split('/').pop();
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+                removeBtn.style.display = 'none';
+                nameInput.value = '';
+            }
+
+            // Tags
+            const tagWrapper = document.getElementById('editTagWrapper');
+            tagWrapper.innerHTML = '';
+
+            JSON.parse(btn.dataset.tags || '[]').forEach(tag => {
+                tagWrapper.insertAdjacentHTML('beforeend', `
+                    <div class="d-flex mb-2">
+                        <input type="text" name="project_tags[]" class="form-control me-2" value="${tag}">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            onclick="this.parentElement.remove()">Remove</button>
+                    </div>
+                `);
+            });
+        });
+    });
+</script>
+
+
+<!-- <script>
+
     // 1️⃣ Common functions: image preview + remove
     function previewImage(input, nameId, previewId, removeId) {
         const reader = new FileReader();
@@ -517,4 +735,4 @@
             });
         });
     });
-</script>
+</script> -->
