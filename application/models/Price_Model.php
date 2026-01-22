@@ -71,39 +71,12 @@ class Price_Model extends CI_Model
 
 
 
-// update function code
+    // update function code
 
-    public function updatePriceCard() {
+    public function updatePriceCard()
+    {
 
-        $pricingId = $this->input->post('pricing_id');
 
-        // Update pricing_card
-        $this->db->where('id', $pricingId)->update('pricing_card', [
-            'plan_name'         => $this->input->post('plan_name', true),
-            'small_description' => $this->input->post('small_description', true),
-            'pricing'           => $this->input->post('pricing', true),
-            'duration'          => $this->input->post('duration', true),
-            'sample_url'        => $this->input->post('sample_url', true),
-        ]);
-
-        // Delete old items
-        $this->db->where('pricing_id', $pricingId)->delete('pricing_items');
-
-        // Insert new items
-        $items = $this->input->post('item_list');
-
-        if (is_array($items)) {
-            foreach ($items as $item) {
-                $item = trim($item);
-                if ($item !== '') {
-                    $this->db->insert('pricing_items', [
-                        'pricing_id' => $pricingId,
-                        'item_text'  => $item,
-                        'created_at' => date('Y-m-d H:i:s')
-                    ]);
-                }
-            }
-        }
     }
 
 

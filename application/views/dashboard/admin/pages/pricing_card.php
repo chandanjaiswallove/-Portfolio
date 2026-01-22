@@ -194,11 +194,10 @@
 
                                                     <!-- EDIT -->
                                                     <a class="btn btn-primary btn-sm editPriceBtn" data-bs-toggle="modal"
-                                                        data-bs-target="#editPriceModal" data-id="<?= $card->id; ?>">
-                                                        <i class="fa fa-pencil"></i> Edit
+                                                        data-bs-target="#editPriceModal" data-id="<?= $row->id; ?>">
+                                                        <i class="fa fa-pencil"></i>
+                                                        Edit
                                                     </a>
-
-
 
 
                                                     <!-- DELETE -->
@@ -400,37 +399,32 @@
 
 
 <!-- update js here  -->
+<script>
+    function addEditItem() {
+        const wrapper = document.getElementById('editItemWrapper');
+
+        const div = document.createElement('div');
+        div.className = 'd-flex mb-2';
+
+        div.innerHTML = `
+        <input type="text" name="item_list[]" class="form-control me-2" placeholder="Feature text">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
+    `;
+
+        wrapper.appendChild(div);
+    }
+
+    function removeEditItem(btn) {
+        btn.parentElement.remove();
+    }
+</script>
+
+
+
+
+
 <!-- prefill data fetch date in edit form -->
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        // ADD ITEM FUNCTION
-        function addEditItem(value = '') {
-            const wrapper = document.getElementById('editItemWrapper');
-
-            const div = document.createElement('div');
-            div.className = 'd-flex mb-2';
-
-            div.innerHTML = `
-            <input type="text" name="item_list[]" class="form-control me-2" value="${value}">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
-        `;
-
-            wrapper.appendChild(div);
-        }
-
-        window.addEditItem = addEditItem;
-
-        // REMOVE ITEM FUNCTION
-        window.removeEditItem = function (btn) {
-            btn.parentElement.remove();
-        }
-
-
-
-    });
-</script>
 
 
 <!-- Container-fluid Ends-->
