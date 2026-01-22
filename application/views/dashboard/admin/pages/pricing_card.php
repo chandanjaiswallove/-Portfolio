@@ -55,7 +55,7 @@
 
                                         <div class="modal-body">
 
-                                            <form method="POST" action="<?php echo base_url('insertPricecard')?>">
+                                            <form method="POST" action="<?php echo base_url('insertPricecard') ?>">
                                                 <div class="row">
 
                                                     <!-- PLAN NAME -->
@@ -155,49 +155,122 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>23</td>
-                                        <td>12 Jan 2024</td>
+                                    <?php if (!empty($pricing_cards)): ?>
+                                        <?php $i = 1;
+                                        foreach ($pricing_cards as $row): ?>
 
-                                        <!-- PLAN NAME -->
-                                        <td>Basic</td>
+                                            <tr>
+                                                <!-- ID / SR -->
+                                                <td><?= $i++; ?></td>
 
-                                        <!-- SMALL DESCRIPTION -->
-                                        <td>Perfect plan for beginners</td>
+                                                <!-- DATE -->
+                                                <td><?= date('d M Y', strtotime($row->created_at)); ?></td>
 
-                                        <!-- PRICING -->
-                                        <td>₹299</td>
+                                                <!-- PLAN NAME -->
+                                                <td><?= $row->plan_name; ?></td>
 
-                                        <!-- DURATION -->
-                                        <td>1 Year</td>
+                                                <!-- SMALL DESCRIPTION -->
+                                                <td><?= $row->small_description; ?></td>
 
-                                        <!-- SAMPLE LINK -->
-                                        <td>
-                                            <a href="https://youtube.com" target="_blank">
-                                                youtube.com
-                                            </a>
-                                        </td>
+                                                <!-- PRICING -->
+                                                <td><?= $row->pricing; ?></td>
 
-                                        <!-- ACTION -->
-                                        <td class="text-end">
-                                            <a class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editCompanyLogoModal">
-                                                <i class="fa fa-pencil"></i> Edit
-                                            </a>
+                                                <!-- DURATION -->
+                                                <td><?= $row->duration ?? '-'; ?></td>
 
-                                            <a class="btn btn-secondary btn-sm">
-                                                <i class="fa fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
+                                                <!-- SAMPLE LINK -->
+                                                <td>
+                                                    <?php if (!empty($row->sample_url)): ?>
+                                                        <a href="<?= $row->sample_url; ?>" target="_blank">
+                                                            <?= parse_url($row->sample_url, PHP_URL_HOST); ?>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        -
+                                                    <?php endif; ?>
+                                                </td>
+
+                                                <!-- ACTION -->
+                                                <td class="text-end">
+
+                                                    <!-- EDIT -->
+                                                    <a class="btn btn-primary btn-sm me-2 editPriceBtn" data-bs-toggle="modal"
+                                                        data-bs-target="#editPriceModal" data-id="<?= $row->id; ?>"
+                                                        data-name="<?= $row->plan_name; ?>"
+                                                        data-desc="<?= $row->small_description; ?>"
+                                                        data-price="<?= $row->pricing; ?>"
+                                                        data-duration="<?= $row->duration; ?>"
+                                                        data-url="<?= $row->sample_url; ?>"
+                                                        data-items='<?= json_encode(array_column($row->items, "item_text")); ?>'>
+                                                        <i class="fa fa-pencil"></i> Edit
+                                                    </a>
+
+                                                    <!-- DELETE -->
+                                                    <button class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#deletePrice_<?= $row->id; ?>">
+                                                        <i class="fa fa-trash"></i> Delete
+                                                    </button>
+
+                                                    <!-- DELETE MODAL -->
+                                                    <div class="modal fade" id="deletePrice_<?= $row->id; ?>" tabindex="-1">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content bg-dark">
+
+                                                                <div class="modal-header border-0">
+                                                                    <h5 class="modal-title text-white">
+                                                                        Delete <?= $row->plan_name; ?>
+                                                                    </h5>
+                                                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                                                </div>
+
+                                                                <div class="modal-body text-center text-white">
+                                                                    Are you sure you want to delete this pricing plan?
+                                                                    </br> you cannot do undo..
+                                                                </div>
+
+                                                                <div class="modal-footer justify-content-center border-0">
+                                                                    <button class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                    <a href="<?= base_url('deletePriceCard?id=' . $row->id); ?>"
+                                                                        class="btn btn-primary">
+                                                                        Yes, Delete
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                </td>
+                                            </tr>
+
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8" class="text-center">No pricing plans found</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
+
                             </table>
 
 
                         </div>
 
                         <!-- EDIT MODAL -->
-                        <div class="modal fade" id="editCompanyLogoModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="editPriceModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
 
