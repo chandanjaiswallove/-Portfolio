@@ -52,12 +52,11 @@
 
                                         <!-- Body -->
                                         <div class="modal-body">
-                                            <form method="post" enctype="multipart/form-data">
 
+                                            <form method="POST" action="<?php echo base_url('insertPortProj'); ?>"
+                                                enctype="multipart/form-data">
                                                 <div class="border rounded p-3">
-
                                                     <div class="row">
-
                                                         <!-- FULL IMAGE -->
                                                         <div class="col-md-12 mb-3">
                                                             <label class="form-label">Full Project Image</label>
@@ -84,9 +83,6 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-
-
-
 
                                                         <!-- TITLE -->
                                                         <div class="col-md-6 mb-3">
@@ -134,10 +130,9 @@
                                                         Save Project
                                                     </button>
                                                 </div>
-
                                             </form>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,82 +154,83 @@
                                 </thead>
 
                                 <tbody>
+                                    <?php $i = 1;
+                                    foreach ($portfolios as $row): ?>
+                                        <tr>
+                                            <td><?= $i++; ?></td>
 
-                                    <!-- ROW 1 : FULL IMAGE -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>06 Jan 2026</td>
+                                            <td><?= date('d M Y', strtotime($row->created_at)); ?></td>
 
-                                        <td>
-                                            <img src="assets/images/Project/full1.jpg"
-                                                style="width:60px;height:40px;object-fit:cover;border-radius:6px;">
-                                        </td>
+                                            <td>
+                                                <img src="<?= base_url($row->full_image); ?>"
+                                                    style="width:60px;height:40px;object-fit:cover;border-radius:6px;">
+                                            </td>
 
-                                        <td>Personal Project</td>
+                                            <td><?= $row->project_title; ?></td>
 
-                                        <td>
-                                            <span class="badge bg-primary">PHP</span>
-                                            <span class="badge bg-primary">CodeIgniter</span>
-                                            <span class="badge bg-primary">Bootstrap</span>
-                                        </td>
+                                            <td>
+                                                <?php foreach ($row->tags as $tag): ?>
+                                                    <span class="badge bg-primary"><?= $tag->project_tags; ?></span>
+                                                <?php endforeach; ?>
+                                            </td>
 
-                                        <td>
-                                            <a href="https://example.com" target="_blank">
-                                                https://example.com
-                                            </a>
-                                        </td>
+                                            <td>
+                                                <a href="<?= $row->project_link; ?>" target="_blank">
+                                                    <?= $row->project_link; ?>
+                                                </a>
+                                            </td>
 
-                                        <td class="text-end">
-                                            <a class="btn btn-primary btn-sm editProjectBtn" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModalCenter2" data-id="1"
-                                                data-title="Personal Project" data-link="https://example.com"
-                                                data-type="full" data-full="assets/images/Project/full1.jpg"
-                                                data-small="" data-tags='["PHP","CodeIgniter","Bootstrap"]'>
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
+                                            <td class="text-end">
 
-                                            <!-- Delete modal and button -->
-                                            <button class="btn btn-secondary btn-sm" type="button"
-                                                data-bs-target="#projectDelModal_<?= $row->id; ?>"
-                                                data-bs-toggle="modal">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                                <!-- EDIT -->
+                                                <a class="btn btn-primary btn-sm editProjectBtn" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModalCenter2" data-id="<?= $row->id; ?>"
+                                                    data-title="<?= $row->project_title; ?>"
+                                                    data-link="<?= $row->project_link; ?>" data-type="full"
+                                                    data-full="<?= base_url($row->full_image); ?>"
+                                                    data-tags='<?= json_encode(array_column($row->tags, 'project_tags')); ?>'>
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
 
-                                            <div class="modal fade" id="projectDelModal_<?= $row->id; ?>" tabindex="1"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content bg-dark">
-                                                        <div class="modal-header border-0 ">
-                                                            <h5 class="modal-title text-white">Delete Row
-                                                                <?= $row->id; ?></h5>
-                                                            <button class="btn-close" type="button"
-                                                                data-bs-dismiss="modal"></button>
+                                                <!-- DELETE -->
+                                                <button class="btn btn-secondary btn-sm" type="button"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#projectDelModal_<?= $row->id; ?>">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+
+                                                <!-- DELETE MODAL -->
+                                                <div class="modal fade" id="projectDelModal_<?= $row->id; ?>" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content bg-dark">
+
+                                                            <div class="modal-header border-0">
+                                                                <h5 class="modal-title text-white">
+                                                                    Delete Row <?= $row->id; ?>
+                                                                </h5>
+                                                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+
+                                                            <div class="modal-body text-center">
+                                                                Are you sure you want to delete this row?
+                                                            </div>
+
+                                                            <div class="modal-footer justify-content-center">
+                                                                <button class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                <a href="<?= base_url('portfolioProjectRemove?id=' . $row->id); ?>"
+                                                                    class="btn btn-primary">Yes, Delete</a>
+                                                            </div>
+
                                                         </div>
-
-                                                        <div class="modal-body text-center border-0">
-                                                            <p>Are you sure you want to delete this row ? </br> you
-                                                                cannot be do undo.</p>
-
-                                                        </div>
-
-                                                        <div class="modal-footer border-0 justify-content-center">
-                                                            <button class="btn btn-secondary" type="button"
-                                                                data-bs-dismiss="modal">Cancel</button>
-                                                            <a href="<?= base_url('portfolioProjectRemove?id=' . $row->id); ?>"
-                                                                class="btn btn-primary">Yes, Delete</a>
-                                                        </div>
-
                                                     </div>
-
                                                 </div>
-                                            </div>
 
-
-
-
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
+
                             </table>
 
 

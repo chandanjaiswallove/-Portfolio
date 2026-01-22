@@ -165,6 +165,11 @@ class AdminDashboard extends CI_Controller
         $this->Testimonial->updateCompanyLogoImage();
     }
 
+    public function modeLinsertPortProj()   //// PortfolioProject_Model function load here
+    {
+        $this->PortProject->insertPortProj();
+    }
+
 
 
     //=================== Dashboard Pages model End ===================== ///
