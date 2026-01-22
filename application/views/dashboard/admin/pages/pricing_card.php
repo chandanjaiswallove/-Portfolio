@@ -54,8 +54,8 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form method="post">
 
+                                            <form method="POST" action="<?php echo base_url('insertPricecard')?>">
                                                 <div class="row">
 
                                                     <!-- PLAN NAME -->

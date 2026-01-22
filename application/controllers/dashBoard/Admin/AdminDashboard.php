@@ -10,6 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property Skill_Model $Skill
  * @property Testimonial_Model $Testimonial
  * @property PortfolioProject_Model $PortProject
+ * @property Price_Model $Price
  */
 
 class AdminDashboard extends CI_Controller
@@ -39,6 +40,7 @@ class AdminDashboard extends CI_Controller
         $this->load->model('Skill_Model', 'Skill');
         $this->load->model('Testimonial_Model', 'Testimonial');
         $this->load->model('PortfolioProject_Model' , 'PortProject');
+        $this->load->model('Price_Model', 'Price');
 
     }
 
@@ -173,6 +175,11 @@ class AdminDashboard extends CI_Controller
     public function modeLupdatePortProj()   /// Portfolio Project_Model function load here
     {
         $this->PortProject->updatePortProj();
+    }
+
+    public function modeLinsertPricecard()  /// Pricing Card model function load here
+    {
+        $this->Price->insertPricecard();
     }
 
 
