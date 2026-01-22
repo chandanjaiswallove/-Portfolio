@@ -212,11 +212,11 @@
                                                                 <button class="btn-close" data-bs-dismiss="modal"></button>
                                                             </div>
 
-                                                            <div class="modal-body text-center">
+                                                            <div class="modal-body text-center border-0">
                                                                 Are you sure you want to delete this row?
                                                             </div>
 
-                                                            <div class="modal-footer justify-content-center">
+                                                            <div class="modal-footer justify-content-center border-0">
                                                                 <button class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Cancel</button>
                                                                 <a href="<?= base_url('portfolioProjectRemove?id=' . $row->id); ?>"

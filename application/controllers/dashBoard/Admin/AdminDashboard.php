@@ -103,6 +103,11 @@ class AdminDashboard extends CI_Controller
         $this->PortProject->portfolioProjectRemove();
     }
 
+    public function modeLdeletePriceCard()   /// Delete price card
+    {
+        $this->Price->deletePriceCard();
+    }
+
     //=================== Dashboard Pages model Here ===================== ///
 
 
@@ -181,6 +186,11 @@ class AdminDashboard extends CI_Controller
     public function modeLinsertPricecard()  /// Pricing Card model function load here
     {
         $this->Price->insertPricecard();
+    }
+
+    public function modeLupdatePriceCard()  // Pricing card moel update funciton load here
+    {
+        $this->Price->updatePriceCard();
     }
 
 

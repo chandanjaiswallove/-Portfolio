@@ -79,11 +79,11 @@
                                                             placeholder="₹999">
                                                     </div>
 
-                                                    <!-- URL LINK -->
+                                                    <!-- duration  -->
                                                     <div class="col-md-6 mb-3">
-                                                        <label class="form-label">URL Link</label>
-                                                        <input type="url" class="form-control" name="plan_url"
-                                                            placeholder="https://example.com">
+                                                        <label class="form-label">Durations</label>
+                                                        <input type="text" class="form-control" name="duration"
+                                                            placeholder="1 years validity">
                                                     </div>
 
                                                     <div class="col-md-6 mb-3">
@@ -193,16 +193,13 @@
                                                 <td class="text-end">
 
                                                     <!-- EDIT -->
-                                                    <a class="btn btn-primary btn-sm me-2 editPriceBtn" data-bs-toggle="modal"
-                                                        data-bs-target="#editPriceModal" data-id="<?= $row->id; ?>"
-                                                        data-name="<?= $row->plan_name; ?>"
-                                                        data-desc="<?= $row->small_description; ?>"
-                                                        data-price="<?= $row->pricing; ?>"
-                                                        data-duration="<?= $row->duration; ?>"
-                                                        data-url="<?= $row->sample_url; ?>"
-                                                        data-items='<?= json_encode(array_column($row->items, "item_text")); ?>'>
+                                                    <a class="btn btn-primary btn-sm editPriceBtn" data-bs-toggle="modal"
+                                                        data-bs-target="#editPriceModal" data-id="<?= $card->id; ?>">
                                                         <i class="fa fa-pencil"></i> Edit
                                                     </a>
+
+
+
 
                                                     <!-- DELETE -->
                                                     <button class="btn btn-secondary btn-sm" data-bs-toggle="modal"
@@ -280,42 +277,43 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form method="post">
 
+                                        <form method="POST" action="<?php echo base_url('updatePriceCard') ?>">
                                             <div class="row">
+                                                <input type="hidden" name="pricing_id">
 
                                                 <!-- PLAN NAME -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Plan Name</label>
-                                                    <input type="text" class="form-control" name="plan_name"
-                                                        value="Premium" required>
+                                                    <input type="text" name="plan_name" class="form-control">
+
                                                 </div>
 
                                                 <!-- SMALL DESCRIPTION -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Small Description</label>
                                                     <input type="text" class="form-control" name="small_description"
-                                                        value="Best for businesses" required>
+                                                        required>
                                                 </div>
 
                                                 <!-- PRICING -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Pricing</label>
-                                                    <input type="text" class="form-control" name="pricing" value="₹999">
+                                                    <input type="text" class="form-control" name="pricing">
                                                 </div>
 
-                                                <!-- URL -->
+                                                <!-- duration  -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="form-label">URL Link</label>
-                                                    <input type="url" class="form-control" name="plan_url"
-                                                        value="https://example.com">
+                                                    <label class="form-label">Durations</label>
+                                                    <input type="text" name="duration" class="form-control">
+
                                                 </div>
 
                                                 <!-- SAMPLE LINK -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Package Sample Link</label>
                                                     <input type="url" class="form-control" name="sample_url"
-                                                        value="https://example.com/demo">
+                                                        placeholder="https://example.com/demo">
                                                 </div>
 
                                             </div>
@@ -324,23 +322,8 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Item List</label>
 
-                                                <div id="editItemWrapper">
+                                                <div id="editItemWrapper"></div>
 
-                                                    <div class="d-flex mb-2">
-                                                        <input type="text" name="item_list[]" class="form-control me-2"
-                                                            value="Unlimited Projects">
-                                                        <button type="button" class="btn btn-secondary btn-sm"
-                                                            onclick="removeEditItem(this)">Remove</button>
-                                                    </div>
-
-                                                    <div class="d-flex mb-2">
-                                                        <input type="text" name="item_list[]" class="form-control me-2"
-                                                            value="24/7 Support">
-                                                        <button type="button" class="btn btn-secondary btn-sm"
-                                                            onclick="removeEditItem(this)">Remove</button>
-                                                    </div>
-
-                                                </div>
 
                                                 <button type="button" class="btn btn-primary btn-sm"
                                                     onclick="addEditItem()">
@@ -348,8 +331,7 @@
                                                 </button>
                                             </div>
 
-                                            <!-- HIDDEN ID -->
-                                            <input type="hidden" name="pricing_id" value="1">
+
 
                                             <!-- FOOTER -->
                                             <div class="text-end">
@@ -398,7 +380,7 @@
 
 
 
-
+<!-- insert -->
 <script>
     function addItem() {
         const wrapper = document.getElementById('itemWrapper');
@@ -416,24 +398,39 @@
     }
 </script>
 
+
+<!-- update js here  -->
+<!-- prefill data fetch date in edit form -->
+
 <script>
-    function addEditItem() {
-        const wrapper = document.getElementById('editItemWrapper');
+    document.addEventListener('DOMContentLoaded', function () {
 
-        const div = document.createElement('div');
-        div.className = 'd-flex mb-2';
+        // ADD ITEM FUNCTION
+        function addEditItem(value = '') {
+            const wrapper = document.getElementById('editItemWrapper');
 
-        div.innerHTML = `
-        <input type="text" name="item_list[]" class="form-control me-2" placeholder="Feature text">
-        <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
-    `;
+            const div = document.createElement('div');
+            div.className = 'd-flex mb-2';
 
-        wrapper.appendChild(div);
-    }
+            div.innerHTML = `
+            <input type="text" name="item_list[]" class="form-control me-2" value="${value}">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
+        `;
 
-    function removeEditItem(btn) {
-        btn.parentElement.remove();
-    }
+            wrapper.appendChild(div);
+        }
+
+        window.addEditItem = addEditItem;
+
+        // REMOVE ITEM FUNCTION
+        window.removeEditItem = function (btn) {
+            btn.parentElement.remove();
+        }
+
+
+
+    });
 </script>
+
 
 <!-- Container-fluid Ends-->

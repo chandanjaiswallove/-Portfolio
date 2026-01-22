@@ -130,12 +130,17 @@ $route['insert_skill'] = 'dashBoard/Admin/AdminDashboard/modeLskill_update';    
 $route['update_skill'] = 'dashBoard/Admin/AdminDashboard/modeLupdate_skill';      /// Skill_Model 
 
 $route['insertTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLinsertTestimonial';      /// Testimonial Model 
-
 $route['updateTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLupdateTestimonial';      /// Testimonial Model 
 
 $route['insertCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLinsertCompanyLogo';     /// Testimonial Model insertLogo Company
-
 $route['updateCompanyLogo'] = 'dashBoard/Admin/AdminDashboard/modeLupdateCompanyLogoImage';     /// Testimonial Model updateCompanyLogo function
+
+$route['insertPortProj'] = 'dashBoard/Admin/AdminDashboard/modeLinsertPortProj';
+$route['updatePortProj'] = 'dashBoard/Admin/AdminDashboard/modeLupdatePortProj';
+
+$route['insertPricecard'] = 'dashBoard/Admin/AdminDashboard/modeLinsertPricecard';
+$route['updatePriceCard'] = 'dashBoard/Admin/AdminDashboard/modeLupdatePriceCard';
+
 
 
 
@@ -146,9 +151,8 @@ $route['removeSkills'] = 'dashBoard/Admin/AdminDashboard/modeLdeleteSkill';
 $route['removeTestimonial'] = 'dashBoard/Admin/AdminDashboard/modeLremoveTestimonial';
 $route['testimonialremoveLogo'] = 'dashBoard/Admin/AdminDashboard/modeLtestimonialremoveLogo';
 $route['portfolioProjectRemove'] = 'dashBoard/Admin/AdminDashboard/modeLportfolioProjectRemove';
-$route['insertPortProj'] = 'dashBoard/Admin/AdminDashboard/modeLinsertPortProj';
-$route['updatePortProj'] = 'dashBoard/Admin/AdminDashboard/modeLupdatePortProj';
-$route['insertPricecard'] = 'dashBoard/Admin/AdminDashboard/modeLinsertPricecard';
+$route['deletePriceCard'] = 'dashBoard/Admin/AdminDashboard/modeLdeletePriceCard';
+
 
 
 ///================= Dashboard  controller model function call here   =================
