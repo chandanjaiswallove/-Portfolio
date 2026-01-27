@@ -194,10 +194,15 @@
 
                                                     <!-- EDIT -->
                                                     <a class="btn btn-primary btn-sm editPriceBtn" data-bs-toggle="modal"
-                                                        data-bs-target="#editPriceModal" data-id="<?= $row->id; ?>">
+                                                        data-bs-target="#editPriceModal" data-id="<?= $row->id ?>"
+                                                        data-plan="<?= $row->plan_name ?>"
+                                                        data-desc="<?= $row->small_description ?>"
+                                                        data-price="<?= $row->pricing ?>" data-duration="<?= $row->duration ?>"
+                                                        data-sample="<?= $row->sample_url ?>"
+                                                        data-items='<?= json_encode(array_column($row->items, "item_text")) ?>'>
                                                         <i class="fa fa-pencil"></i>
-                                                        Edit
                                                     </a>
+
 
 
                                                     <!-- DELETE -->
@@ -284,34 +289,34 @@
                                                 <!-- PLAN NAME -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Plan Name</label>
-                                                    <input type="text" name="plan_name" class="form-control">
+                                                    <input type="text" placeholder="enter your name" name="plan_name" class="form-control">
 
                                                 </div>
 
                                                 <!-- SMALL DESCRIPTION -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Small Description</label>
-                                                    <input type="text" class="form-control" name="small_description"
+                                                    <input type="text" placeholder="enter your description" class="form-control" name="small_description"
                                                         required>
                                                 </div>
 
                                                 <!-- PRICING -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Pricing</label>
-                                                    <input type="text" class="form-control" name="pricing">
+                                                    <input type="text" placeholder="enter your price" class="form-control" name="pricing">
                                                 </div>
 
                                                 <!-- duration  -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Durations</label>
-                                                    <input type="text" name="duration" class="form-control">
+                                                    <input type="text" placeholder="enter your duration"  name="duration" class="form-control">
 
                                                 </div>
 
                                                 <!-- SAMPLE LINK -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Package Sample Link</label>
-                                                    <input type="url" class="form-control" name="sample_url"
+                                                    <input type="url" placeholder="enter your sample-link"  class="form-control" name="sample_url"
                                                         placeholder="https://example.com/demo">
                                                 </div>
 
@@ -407,7 +412,7 @@
         div.className = 'd-flex mb-2';
 
         div.innerHTML = `
-        <input type="text" name="item_list[]" class="form-control me-2" placeholder="Feature text">
+        <input type="text" name="item_list[]" class="form-control me-2" placeholder="enter your feature">
         <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
     `;
 

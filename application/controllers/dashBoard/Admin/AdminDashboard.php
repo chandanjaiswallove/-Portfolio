@@ -61,9 +61,6 @@ class AdminDashboard extends CI_Controller
         $data['company_logos'] = $this->Dash->get_company_logoData();   // get_company_logoData from Dashboard_Model
         $data['portfolios'] = $this->Dash->get_portfolio_projects();    //  project page data from Dashboard_Model
         $data['pricing_cards'] = $this->Dash->get_price_card();         /// Price Card data from Dashboard Model
-        
-
-
 
         // Header
         $this->load->view('dashboard/admin/layouts/dashHeader', $data);

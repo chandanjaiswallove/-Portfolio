@@ -9,6 +9,14 @@ class Price_Model extends CI_Model
     }
 
 
+        // update function code
+    public function updatePriceCard()
+    {
+
+
+    }
+
+    
     // insert funciton code
     public function insertPricecard()
     {
@@ -71,13 +79,7 @@ class Price_Model extends CI_Model
 
 
 
-    // update function code
 
-    public function updatePriceCard()
-    {
-
-
-    }
 
 
 

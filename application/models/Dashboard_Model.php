@@ -6,6 +6,33 @@ class Dashboard_Model extends CI_Model
 
 
     // ============================================================
+    // ✅ get all data from pricing_card and  pricing_items
+    // ============================================================
+    public function get_price_card()
+    {
+        // Get pricing cards
+        $cards = $this->db
+            ->order_by('id', 'DESC')
+            ->get('pricing_card')
+            ->result();
+
+        if (!$cards) {
+            return [];
+        }
+
+        // Attach items
+        foreach ($cards as $card) {
+            $card->items = $this->db
+                ->where('pricing_id', $card->id)
+                ->get('pricing_items')
+                ->result();
+        }
+
+        return $cards;
+    }
+
+
+    // ============================================================
     // ✅ get all data from introduce_directory 
     // ============================================================
     public function get_introduceData()
@@ -105,28 +132,7 @@ class Dashboard_Model extends CI_Model
         return $projects;
     }
 
-    public function get_price_card()
-    {
-        // Get pricing cards
-        $cards = $this->db
-            ->order_by('id', 'DESC')
-            ->get('pricing_card')
-            ->result();
 
-        if (!$cards) {
-            return [];
-        }
-
-        // Attach items
-        foreach ($cards as $card) {
-            $card->items = $this->db
-                ->where('pricing_id', $card->id)
-                ->get('pricing_items')
-                ->result();
-        }
-
-        return $cards;
-    }
 
 
 
