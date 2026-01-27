@@ -75,7 +75,7 @@
                                                     <!-- PRICING -->
                                                     <div class="col-md-6 mb-3">
                                                         <label class="form-label">Pricing</label>
-                                                        <input type="text" class="form-control" name="pricing"
+                                                        <input type="number" class="form-control" name="pricing"
                                                             placeholder="₹999">
                                                     </div>
 
@@ -289,34 +289,38 @@
                                                 <!-- PLAN NAME -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Plan Name</label>
-                                                    <input type="text" placeholder="enter your name" name="plan_name" class="form-control">
+                                                    <input type="text" placeholder="enter your name" name="plan_name"
+                                                        class="form-control">
 
                                                 </div>
 
                                                 <!-- SMALL DESCRIPTION -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Small Description</label>
-                                                    <input type="text" placeholder="enter your description" class="form-control" name="small_description"
-                                                        required>
+                                                    <input type="text" placeholder="enter your description"
+                                                        class="form-control" name="small_description" required>
                                                 </div>
 
                                                 <!-- PRICING -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Pricing</label>
-                                                    <input type="text" placeholder="enter your price" class="form-control" name="pricing">
+                                                    <input type="text" placeholder="enter your price"
+                                                        class="form-control" name="pricing">
                                                 </div>
 
                                                 <!-- duration  -->
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label">Durations</label>
-                                                    <input type="text" placeholder="enter your duration"  name="duration" class="form-control">
+                                                    <input type="text" placeholder="enter your duration" name="duration"
+                                                        class="form-control">
 
                                                 </div>
 
                                                 <!-- SAMPLE LINK -->
-                                                <div class="col-md-6 mb-3">
+                                                <div class="col-md-12 mb-3">
                                                     <label class="form-label">Package Sample Link</label>
-                                                    <input type="url" placeholder="enter your sample-link"  class="form-control" name="sample_url"
+                                                    <input type="url" placeholder="enter your sample-link"
+                                                        class="form-control" name="sample_url"
                                                         placeholder="https://example.com/demo">
                                                 </div>
 
@@ -426,6 +430,53 @@
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var editModal = document.getElementById('editPriceModal');
+
+        editModal.addEventListener('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget;
+
+            // Get data from button
+            var id = button.getAttribute('data-id');
+            var plan = button.getAttribute('data-plan');
+            var desc = button.getAttribute('data-desc');
+            var price = button.getAttribute('data-price');
+            var duration = button.getAttribute('data-duration');
+            var sample = button.getAttribute('data-sample');
+            var items = JSON.parse(button.getAttribute('data-items'));
+
+            // Set values in modal form
+            editModal.querySelector('input[name="pricing_id"]').value = id;
+            editModal.querySelector('input[name="plan_name"]').value = plan;
+            editModal.querySelector('input[name="small_description"]').value = desc;
+            editModal.querySelector('input[name="pricing"]').value = price;
+            editModal.querySelector('input[name="duration"]').value = duration;
+            editModal.querySelector('input[name="sample_url"]').value = sample;
+
+            // Clear previous items
+            var wrapper = editModal.querySelector('#editItemWrapper');
+            wrapper.innerHTML = '';
+
+            // Add item list
+            items.forEach(function (item) {
+                var div = document.createElement('div');
+                div.className = 'd-flex mb-2';
+
+                div.innerHTML = `
+                <input type="text" name="item_list[]" class="form-control me-2" value="${item}">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="removeEditItem(this)">Remove</button>
+            `;
+
+                wrapper.appendChild(div);
+            });
+
+        });
+
+    });
+</script>
 
 
 <!-- prefill data fetch date in edit form -->

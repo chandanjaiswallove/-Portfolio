@@ -31,6 +31,29 @@ class Dashboard_Model extends CI_Model
         return $cards;
     }
 
+        // ============================================================
+    // ✅ get all portfolio projects with tags
+    // ============================================================
+    public function get_portfolio_projects()
+    {
+        $projects = $this->db
+            ->order_by('id', 'DESC')
+            ->get('portfolio_projects')
+            ->result();
+
+        foreach ($projects as $project) {
+            $project->tags = $this->db
+                ->where('project_id', $project->id)
+                ->get('portfolio_tags')
+                ->result();
+        }
+
+        return $projects;
+    }
+
+
+
+    
 
     // ============================================================
     // ✅ get all data from introduce_directory 
@@ -112,25 +135,6 @@ class Dashboard_Model extends CI_Model
             ->result(); // multiple rows
     }
 
-    // ============================================================
-    // ✅ get all portfolio projects with tags
-    // ============================================================
-    public function get_portfolio_projects()
-    {
-        $projects = $this->db
-            ->order_by('id', 'DESC')
-            ->get('portfolio_projects')
-            ->result();
-
-        foreach ($projects as $project) {
-            $project->tags = $this->db
-                ->where('project_id', $project->id)
-                ->get('portfolio_tags')
-                ->result();
-        }
-
-        return $projects;
-    }
 
 
 
